@@ -30,9 +30,6 @@
       }
     }
   </script>
-
-  <!-- Preline UI (opcional para componentes adicionales) -->
-  <link href="https://unpkg.com/preline@1.2.0/dist/preline.css" rel="stylesheet" />
 </head>
 <body class="bg-neutral-50 text-neutral-900 font-sans">
 
@@ -63,26 +60,25 @@
   </header>
 
   <script>
-    // Toggle menú móvil
     document.getElementById('menuBtn').addEventListener('click', () => {
       document.getElementById('mobileNav').classList.toggle('hidden');
     });
   </script>
 
   <!-- HERO -->
-  <section class="relative w-full h-72 bg-cover bg-center" style="background-image:url('https://picsum.photos/seed/contact-hero/1600/600');">
+  <section class="relative w-full h-56 sm:h-72 md:h-80 bg-cover bg-center" style="background-image:url('https://picsum.photos/seed/contact-hero/1600/600');">
     <div class="absolute inset-0 bg-black bg-opacity-50"></div>
-    <div class="relative z-10 flex items-center justify-center h-full">
-      <h1 class="text-4xl md:text-5xl font-extrabold text-white drop-shadow-lg">
-        📞 Contáctanos
+    <div class="relative z-10 flex items-center justify-center h-full px-4">
+      <h1 class="text-3xl sm:text-4xl md:text-5xl font-extrabold text-white drop-shadow-lg">
+        Contáctanos
       </h1>
     </div>
   </section>
 
   <!-- BREADCRUMB -->
-  <nav class="bg-white py-3 shadow-sm mt-72">
-    <div class="max-w-7xl mx-auto px-4">
-      <ol class="flex text-sm text-neutral-600 space-x-2">
+  <nav class="bg-white py-3 shadow-sm mt-56 sm:mt-72">
+    <div class="max-w-7xl mx-auto px-4 text-sm text-neutral-600">
+      <ol class="flex space-x-2">
         <li><a href="/" class="hover:text-neutral-800">Inicio</a></li>
         <li>/</li>
         <li class="font-medium text-neutral-800">Contacto</li>
@@ -91,32 +87,32 @@
   </nav>
 
   <!-- SECCIÓN DE CONTACTO -->
-  <section class="py-16 max-w-7xl mx-auto px-4">
-    <div class="grid grid-cols-1 lg:grid-cols-2 gap-12">
+  <section class="py-12 lg:py-16 max-w-7xl mx-auto px-4">
+    <div class="grid grid-cols-1 lg:grid-cols-2 gap-10">
 
       <!-- INFO & MAPA -->
       <div class="space-y-6">
-        <div class="bg-white p-8 rounded-2xl shadow-lg hover:-translate-y-1 transform transition">
-          <h2 class="text-2xl font-semibold mb-4 text-brand-700">📍 Nuestra Información</h2>
+        <div class="bg-white p-6 sm:p-8 rounded-2xl shadow-lg hover:-translate-y-1 transform transition">
+          <h2 class="text-xl sm:text-2xl font-semibold mb-4 text-brand-700">Nuestra Información</h2>
           <p class="flex items-start mb-2">
-            <i class="fa-solid fa-location-dot text-accent-500 mr-2 mt-1"></i>
-            Av. Example 123, La Paz, Bolivia
+            <i class="fa-solid fa-location-dot text-accent-500 mr-2"></i>
+            No. 5678 West Nanjing Road, Shanghai, China
           </p>
           <p class="flex items-start mb-2">
-            <i class="fa-solid fa-phone text-accent-500 mr-2 mt-1"></i>
-            +591 2 1234 5678
+            <i class="fa-solid fa-phone text-accent-500 mr-2"></i>
+            +86 21 1234 5678
           </p>
           <p class="flex items-start">
-            <i class="fa-solid fa-envelope text-accent-500 mr-2 mt-1"></i>
-            contacto@tu-dominio.com
+            <i class="fa-solid fa-envelope text-accent-500 mr-2"></i>
+            contacto@mrcrusher.cn
           </p>
-          <div class="mt-6 flex space-x-4">
-            <a href="https://wa.me/59171234567" target="_blank"
-               class="inline-flex items-center px-5 py-3 bg-green-500 hover:bg-green-600 text-white rounded-full shadow-md transition">
+          <div class="mt-6 flex flex-col sm:flex-row sm:space-x-4 space-y-3 sm:space-y-0">
+            <a href="https://wa.me/861234567890" target="_blank"
+               class="flex-1 inline-flex items-center justify-center px-4 py-3 bg-green-500 hover:bg-green-600 text-white rounded-full shadow transition">
               <i class="fa-brands fa-whatsapp fa-lg mr-2"></i>WhatsApp
             </a>
-            <a href="mailto:contacto@tu-dominio.com"
-               class="inline-flex items-center px-5 py-3 bg-brand-500 hover:bg-brand-700 text-white rounded-full shadow-md transition">
+            <a href="mailto:contacto@mrcrusher.cn"
+               class="flex-1 inline-flex items-center justify-center px-4 py-3 bg-brand-500 hover:bg-brand-700 text-white rounded-full shadow transition">
               <i class="fa-solid fa-paper-plane fa-lg mr-2"></i>Email
             </a>
           </div>
@@ -124,44 +120,46 @@
 
         <div class="overflow-hidden rounded-2xl shadow-lg">
           <iframe
-            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3808.1234567890123!2d-68.11929238477315!3d-16.50000000000001!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x9142600000000001%3A0xabcdef1234567890!2sAv.%20Example%20123%2C%20La%20Paz!5e0!3m2!1ses!2sbo!4v1610000000000!5m2!1ses!2sbo"
-            width="100%" height="300" style="border:0;" allowfullscreen="" loading="lazy"
-            class="w-full h-60 lg:h-80">
+            src="https://maps.google.com/maps?q=west%20nanjing%20road%20shanghai&t=&z=13&ie=UTF8&iwloc=&output=embed"
+            class="w-full h-60 sm:h-72 lg:h-80"
+            style="border:0;"
+            allowfullscreen=""
+            loading="lazy">
           </iframe>
         </div>
       </div>
 
       <!-- FORMULARIO -->
-      <div class="bg-white p-8 rounded-2xl shadow-lg hover:-translate-y-1 transform transition">
+      <div class="bg-white p-6 sm:p-8 rounded-2xl shadow-lg hover:-translate-y-1 transform transition">
         <img src="https://picsum.photos/seed/contact-form/600/300"
              alt="Envía tu mensaje"
-             class="mx-auto mb-6 rounded-lg shadow-md"/>
+             class="mx-auto mb-6 rounded-lg shadow-md w-full max-w-md"/>
 
-        <h2 class="text-2xl font-semibold mb-6 text-brand-700">✉️ Envíanos un Mensaje</h2>
+        <h2 class="text-xl sm:text-2xl font-semibold mb-6 text-brand-700">Envíanos un Mensaje</h2>
         <form action="#" method="POST" class="space-y-5">
           <div>
-            <label for="name" class="block text-sm font-medium mb-1">Nombre 😊</label>
+            <label for="name" class="block text-sm font-medium mb-1">Nombre</label>
             <input type="text" id="name" name="name" placeholder="Tu nombre"
                    class="w-full border border-gray-300 rounded-lg p-3 focus:outline-none focus:ring-2 focus:ring-brand-500"/>
           </div>
           <div>
-            <label for="email" class="block text-sm font-medium mb-1">Correo electrónico 📧</label>
+            <label for="email" class="block text-sm font-medium mb-1">Correo electrónico</label>
             <input type="email" id="email" name="email" placeholder="tucorreo@ejemplo.com"
                    class="w-full border border-gray-300 rounded-lg p-3 focus:outline-none focus:ring-2 focus:ring-brand-500"/>
           </div>
           <div>
-            <label for="subject" class="block text-sm font-medium mb-1">Asunto 📝</label>
+            <label for="subject" class="block text-sm font-medium mb-1">Asunto</label>
             <input type="text" id="subject" name="subject" placeholder="Asunto del mensaje"
                    class="w-full border border-gray-300 rounded-lg p-3 focus:outline-none focus:ring-2 focus:ring-brand-500"/>
           </div>
           <div>
-            <label for="message" class="block text-sm font-medium mb-1">Mensaje ✍️</label>
+            <label for="message" class="block text-sm font-medium mb-1">Mensaje</label>
             <textarea id="message" name="message" rows="6" placeholder="Escribe tu mensaje..."
                       class="w-full border border-gray-300 rounded-lg p-3 focus:outline-none focus:ring-2 focus:ring-brand-500"></textarea>
           </div>
           <button type="submit"
                   class="w-full py-3 bg-accent-500 hover:bg-accent-600 text-white font-semibold rounded-lg shadow transition">
-            Enviar Mensaje 🚀
+            Enviar Mensaje
           </button>
         </form>
 
@@ -198,12 +196,12 @@
       <div class="lg:col-span-4">
         <h4 class="font-semibold text-white mb-3">China HQ</h4>
         <ul class="space-y-1 text-sm">
-          <li>No. 9875 Hunan Rd., Shanghai</li>
-          <li>+86 158 2191 0712</li>
-          <li>info@shmrmachinery.com</li>
+          <li>No. 5678 West Nanjing Road, Shanghai, China</li>
+          <li>+86 21 1234 5678</li>
+          <li>contacto@mrcrusher.cn</li>
         </ul>
         <iframe class="mt-4 rounded shadow"
-                src="https://maps.google.com/maps?q=shanghai%20hunan%20rd&t=&z=13&ie=UTF8&iwloc=&output=embed"
+                src="https://maps.google.com/maps?q=west%20nanjing%20road%20shanghai&t=&z=13&ie=UTF8&iwloc=&output=embed"
                 width="100%" height="120" loading="lazy"></iframe>
       </div>
     </div>
@@ -212,7 +210,5 @@
     </div>
   </footer>
 
-  <!-- Preline JS (si usas componentes Preline) -->
-  <script src="https://unpkg.com/preline@1.2.0/dist/preline.js"></script>
 </body>
 </html>
