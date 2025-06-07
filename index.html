@@ -77,7 +77,6 @@
       <a href="#destacados"  class="nav-link">Productos</a>
       <a href="#noticias"    class="nav-link">Noticias</a>
 
-      <!-- Menú “Más” con click -->
       <div class="relative">
         <button id="more-btn" class="nav-link flex items-center gap-1">Más <i class="fa-solid fa-chevron-down text-xs"></i></button>
         <div id="more-menu" class="hidden absolute left-1/2 -translate-x-1/2 mt-2 w-44 bg-white border
@@ -91,8 +90,13 @@
       </div>
     </nav>
 
-    <!-- CTA + mobile menu -->
+    <!-- Banderas + CTA + móvil -->
     <div class="ml-auto flex items-center gap-4 z-10">
+      <div class="hidden lg:flex items-center gap-2 text-xl">
+        <a href="/"    class="fi fi-es" title="Español"></a>
+        <a href="/en/" class="fi fi-us" title="English"></a>
+        <a href="/pt/" class="fi fi-br" title="Português"></a>
+      </div>
       <a href="#mapa" class="hidden lg:inline-block btn-primary text-sm whitespace-nowrap">Cotiza ya</a>
       <button id="mobile-menu-button" class="lg:hidden text-primary-700" aria-expanded="false">
         <i class="fa-solid fa-bars fa-2x"></i>
@@ -102,15 +106,20 @@
 
   <!-- Mobile nav -->
   <nav id="mobile-nav" class="hidden lg:hidden flex-col bg-white text-center py-4 space-y-4">
-    <a href="#inicio" class="nav-link block">Inicio</a>
-    <a href="#nosotros" class="nav-link block">Sobre nosotros</a>
-    <a href="#destacados" class="nav-link block">Productos</a>
-    <a href="#noticias" class="nav-link block">Noticias</a>
-    <a href="#clientes" class="nav-link block">Clientes</a>
-    <a href="#publicaciones" class="nav-link block">Publicaciones</a>
-    <a href="#ventajas" class="nav-link block">Ventajas</a>
-    <a href="#mapa" class="nav-link block">Mapa</a>
-    <a href="#alianza" class="nav-link block">Alianza</a>
+    <a href="#inicio"      class="nav-link block">Inicio</a>
+    <a href="#nosotros"    class="nav-link block">Sobre nosotros</a>
+    <a href="#destacados"  class="nav-link block">Productos</a>
+    <a href="#noticias"    class="nav-link block">Noticias</a>
+    <a href="#clientes"    class="nav-link block">Clientes</a>
+    <a href="#publicaciones"class="nav-link block">Publicaciones</a>
+    <a href="#ventajas"    class="nav-link block">Ventajas</a>
+    <a href="#mapa"        class="nav-link block">Mapa</a>
+    <a href="#alianza"     class="nav-link block">Alianza</a>
+    <div class="flex justify-center gap-4 text-2xl pt-2">
+      <a href="/"    class="fi fi-es"></a>
+      <a href="/en/" class="fi fi-us"></a>
+      <a href="/pt/" class="fi fi-br"></a>
+    </div>
   </nav>
 </header>
 
@@ -119,7 +128,7 @@
 <!-- ============ HERO ============ -->
 <section id="inicio" class="relative h-screen overflow-hidden">
   <video class="absolute inset-0 w-full h-full object-cover"
-         src="https://cdn.coverr.co/videos/coverr-huge-mining-excavator-6233/1080p.mp4"
+         src="https://www.w3schools.com/html/mov_bbb.mp4"
          autoplay muted loop playsinline
          poster="https://picsum.photos/1920/1080?blur"></video>
   <div class="absolute inset-0 bg-black/50"></div>
@@ -138,7 +147,6 @@
     <a href="#destacados" class="btn-primary" data-aos="zoom-in" data-aos-delay="300">Descubre nuestros productos</a>
   </div>
 </section>
-
 <!-- ============ NOSOTROS ============ -->
 <section id="nosotros" class="bg-neutral-50 py-16">
   <div class="max-w-4xl mx-auto px-4 space-y-12">
@@ -445,7 +453,7 @@ document.querySelectorAll('a[href^="#"]').forEach(a=>a.addEventListener('click',
 }));
 
 /* MapLibre zoom 1.5 desktop / 1.3 móvil */
-const baseZoom=innerWidth<640?1.3:1.5;
+const baseZoom=innerWidth<640?1.3:1.1;
 const map=new maplibregl.Map({container:'chinaBoliviaMap',style:'https://demotiles.maplibre.org/style.json',
   center:[25,5],zoom:baseZoom,projection:'mercator',dragRotate:false,touchZoomRotate:{pinchRotate:false},attributionControl:false});
 const cn=[121.4737,31.2304],bo=[-63.588652,-16.290154];
