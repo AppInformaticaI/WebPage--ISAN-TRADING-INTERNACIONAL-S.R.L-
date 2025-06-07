@@ -464,68 +464,173 @@
       </div>
     </section>
 
-    <!-- NOTICIAS -->
-    <section id="noticias" class="section py-24 bg-white">
-      <div class="max-w-7xl mx-auto px-6">
-        <h2 class="text-4xl font-extrabold text-center mb-10">Noticias Recientes</h2>
-        <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-10">
-          <article class="card-3d bg-white rounded-xl overflow-hidden flex flex-col" data-aos="zoom-in">
-            <div class="relative aspect-[4/3] overflow-hidden">
-              <img src="https://picsum.photos/seed/<?= crc32('HPGR 300 TPH Chile finalizado') ?>/800/600" alt="HPGR 300 TPH Chile finalizado" class="w-full h-full object-cover">
-              <span class="absolute top-3 left-3 bg-primary-500 text-white text-xs px-2 py-1 rounded">Proyectos</span>
-            </div>
-            <div class="p-6 flex-1 flex flex-col">
-              <span class="text-neutral-500 text-xs mb-1">12 May 2025</span>
-              <h3 class="font-semibold mb-2 line-clamp-2">HPGR 300 TPH Chile finalizado</h3>
-              <p class="text-neutral-600 text-sm line-clamp-3 mb-4">Lorem ipsum dolor sit amet…</p>
-              <a href="#" class="mt-auto inline-flex items-center gap-2 text-primary-700 font-medium hover:underline">Leer más <i class="fa-solid fa-arrow-right text-xs"></i></a>
-            </div>
-          </article>
-          <article class="card-3d bg-white rounded-xl overflow-hidden flex flex-col" data-aos="zoom-in" data-aos-delay="100">
-            <div class="relative aspect-[4/3] overflow-hidden">
-              <img src="https://picsum.photos/seed/<?= crc32('Planta 200 TPH Perú') ?>/800/600" alt="Planta 200 TPH Perú" class="w-full h-full object-cover">
-              <span class="absolute top-3 left-3 bg-primary-500 text-white text-xs px-2 py-1 rounded">Proyectos</span>
-            </div>
-            <div class="p-6 flex-1 flex flex-col">
-              <span class="text-neutral-500 text-xs mb-1">25 Apr 2025</span>
-              <h3 class="font-semibold mb-2 line-clamp-2">Planta 200 TPH Perú</h3>
-              <p class="text-neutral-600 text-sm line-clamp-3 mb-4">Lorem ipsum dolor sit amet…</p>
-              <a href="#" class="mt-auto inline-flex items-center gap-2 text-primary-700 font-medium hover:underline">Leer más <i class="fa-solid fa-arrow-right text-xs"></i></a>
-            </div>
-          </article>
-          <article class="card-3d bg-white rounded-xl overflow-hidden flex flex-col" data-aos="zoom-in" data-aos-delay="200">
-            <div class="relative aspect-[4/3] overflow-hidden">
-              <img src="https://picsum.photos/seed/<?= crc32('Modernización cantera Gran Roca') ?>/800/600" alt="Modernización cantera Gran Roca" class="w-full h-full object-cover">
-              <span class="absolute top-3 left-3 bg-primary-500 text-white text-xs px-2 py-1 rounded">Proyectos</span>
-            </div>
-            <div class="p-6 flex-1 flex flex-col">
-              <span class="text-neutral-500 text-xs mb-1">02 Apr 2025</span>
-              <h3 class="font-semibold mb-2 line-clamp-2">Modernización cantera Gran Roca</h3>
-              <p class="text-neutral-600 text-sm line-clamp-3 mb-4">Lorem ipsum dolor sit amet…</p>
-              <a href="#" class="mt-auto inline-flex items-center gap-2 text-primary-700 font-medium hover:underline">Leer más <i class="fa-solid fa-arrow-right text-xs"></i></a>
-            </div>
-          </article>
+   <!-- ================ NOTICIAS ================= -->
+<section id="noticias" class="section py-24 bg-white">
+  <div class="max-w-7xl mx-auto px-6">
+    <h2 class="text-4xl font-extrabold text-center mb-10">Noticias Recientes</h2>
+    <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-10">
+      <!-- Noticia 1 -->
+      <article class="card-3d bg-white rounded-xl overflow-hidden flex flex-col" data-aos="zoom-in">
+        <div class="relative aspect-[4/3] overflow-hidden">
+          <img
+            src="https://source.unsplash.com/800x600/?mining"
+            alt="HPGR 300 TPH en Chile"
+            class="w-full h-full object-cover"
+            loading="lazy" decoding="async">
+          <span class="absolute top-3 left-3 bg-primary-500 text-white text-xs px-2 py-1 rounded">Proyectos</span>
         </div>
-        <div class="mt-12 text-center">
-          <a href="noticias.html" class="btn-primary inline-block">Ver todas las noticias</a>
+        <div class="p-6 flex-1 flex flex-col">
+          <span class="text-neutral-500 text-xs mb-1">12 May 2025</span>
+          <h3 class="font-semibold mb-2 line-clamp-2">HPGR 300 TPH en Chile finalizado</h3>
+          <p class="text-neutral-600 text-sm line-clamp-3 mb-4">
+            Nuestro molino HPGR de 300 toneladas por hora ha concluido con éxito su instalación en la mina El Teniente.
+          </p>
+          <a href="#" class="mt-auto inline-flex items-center gap-2 text-primary-700 font-medium hover:underline">
+            Leer más <i class="fa-solid fa-arrow-right text-xs"></i>
+          </a>
         </div>
-      </div>
-    </section>
+      </article>
+
+      <!-- Noticia 2 -->
+      <article class="card-3d bg-white rounded-xl overflow-hidden flex flex-col" data-aos="zoom-in" data-aos-delay="100">
+        <div class="relative aspect-[4/3] overflow-hidden">
+          <img
+            src="https://source.unsplash.com/800x600/?factory"
+            alt="Planta 200 TPH Perú"
+            class="w-full h-full object-cover"
+            loading="lazy" decoding="async">
+          <span class="absolute top-3 left-3 bg-primary-500 text-white text-xs px-2 py-1 rounded">Proyectos</span>
+        </div>
+        <div class="p-6 flex-1 flex flex-col">
+          <span class="text-neutral-500 text-xs mb-1">25 Apr 2025</span>
+          <h3 class="font-semibold mb-2 line-clamp-2">Planta de 200 TPH en Perú</h3>
+          <p class="text-neutral-600 text-sm line-clamp-3 mb-4">
+            Instalamos una línea de trituración de 200 toneladas por hora en la región de Puno, con resultados excepcionales.
+          </p>
+          <a href="#" class="mt-auto inline-flex items-center gap-2 text-primary-700 font-medium hover:underline">
+            Leer más <i class="fa-solid fa-arrow-right text-xs"></i>
+          </a>
+        </div>
+      </article>
+
+      <!-- Noticia 3 -->
+      <article class="card-3d bg-white rounded-xl overflow-hidden flex flex-col" data-aos="zoom-in" data-aos-delay="200">
+        <div class="relative aspect-[4/3] overflow-hidden">
+          <img
+            src="https://source.unsplash.com/800x600/?technology"
+            alt="Modernización cantera Gran Roca"
+            class="w-full h-full object-cover"
+            loading="lazy" decoding="async">
+          <span class="absolute top-3 left-3 bg-primary-500 text-white text-xs px-2 py-1 rounded">Proyectos</span>
+        </div>
+        <div class="p-6 flex-1 flex flex-col">
+          <span class="text-neutral-500 text-xs mb-1">02 Apr 2025</span>
+          <h3 class="font-semibold mb-2 line-clamp-2">Modernización canteras Gran Roca</h3>
+          <p class="text-neutral-600 text-sm line-clamp-3 mb-4">
+            Renovamos equipos de trituración y cribado en Gran Roca, aumentando la eficiencia en un 30 %.
+          </p>
+          <a href="#" class="mt-auto inline-flex items-center gap-2 text-primary-700 font-medium hover:underline">
+            Leer más <i class="fa-solid fa-arrow-right text-xs"></i>
+          </a>
+        </div>
+      </article>
+    </div>
+
+    <div class="mt-12 text-center">
+      <a href="noticias.html" class="btn-primary inline-block">Ver todas las noticias</a>
+    </div>
+  </div>
+</section>
+
 
   </main>
 
-  <footer id="contacto" class="bg-neutral-100 py-16">
-    <div class="max-w-4xl mx-auto px-6 text-center">
-      <h2 class="text-3xl font-extrabold mb-6">Contáctenos</h2>
-      <p class="text-neutral-600 mb-8">Correo: ventas@mrcrusher.com • Tel: +591 70000000</p>
-      <form class="space-y-4 max-w-md mx-auto">
-        <input type="text" placeholder="Nombre" class="w-full p-3 border border-neutral-300 rounded-lg">
-        <input type="email" placeholder="Correo electrónico" class="w-full p-3 border border-neutral-300 rounded-lg">
-        <textarea placeholder="Mensaje" rows="4" class="w-full p-3 border border-neutral-300 rounded-lg"></textarea>
-        <button type="submit" class="btn-primary w-full">Enviar mensaje</button>
-      </form>
+ <!-- ======== CTA “¿Necesitas ayuda…?” ======== -->
+<section class="py-20 text-white text-center relative overflow-hidden" style="background-color:#B71C1C;">
+  <div class="absolute inset-0 opacity-10 bg-[url('https://picsum.photos/seed/quarry/1200/800')] bg-cover bg-center"></div>
+  <div class="relative z-10 max-w-3xl mx-auto px-6">
+    <h2 class="text-4xl font-extrabold mb-4 tracking-wide motion-safe:animate-slideUp">
+      ¿Necesitas ayuda para elegir?
+    </h2>
+    <p class="mb-8 text-neutral-200 leading-relaxed motion-safe:animate-slideUp [animation-delay:.15s]">
+      Nuestros ingenieros responden en menos de 24 h.
+    </p>
+
+    <a href="contacto.html#contacto"
+       class="group inline-flex items-center font-semibold border-2 border-white px-8 py-3 rounded-lg
+              hover:bg-white hover:text-primary-700 transition
+              motion-safe:animate-slideUp motion-safe:animate-pulseSlow">
+      Solicitar asesoría gratis
+      <span class="ml-3 flex items-center transform transition-transform duration-200 group-hover:translate-x-1">
+        <i class="fa-solid fa-arrow-right-long"></i>
+        <i class="fa-brands fa-whatsapp ml-2 text-green-500"></i>
+      </span>
+    </a>
+  </div>
+</section>
+
+<!-- ===================== FOOTER ===================== -->
+<footer class="bg-neutral-900 text-neutral-200 pt-14">
+  <div class="max-w-7xl mx-auto px-6 pb-12 grid gap-10 md:grid-cols-12">
+
+    <!-- Marca -->
+    <div class="md:col-span-4">
+      <h3 class="font-extrabold text-lg text-white mb-3">MR Crusher</h3>
+      <p class="leading-relaxed text-sm">
+        Soluciones de trituración, molienda y briquetado<br>
+        con soporte global 24/7.
+      </p>
+      <div class="flex gap-4 mt-6 text-xl">
+        <a href="#" aria-label="Facebook"  class="hover:text-primary-500 transition"><i class="fa-brands fa-facebook-f"></i></a>
+        <a href="#" aria-label="Instagram" class="hover:text-primary-500 transition"><i class="fa-brands fa-instagram"></i></a>
+        <a href="#" aria-label="YouTube"   class="hover:text-primary-500 transition"><i class="fa-brands fa-youtube"></i></a>
+        <a href="#" aria-label="WeChat"    class="hover:text-primary-500 transition"><i class="fa-brands fa-weixin"></i></a>
+      </div>
     </div>
-  </footer>
+
+    <!-- Navegación -->
+    <div class="md:col-span-4">
+      <h4 class="font-semibold text-white mb-3">Navegación</h4>
+      <div class="grid grid-cols-2 gap-y-1 text-sm">
+        <a href="index.html" class="hover:text-primary-500 transition">Inicio</a>
+        <a href="nosotros.html" class="hover:text-primary-500 transition">Sobre Nosotros</a>
+        <a href="productos.html" class="hover:text-primary-500 transition">Productos</a>
+        <a href="noticias.html" class="hover:text-primary-500 transition">Noticias</a>
+        <a href="proyectos.html" class="hover:text-primary-500 transition">Proyectos</a>
+        <a href="contacto.html" class="hover:text-primary-500 transition">Contacto</a>
+      </div>
+    </div>
+
+    <!-- Contacto -->
+    <div class="md:col-span-4">
+      <h4 class="font-semibold text-white mb-3">China HQ</h4>
+      <ul class="space-y-2 text-sm">
+        <li class="flex gap-2"><i class="fa-solid fa-location-dot w-4 text-primary-500 mt-0.5"></i>No. 9875 Hunan Rd., Shanghai</li>
+        <li class="flex gap-2"><i class="fa-solid fa-phone w-4 text-primary-500 mt-0.5"></i>+86 158 2191 0712</li>
+        <li class="flex gap-2"><i class="fa-solid fa-envelope w-4 text-primary-500 mt-0.5"></i>info@shmrmachinery.com</li>
+        <li class="flex gap-2"><i class="fa-solid fa-globe w-4 text-primary-500 mt-0.5"></i>
+          <a href="https://mrcrusher.com" target="_blank" class="hover:underline">mrcrusher.com</a>
+        </li>
+      </ul>
+    </div>
+  </div>
+
+  <!-- Copyright -->
+  <div class="bg-neutral-800 text-center text-xs py-3 text-neutral-400 tracking-wide">
+    © 2025 Shanghai Mountain River Machinery Co., Ltd.
+  </div>
+</footer>
+
+<!-- ===== Botón “Back to Top” ===== -->
+<button id="toTop"
+        class="fixed bottom-4 right-4 w-12 h-12 rounded-full text-white flex items-center justify-center
+               opacity-0 pointer-events-none transition duration-300 shadow-deep hover:shadow-deeper"
+        style="background-color:#E53935;"
+        aria-label="Volver arriba">
+  <i class="fa-solid fa-chevron-up text-lg"></i>
+</button>
+
+
 
   <!-- JS -->
   <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
@@ -580,5 +685,18 @@
       })();
     });
   </script>
+  <script>
+  const toTop = document.getElementById('toTop');
+  window.addEventListener('scroll', () => {
+    const visible = window.scrollY > 600;
+    toTop.classList.toggle('opacity-0', !visible);
+    toTop.classList.toggle('pointer-events-none', !visible);
+    toTop.classList.toggle('animate-bounce', visible);
+  });
+  toTop.addEventListener('click', () =>
+    window.scrollTo({ top: 0, behavior: 'smooth' })
+  );
+</script>
+
 </body>
 </html>
