@@ -19,7 +19,7 @@
             accent:  {500:'#FF8C00',600:'#F57C00'},
             neutral: {50:'#fafafa',300:'#e5e7eb',500:'#6b7280',700:'#374151',900:'#111827'}
           },
-          boxShadow: {card:'0 10px 24px rgba(0,0,0,.18)'}
+          boxShadow: {card:'0 8px 20px rgba(0,0,0,.15)'}
         }
       }
     }
@@ -31,36 +31,59 @@
 
   <style>
     body { font-family:'Poppins',sans-serif; }
-    .video-card { position:relative; overflow:hidden; border-radius:1rem; box-shadow:theme(boxShadow.card); transition:.3s; cursor:pointer; }
-    .video-card:hover { transform:translateY(-4px) scale(1.02); }
-    .video-card img { width:100%; height:auto; transition:transform .4s; }
-    .video-card:hover img { transform:scale(1.08); }
+    /* Card más compacto */
+    .video-card {
+      position:relative;
+      overflow:hidden;
+      border-radius:.75rem;
+      box-shadow:theme(boxShadow.card);
+      transition:transform .3s;
+      cursor:pointer;
+      background:#000;
+    }
+    .video-card:hover { transform:translateY(-3px) scale(1.02); }
+    .video-card img {
+      display:block;
+      width:100%;
+      height:100%;
+      object-fit:cover;
+      transition:transform .4s;
+    }
+    .video-card:hover img { transform:scale(1.1); }
     .video-overlay {
       position:absolute; inset:0;
-      background:rgba(0,0,0,.25);
+      background:rgba(0,0,0,.3);
       display:flex; align-items:center; justify-content:center;
       opacity:0; transition:.3s;
     }
     .video-card:hover .video-overlay { opacity:1; }
-    .video-overlay i { font-size:2rem; color:#fff; }
+    .video-overlay i { font-size:1.8rem; color:#fff; }
+
     /* Modal */
     #videoModal {
       position:fixed; inset:0;
-      background:rgba(0,0,0,.8);
+      background:rgba(0,0,0,.85);
       display:none; align-items:center; justify-content:center; z-index:50;
     }
     #videoModal.active { display:flex; }
     #videoModal .modal-content {
       position:relative;
-      width:90%; max-width:800px;
+      width:90%; max-width:840px;
       background:#000;
+      border-radius:.5rem;
+      overflow:hidden;
     }
-    #videoModal .modal-content iframe { width:100%; height:0; padding-bottom:56.25%; }
+    #videoModal iframe {
+      width:100%;
+      height:calc(100vw * 9 / 16);
+      max-height:calc(840px * 9 / 16);
+    }
     #videoModal .modal-close {
-      position:absolute; top:.5rem; right:.5rem;
+      position:absolute; top:.5rem; right:.75rem;
       color:#fff; font-size:1.5rem; cursor:pointer;
+      z-index:10;
     }
-    /* Header / Footer colors tweak */
+    /* Ajuste Header/Footer */
     .nav-link:hover, .nav-link.active { color:theme('colors.primary.500'); }
   </style>
 </head>
@@ -69,7 +92,7 @@
 
   <!-- HEADER -->
   <header class="fixed inset-x-0 top-0 z-50 bg-white shadow-deeper">
-    <div class="max-w-7xl mx-auto px-6 lg:px-8 h-16 flex items-center relative">
+    <div class="max-w-7xl mx-auto px-6 lg:px-8 h-16 flex items-center">
       <a href="/" class="font-extrabold text-primary-700 text-lg">MR Crusher</a>
       <nav class="hidden lg:flex absolute inset-x-0 justify-center gap-6 text-sm">
         <a href="/" class="nav-link">Inicio</a>
@@ -92,43 +115,56 @@
   </header>
 
   <!-- HERO -->
-  <section class="mt-16 h-[46vh] bg-[url('https://picsum.photos/seed/videos/1600/900')] bg-cover bg-center relative flex items-center justify-center">
-    <div class="absolute inset-0 bg-black/60"></div>
+  <section class="mt-16 h-[36vh] bg-[url('https://picsum.photos/seed/videos/1600/900')] bg-cover bg-center relative flex items-center justify-center">
+    <div class="absolute inset-0 bg-black/50"></div>
     <h1 class="relative z-10 text-white text-4xl font-extrabold">Galería de Vídeos Técnicos</h1>
   </section>
 
   <!-- CONTENIDO -->
-  <main class="max-w-7xl mx-auto px-6 py-12 space-y-16">
+  <main class="max-w-7xl mx-auto px-6 py-12 space-y-12">
 
     <!-- Crusher -->
     <section id="crusher" data-aos="fade-up">
-      <h2 class="text-3xl font-extrabold mb-6">Crusher</h2>
-      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+      <h2 class="text-2xl font-extrabold mb-4 border-b-2 border-accent-500 inline-block">Crusher</h2>
+      <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-4">
         <!-- Demo Jaw Crusher -->
         <article class="video-card" data-video-id="ScMzIvxBSi4">
           <img src="https://img.youtube.com/vi/ScMzIvxBSi4/hqdefault.jpg" alt="Demo Jaw Crusher">
           <div class="video-overlay"><i class="fa-solid fa-play"></i></div>
-          <div class="p-4">
-            <h3 class="font-semibold mb-1">Demo Jaw Crusher</h3>
-            <p class="text-xs text-neutral-500 mb-2">Crusher • 3:45</p>
+          <div class="p-2 text-sm bg-white">
+            <h3 class="font-medium truncate">Demo Jaw Crusher</h3>
           </div>
         </article>
         <!-- Cone Crusher Setup -->
         <article class="video-card" data-video-id="dQw4w9WgXcQ">
           <img src="https://img.youtube.com/vi/dQw4w9WgXcQ/hqdefault.jpg" alt="Cone Crusher Setup">
           <div class="video-overlay"><i class="fa-solid fa-play"></i></div>
-          <div class="p-4">
-            <h3 class="font-semibold mb-1">Cone Crusher Setup</h3>
-            <p class="text-xs text-neutral-500 mb-2">Crusher • 5:12</p>
+          <div class="p-2 text-sm bg-white">
+            <h3 class="font-medium truncate">Cone Crusher Setup</h3>
           </div>
         </article>
         <!-- Impact Crusher Operation -->
         <article class="video-card" data-video-id="9bZkp7q19f0">
           <img src="https://img.youtube.com/vi/9bZkp7q19f0/hqdefault.jpg" alt="Impact Crusher Operation">
           <div class="video-overlay"><i class="fa-solid fa-play"></i></div>
-          <div class="p-4">
-            <h3 class="font-semibold mb-1">Impact Crusher Operation</h3>
-            <p class="text-xs text-neutral-500 mb-2">Crusher • 4:20</p>
+          <div class="p-2 text-sm bg-white">
+            <h3 class="font-medium truncate">Impact Crusher Operation</h3>
+          </div>
+        </article>
+        <!-- VSI Crusher Demo -->
+        <article class="video-card" data-video-id="M7lc1UVf-VE">
+          <img src="https://img.youtube.com/vi/M7lc1UVf-VE/hqdefault.jpg" alt="VSI Crusher Demo">
+          <div class="video-overlay"><i class="fa-solid fa-play"></i></div>
+          <div class="p-2 text-sm bg-white">
+            <h3 class="font-medium truncate">VSI Crusher Demo</h3>
+          </div>
+        </article>
+        <!-- Hammer Crusher Intro -->
+        <article class="video-card" data-video-id="e-ORhEE9VVg">
+          <img src="https://img.youtube.com/vi/e-ORhEE9VVg/hqdefault.jpg" alt="Hammer Crusher Intro">
+          <div class="video-overlay"><i class="fa-solid fa-play"></i></div>
+          <div class="p-2 text-sm bg-white">
+            <h3 class="font-medium truncate">Hammer Crusher Intro</h3>
           </div>
         </article>
       </div>
@@ -136,24 +172,22 @@
 
     <!-- Grinding -->
     <section id="grinding" data-aos="fade-up">
-      <h2 class="text-3xl font-extrabold mb-6">Grinding</h2>
-      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+      <h2 class="text-2xl font-extrabold mb-4 border-b-2 border-accent-500 inline-block">Grinding</h2>
+      <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-4">
         <!-- Raymond Mill Tutorial -->
         <article class="video-card" data-video-id="V-_O7nl0Ii0">
           <img src="https://img.youtube.com/vi/V-_O7nl0Ii0/hqdefault.jpg" alt="Raymond Mill Tutorial">
           <div class="video-overlay"><i class="fa-solid fa-play"></i></div>
-          <div class="p-4">
-            <h3 class="font-semibold mb-1">Raymond Mill Tutorial</h3>
-            <p class="text-xs text-neutral-500 mb-2">Grinding • 6:15</p>
+          <div class="p-2 text-sm bg-white">
+            <h3 class="font-medium truncate">Raymond Mill Tutorial</h3>
           </div>
         </article>
         <!-- Ball Mill Operation -->
         <article class="video-card" data-video-id="3JZ_D3ELwOQ">
           <img src="https://img.youtube.com/vi/3JZ_D3ELwOQ/hqdefault.jpg" alt="Ball Mill Operation">
           <div class="video-overlay"><i class="fa-solid fa-play"></i></div>
-          <div class="p-4">
-            <h3 class="font-semibold mb-1">Ball Mill Operation</h3>
-            <p class="text-xs text-neutral-500 mb-2">Grinding • 7:02</p>
+          <div class="p-2 text-sm bg-white">
+            <h3 class="font-medium truncate">Ball Mill Operation</h3>
           </div>
         </article>
       </div>
@@ -161,24 +195,22 @@
 
     <!-- Briquette -->
     <section id="briquette" data-aos="fade-up">
-      <h2 class="text-3xl font-extrabold mb-6">Briquette</h2>
-      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+      <h2 class="text-2xl font-extrabold mb-4 border-b-2 border-accent-500 inline-block">Briquette</h2>
+      <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-4">
         <!-- High-Pressure Briquette Demo -->
         <article class="video-card" data-video-id="e-ORhEE9VVg">
           <img src="https://img.youtube.com/vi/e-ORhEE9VVg/hqdefault.jpg" alt="High-Pressure Briquette Demo">
           <div class="video-overlay"><i class="fa-solid fa-play"></i></div>
-          <div class="p-4">
-            <h3 class="font-semibold mb-1">High-Pressure Briquette Demo</h3>
-            <p class="text-xs text-neutral-500 mb-2">Briquette • 5:50</p>
+          <div class="p-2 text-sm bg-white">
+            <h3 class="font-medium truncate">High-Pressure Briquette</h3>
           </div>
         </article>
         <!-- Medium-Pressure Briquette Demo -->
         <article class="video-card" data-video-id="Zi_XLOBDo_Y">
           <img src="https://img.youtube.com/vi/Zi_XLOBDo_Y/hqdefault.jpg" alt="Medium-Pressure Briquette Demo">
           <div class="video-overlay"><i class="fa-solid fa-play"></i></div>
-          <div class="p-4">
-            <h3 class="font-semibold mb-1">Medium-Pressure Briquette Demo</h3>
-            <p class="text-xs text-neutral-500 mb-2">Briquette • 4:30</p>
+          <div class="p-2 text-sm bg-white">
+            <h3 class="font-medium truncate">Medium-Pressure Briquette</h3>
           </div>
         </article>
       </div>
@@ -186,24 +218,22 @@
 
     <!-- Auxiliary -->
     <section id="auxiliary" data-aos="fade-up">
-      <h2 class="text-3xl font-extrabold mb-6">Auxiliary</h2>
-      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+      <h2 class="text-2xl font-extrabold mb-4 border-b-2 border-accent-500 inline-block">Auxiliary</h2>
+      <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-4">
         <!-- Belt Conveyor Animation -->
         <article class="video-card" data-video-id="L_jWHffIx5E">
           <img src="https://img.youtube.com/vi/L_jWHffIx5E/hqdefault.jpg" alt="Belt Conveyor Animation">
           <div class="video-overlay"><i class="fa-solid fa-play"></i></div>
-          <div class="p-4">
-            <h3 class="font-semibold mb-1">Belt Conveyor Animation</h3>
-            <p class="text-xs text-neutral-500 mb-2">Auxiliary • 3:25</p>
+          <div class="p-2 text-sm bg-white">
+            <h3 class="font-medium truncate">Belt Conveyor Animation</h3>
           </div>
         </article>
         <!-- Vibrating Screen Tutorial -->
         <article class="video-card" data-video-id="tVj0ZTS4WF4">
           <img src="https://img.youtube.com/vi/tVj0ZTS4WF4/hqdefault.jpg" alt="Vibrating Screen Tutorial">
           <div class="video-overlay"><i class="fa-solid fa-play"></i></div>
-          <div class="p-4">
-            <h3 class="font-semibold mb-1">Vibrating Screen Tutorial</h3>
-            <p class="text-xs text-neutral-500 mb-2">Auxiliary • 4:45</p>
+          <div class="p-2 text-sm bg-white">
+            <h3 class="font-medium truncate">Vibrating Screen Tutorial</h3>
           </div>
         </article>
       </div>
@@ -224,9 +254,7 @@
     <div class="max-w-7xl mx-auto px-6 pb-12 grid gap-10 md:grid-cols-12">
       <div class="md:col-span-4">
         <h3 class="font-extrabold text-lg text-white mb-3">MR Crusher</h3>
-        <p class="text-sm leading-relaxed">
-          Soluciones de trituración, molienda y briquetado 24/7.
-        </p>
+        <p class="text-sm leading-relaxed">Soluciones de trituración, molienda y briquetado 24/7.</p>
         <div class="flex gap-4 mt-6 text-xl">
           <a href="#" class="hover:text-primary-500"><i class="fa-brands fa-facebook-f"></i></a>
           <a href="#" class="hover:text-primary-500"><i class="fa-brands fa-instagram"></i></a>
