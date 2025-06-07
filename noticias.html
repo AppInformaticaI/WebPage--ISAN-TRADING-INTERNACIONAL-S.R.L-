@@ -1,0 +1,381 @@
+<!DOCTYPE html>
+<html lang="es" class="scroll-smooth">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1.0">
+  <title>MR Crusher — Noticias & Eventos</title>
+  <link rel="icon" href="/favicon.ico">
+
+  <!-- Tailwind CSS -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        fontFamily: { sans: ['Poppins','ui-sans-serif','system-ui'] },
+        extend: {
+          colors: { primary: { 500: '#E53935', 700: '#C62828' } },
+          boxShadow: {
+            glass: '0 12px 32px rgba(0,0,0,.18)',
+            glassHover: '0 24px 50px rgba(0,0,0,.32)'
+          }
+        }
+      }
+    };
+  </script>
+
+  <!-- Fonts & Icons -->
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://unpkg.com/aos@2.3.1/dist/aos.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+
+  <style>
+    body { font-family:'Poppins',sans-serif; }
+    /* Progress bar */
+    #progress { position:fixed; top:0; left:0; height:4px; background:#E53935; width:0; z-index:60 }
+    /* News card */
+    .news-card {
+      display:flex; flex-direction:column;
+      background:rgba(255,255,255,.75); backdrop-filter:blur(5px);
+      border-radius:1rem; overflow:hidden;
+      box-shadow:0 12px 32px rgba(0,0,0,.18);
+      transition:.3s;
+    }
+    .news-card:hover {
+      transform:translateY(-6px);
+      box-shadow:0 24px 50px rgba(0,0,0,.32);
+    }
+    .news-tag {
+      position:absolute; top:.75rem; left:.75rem;
+      background:#E53935; color:#fff;
+      font-size:.6rem; padding:.1rem .6rem;
+      border-radius:.25rem;
+    }
+    /* Read-more button */
+    .btn-read {
+      position:relative; display:inline-flex; align-items:center; gap:.25rem;
+      padding:.35rem .8rem; border-radius:9999px; font-size:.7rem;
+      background:#E53935; color:#fff; font-weight:600;
+      box-shadow:0 3px 9px rgba(0,0,0,.15);
+      transition:transform .22s, background .22s;
+    }
+    .btn-read:hover { background:#C62828; transform:translateY(-2px); }
+    .btn-read:active { transform:translateY(0); }
+    @keyframes rip { from{transform:scale(0);opacity:1} to{transform:scale(3.5);opacity:0} }
+    .btn-read:active::after {
+      content:''; position:absolute; inset:0;
+      background:rgba(255,255,255,.35); border-radius:inherit;
+      animation:rip .45s;
+    }
+    .btn-read svg { width:.65rem; height:.65rem; }
+
+    /* Sidebar */
+    #sidebar a { display:flex; align-items:center; gap:.55rem; padding:.5rem .85rem; border-radius:.6rem; }
+    #sidebar a:hover { background:#FFE5E5; }
+    #sidebar a.active { background:#E53935; color:#fff; }
+    .badge {
+      background:#E53935; color:#fff;
+      font-size:.62rem; padding:.05rem .5rem;
+      border-radius:9999px; margin-left:auto;
+    }
+    #lastList { max-height:220px; overflow-y:auto; }
+
+    /* ToTop button */
+    #toTop {
+      position:fixed; right:1rem; bottom:1rem;
+      background:#E53935; color:#fff; border-radius:9999px; padding:.7rem;
+      opacity:0; pointer-events:none; transition:.3s;
+    }
+    #toTop.show { opacity:1; pointer-events:auto; }
+  </style>
+</head>
+<body class="bg-neutral-50 antialiased">
+
+  <div id="progress"></div>
+
+  <!-- HEADER -->
+  <header class="fixed inset-x-0 top-0 z-50 bg-white shadow-sm">
+    <div class="max-w-7xl mx-auto h-16 px-6 flex items-center">
+      <a href="/" class="text-2xl font-extrabold text-primary-700">MR Crusher</a>
+      <nav class="hidden lg:flex mx-auto gap-6 text-sm">
+        <a href="/" class="hover:text-primary-700">Inicio</a>
+        <a href="/index.html#equipos" class="hover:text-primary-700">Equipos</a>
+        <a href="/index.html#soluciones" class="hover:text-primary-700">Soluciones</a>
+        <a href="/index.html#servicios" class="hover:text-primary-700">Servicios</a>
+        <a href="/index.html#contacto" class="hover:text-primary-700">Contacto</a>
+        <a href="/noticias.html" class="text-primary-700 font-semibold">Noticias</a>
+      </nav>
+      <button id="menuBtn" class="lg:hidden ml-auto text-primary-700">
+        <i class="fa-solid fa-bars fa-lg"></i>
+      </button>
+    </div>
+    <nav id="mobileNav" class="hidden lg:hidden bg-white flex-col text-center py-4 space-y-4">
+      <a href="/" class="block">Inicio</a>
+      <a href="/index.html#equipos" class="block">Equipos</a>
+      <a href="/index.html#soluciones" class="block">Soluciones</a>
+      <a href="/index.html#servicios" class="block">Servicios</a>
+      <a href="/index.html#contacto" class="block">Contacto</a>
+      <a href="/noticias.html" class="block text-primary-700 font-bold">Noticias</a>
+    </nav>
+  </header>
+
+  <!-- HERO -->
+  <section class="h-[48vh] bg-[url('https://picsum.photos/seed/hero/1600/900')] bg-cover bg-center mt-16 flex items-center justify-center relative">
+    <div class="absolute inset-0 bg-black/60"></div>
+    <h1 class="relative z-10 text-white text-4xl md:text-5xl font-extrabold">Noticias <span class="text-primary-500">&amp;</span> Eventos</h1>
+  </section>
+
+  <!-- MAIN -->
+  <main class="max-w-7xl mx-auto px-6 py-20 flex flex-col lg:flex-row gap-12">
+
+    <!-- SIDEBAR -->
+    <aside id="sidebar" class="lg:w-72 shrink-0 space-y-10 border-r-2 border-neutral-200 pr-6">
+
+      <!-- Últimas -->
+      <div>
+        <button class="flex items-center w-full gap-2 font-bold text-lg mb-2"
+                onclick="lastList.classList.toggle('hidden'); this.querySelector('svg').classList.toggle('rotate-180')">
+          <span class="border-l-4 border-primary-500 pl-2">Últimas (<span id="lastTotal">18</span>)</span>
+          <i class="fa-solid fa-chevron-down transition"></i>
+        </button>
+        <ul id="lastList" class="space-y-1 text-sm">
+          <li><a href="#" class="flex items-center gap-2 truncate text-neutral-700 hover:text-primary-700"><span class="text-primary-500">⚡</span>HPGR 300 TPH Chile finalizado</a></li>
+          <li><a href="#" class="flex items-center gap-2 truncate text-neutral-700 hover:text-primary-700"><span class="text-primary-500">⚡</span>Demanda HPGR ↑12 % (25-30)</a></li>
+          <li><a href="#" class="flex items-center gap-2 truncate text-neutral-700 hover:text-primary-700"><span class="text-primary-500">⚡</span>5 claves para un Jaw Crusher</a></li>
+          <li><a href="#" class="flex items-center gap-2 truncate text-neutral-700 hover:text-primary-700"><span class="text-primary-500">⚡</span>Cobre en máximos históricos</a></li>
+          <li><a href="#" class="flex items-center gap-2 truncate text-neutral-700 hover:text-primary-700"><span class="text-primary-500">⚡</span>Almacén La Paz inaugurado</a></li>
+          <li><a href="#" class="flex items-center gap-2 truncate text-neutral-700 hover:text-primary-700"><span class="text-primary-500">⚡</span>Planta 200 TPH Perú</a></li>
+          <li><a href="#" class="flex items-center gap-2 truncate text-neutral-700 hover:text-primary-700"><span class="text-primary-500">⚡</span>Jaw Crusher JC-8X lanzado</a></li>
+          <li><a href="#" class="flex items-center gap-2 truncate text-neutral-700 hover:text-primary-700"><span class="text-primary-500">⚡</span>Checklist de molinos</a></li>
+        </ul>
+      </div>
+
+      <!-- Categorías -->
+      <div class="sticky top-24">
+        <h3 class="border-l-4 border-primary-500 pl-2 font-bold text-lg mb-2">Categorías</h3>
+        <ul class="space-y-1 text-sm">
+          <li>
+            <a href="#proyectos" class="flex items-center gap-2">
+              <i class="fa-solid fa-mountain text-neutral-700 text-lg"></i>
+              <span>Proyectos</span>
+              <span class="badge" data-cat="Proyectos">3</span>
+            </a>
+          </li>
+          <li>
+            <a href="#innovación" class="flex items-center gap-2">
+              <i class="fa-solid fa-lightbulb text-neutral-700 text-lg"></i>
+              <span>Innovación</span>
+              <span class="badge" data-cat="Innovación">3</span>
+            </a>
+          </li>
+          <li>
+            <a href="#corporativo" class="flex items-center gap-2">
+              <i class="fa-solid fa-building text-neutral-700 text-lg"></i>
+              <span>Corporativo</span>
+              <span class="badge" data-cat="Corporativo">3</span>
+            </a>
+          </li>
+          <li>
+            <a href="#eventos" class="flex items-center gap-2">
+              <i class="fa-solid fa-calendar-days text-neutral-700 text-lg"></i>
+              <span>Eventos</span>
+              <span class="badge" data-cat="Eventos">3</span>
+            </a>
+          </li>
+          <li>
+            <a href="#mercado" class="flex items-center gap-2">
+              <i class="fa-solid fa-chart-bar text-neutral-700 text-lg"></i>
+              <span>Mercado</span>
+              <span class="badge" data-cat="Mercado">3</span>
+            </a>
+          </li>
+          <li>
+            <a href="#tips" class="flex items-center gap-2">
+              <i class="fa-solid fa-hammer text-neutral-700 text-lg"></i>
+              <span>Tips</span>
+              <span class="badge" data-cat="Tips">3</span>
+            </a>
+          </li>
+        </ul>
+      </div>
+    </aside>
+
+    <!-- NEWS AREA -->
+    <section id="newsArea" class="flex-1 space-y-24">
+
+      <!-- Buscador -->
+      <div class="relative max-w-lg mb-12">
+        <input id="searchInput" class="w-full rounded-full border border-neutral-300 py-3 pl-6 pr-12 shadow" placeholder="Buscar noticia…">
+        <i class="fa-solid fa-magnifying-glass absolute top-1/2 right-4 -translate-y-1/2 text-neutral-400"></i>
+      </div>
+
+      <!-- Secciones de noticias -->
+      <!-- Proyectos -->
+      <section id="proyectos">
+        <h2 class="text-3xl font-extrabold mb-10" data-aos="fade-up">Proyectos</h2>
+        <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-10" data-cat="Proyectos">
+          <!-- Card 1 -->
+          <article class="news-card" data-spec="hpgr 300 tph chile finalizado" data-cat="Proyectos" data-aos="zoom-in" data-aos-delay="0">…</article>
+          <!-- Card 2 -->
+          <article class="news-card" data-spec="planta 200 tph perú" data-cat="Proyectos" data-aos="zoom-in" data-aos-delay="60">…</article>
+          <!-- Card 3 -->
+          <article class="news-card" data-spec="modernización cantera gran roca" data-cat="Proyectos" data-aos="zoom-in" data-aos-delay="120">…</article>
+        </div>
+      </section>
+
+      <!-- Innovación -->
+      <section id="innovación">…</section>
+
+      <!-- Corporativo -->
+      <section id="corporativo">…</section>
+
+      <!-- Eventos -->
+      <section id="eventos">…</section>
+
+      <!-- Mercado -->
+      <section id="mercado">…</section>
+
+      <!-- Tips -->
+      <section id="tips">…</section>
+
+      <div id="sentinel" class="h-10"></div>
+    </section>
+  </main>
+  <!-- FOOTER -->
+  <footer class="bg-neutral-900 text-neutral-200 pt-14">
+    <div class="max-w-7xl mx-auto px-6 pb-12 grid gap-10 lg:grid-cols-12">
+      <div class="lg:col-span-4">
+        <h3 class="text-white font-extrabold text-lg mb-3">MR Crusher</h3>
+        <p class="text-sm">Soluciones de trituración, molienda y briquetado 24/7.</p>
+        <div class="flex gap-4 mt-6 text-xl">
+          <a href="#"><i class="fa-brands fa-facebook-f hover:text-primary-500"></i></a>
+          <a href="#"><i class="fa-brands fa-linkedin-in hover:text-primary-500"></i></a>
+          <a href="#"><i class="fa-brands fa-youtube hover:text-primary-500"></i></a>
+        </div>
+      </div>
+      <div class="lg:col-span-8 grid sm:grid-cols-2 gap-10">
+        <div>
+          <h4 class="font-semibold text-white mb-3">Navegación</h4>
+          <div class="grid grid-cols-2 gap-y-1 text-sm">
+            <a href="/" class="hover:text-primary-500">Inicio</a>
+            <a href="/index.php#equipos" class="hover:text-primary-500">Equipos</a>
+            <a href="/index.php#contacto" class="hover:text-primary-500">Contacto</a>
+            <a href="/noticias.html" class="hover:text-primary-500">Noticias</a>
+          </div>
+        </div>
+        <div>
+          <h4 class="font-semibold text-white mb-3">China HQ</h4>
+          <ul class="space-y-2 text-sm">
+            <li>No. 9875 Hunan Rd., Shanghai</li>
+            <li>+86 158 2191 0712</li>
+            <li>info@shmrmachinery.com</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+    <div class="bg-neutral-800 text-center text-xs py-3 text-neutral-400">
+      © 2025 Shanghai Mountain River Machinery Co., Ltd.
+    </div>
+  </footer>
+
+  <button id="toTop"><i class="fa-solid fa-arrow-up"></i></button>
+
+  <!-- SCRIPTS -->
+  <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+  <script>
+    AOS.init({ duration:700, once:true });
+
+    // Mobile menu toggle
+    menuBtn.onclick = () => mobileNav.classList.toggle('hidden');
+
+    // Search filter
+    searchInput.oninput = () => {
+      const q = searchInput.value.toLowerCase();
+      document.querySelectorAll('.news-card').forEach(c =>
+        c.style.display = c.dataset.spec.includes(q) ? '' : 'none'
+      );
+    };
+
+    // Scrollspy & progress bar & toTop
+    const links = [...document.querySelectorAll('#sidebar a[href^="#"]')],
+          secs = links.map(l => document.getElementById(l.getAttribute('href').slice(1))),
+          progress = document.getElementById('progress'),
+          toTopBtn = document.getElementById('toTop');
+    addEventListener('scroll', () => {
+      const y = scrollY + 150,
+            h = document.documentElement.scrollHeight - innerHeight;
+      secs.forEach((s,i) => {
+        if (y >= s.offsetTop && y < s.offsetTop + s.offsetHeight) {
+          links.forEach(a => a.classList.remove('active'));
+          links[i].classList.add('active');
+        }
+      });
+      progress.style.width = `${100 * scrollY / h}%`;
+      toTopBtn.classList.toggle('show', scrollY > 600);
+    });
+    toTopBtn.onclick = () => scrollTo({ top:0, behavior:'smooth' });
+
+    // Infinite scroll simulation
+    const cnt = {
+      'Proyectos':3,'Innovación':3,'Corporativo':3,
+      'Eventos':3,'Mercado':3,'Tips':3
+    };
+    const badges = document.querySelectorAll('.badge'),
+          lastTotal = document.getElementById('lastTotal'),
+          lastList = document.getElementById('lastList');
+    let busy = false, seeds = new Set();
+    const arr = ['Proyectos','Innovación','Corporativo','Eventos','Mercado','Tips'];
+    new IntersectionObserver(async ([e]) => {
+      if (e.isIntersecting && !busy) {
+        busy = true;
+        await add(4);
+        busy = false;
+      }
+    }, { rootMargin:'0px 0px 300px' }).observe(document.getElementById('sentinel'));
+
+    async function add(n) {
+      for (let i=0; i<n; i++) {
+        let s;
+        do { s = Date.now() + Math.floor(Math.random()*1e6); } while (seeds.has(s));
+        seeds.add(s);
+        const cat = arr[s % arr.length],
+              grid = document.querySelector(`[data-cat="${cat}"]`),
+              date = new Date().toLocaleDateString('es-ES', { day:'2-digit', month:'short', year:'numeric' });
+        // Últimas
+        const li = document.createElement('li');
+        li.innerHTML = `<a href="#" class="flex items-center gap-2 truncate text-neutral-700 hover:text-primary-700">
+                          <span class="text-primary-500">⚡</span> Nueva noticia ${s.toString().slice(-4)}
+                        </a>`;
+        lastList.prepend(li);
+        lastTotal.textContent = parseInt(lastTotal.textContent) + 1;
+        // Card
+        const card = document.createElement('article');
+        card.className = 'news-card';
+        card.dataset.spec = `nueva noticia ${s.toString().slice(-4)}`;
+        card.dataset.cat = cat;
+        card.setAttribute('data-aos', 'zoom-in');
+        card.innerHTML = `
+          <div class="relative">
+            <div class="aspect-[4/3] overflow-hidden">
+              <img src="https://picsum.photos/seed/${s}/800/600" class="w-full h-full object-cover" loading="lazy">
+            </div>
+            <span class="news-tag">${cat}</span>
+          </div>
+          <div class="p-6 flex flex-col flex-1">
+            <span class="text-xs text-neutral-500 mb-1">${date}</span>
+            <h3 class="font-semibold mb-1 leading-snug">Nueva noticia ${s.toString().slice(-4)}</h3>
+            <p class="text-neutral-500 text-sm line-clamp-2 mb-3">
+              Contenido generado automáticamente…
+            </p>
+            <a href="#" class="btn-read mt-auto">Leer más <i class="fa-solid fa-arrow-right-long"></i></a>
+          </div>`;
+        grid.append(card);
+        AOS.refresh();
+        cnt[cat]++;
+        badges.forEach(b => {
+          if (b.dataset.cat === cat) b.textContent = cnt[cat];
+        });
+      }
+    }
+  </script>
+</body>
+</html>
