@@ -50,10 +50,72 @@
 <body class="bg-neutral-50 antialiased">
 
   <!-- HEADER -->
-  <header class="fixed inset-x-0 top-0 bg-white shadow-sm z-50 h-16 flex items-center px-6">
-    <a href="/" class="text-2xl font-extrabold text-primary-500">MR Crusher</a>
-    <span class="ml-4 text-sm font-semibold text-neutral-600">Publicaciones</span>
-  </header>
+  
+<!-- ================= HEADER ================= -->
+<header class="fixed inset-x-0 top-0 z-50 bg-white shadow-deeper">
+<div class="max-w-7xl mx-auto px-6 lg:px-8 h-16 flex items-center relative">
+<a href="#inicio"
+   class="flex-shrink-0
+          font-extrabold text-primary-700
+          text-xs sm:text-sm md:text-base lg:text-lg
+          max-w-[6rem] sm:max-w-[10rem] md:max-w-[14rem] lg:max-w-none
+          whitespace-normal sm:whitespace-nowrap">
+  ISAN TRADING INTERNACIONAL S.R.L
+</a>
+
+    <!-- Desktop nav -->
+<nav class="hidden lg:flex absolute inset-x-0 justify-center gap-6 text-sm items-center h-full">
+      <a href="#inicio"      class="nav-link">Inicio</a>
+      <a href="#nosotros"    class="nav-link">Sobre nosotros</a>
+      <a href="#destacados"  class="nav-link">Productos</a>
+      <a href="#noticias"    class="nav-link">Noticias</a>
+
+      <div class="relative">
+        <button id="more-btn" class="nav-link flex items-center gap-1">Más <i class="fa-solid fa-chevron-down text-xs"></i></button>
+        <div id="more-menu" class="hidden absolute left-1/2 -translate-x-1/2 mt-2 w-44 bg-white border
+             border-neutral-200 rounded-lg shadow-lg">
+          <a href="#clientes"       class="block px-4 py-2 text-sm hover:bg-neutral-50">Clientes</a>
+          <a href="#publicaciones"  class="block px-4 py-2 text-sm hover:bg-neutral-50">Publicaciones</a>
+          <a href="#ventajas"       class="block px-4 py-2 text-sm hover:bg-neutral-50">Ventajas</a>
+          <a href="#mapa"           class="block px-4 py-2 text-sm hover:bg-neutral-50">Mapa</a>
+          <a href="#alianza"        class="block px-4 py-2 text-sm hover:bg-neutral-50">Alianza</a>
+          <a href="videos.html"       class="block px-4 py-2 text-sm hover:bg-neutral-50">Videos</a>
+        </div>
+      </div>
+    </nav>
+
+    <!-- Banderas + CTA + móvil -->
+    <div class="ml-auto flex items-center gap-4 z-10">
+      <div class="hidden lg:flex items-center gap-2 text-xl">
+        <a href="/"    class="fi fi-es" title="Español"></a>
+        <a href="/en/" class="fi fi-us" title="English"></a>
+        <a href="/pt/" class="fi fi-br" title="Português"></a>
+      </div>
+      <a href="#mapa" class="hidden lg:inline-block btn-primary text-sm whitespace-nowrap">Cotiza ya</a>
+      <button id="mobile-menu-button" class="lg:hidden text-primary-700" aria-expanded="false">
+        <i class="fa-solid fa-bars fa-2x"></i>
+      </button>
+    </div>
+  </div>
+
+  <!-- Mobile nav -->
+  <nav id="mobile-nav" class="hidden lg:hidden flex-col bg-white text-center py-4 space-y-4">
+    <a href="#inicio"      class="nav-link block">Inicio</a>
+    <a href="#nosotros"    class="nav-link block">Sobre nosotros</a>
+    <a href="#destacados"  class="nav-link block">Productos</a>
+    <a href="#noticias"    class="nav-link block">Noticias</a>
+    <a href="#clientes"    class="nav-link block">Clientes</a>
+    <a href="#publicaciones"class="nav-link block">Publicaciones</a>
+    <a href="#ventajas"    class="nav-link block">Ventajas</a>
+    <a href="#mapa"        class="nav-link block">Mapa</a>
+    <a href="#alianza"     class="nav-link block">Alianza</a>
+    <div class="flex justify-center gap-4 text-2xl pt-2">
+      <a href="/"    class="fi fi-es"></a>
+      <a href="/en/" class="fi fi-us"></a>
+      <a href="/pt/" class="fi fi-br"></a>
+    </div>
+  </nav>
+</header>
 
   <!-- HERO -->
   <section class="mt-16 h-48 bg-[url('https://picsum.photos/seed/library/1600/900')] bg-cover bg-center relative flex items-center justify-center">
