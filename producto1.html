@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width,initial-scale=1.0">
-  <title>MGW Raymond Mill Grinder – MR Crusher</title>
+  <title>MGW Raymond Mill Grinder – Productos</title>
   <link rel="icon" href="/favicon.ico">
 
   <!-- Tailwind CSS & Config -->
@@ -90,7 +90,13 @@
     .floating-cta a.phone    { background:#1E88E5; }
 
     /* Centrar slides y remover zoom aquí */
-    .relatedSwiper .swiper-wrapper { justify-content: center !important; }
+    .relatedSwiper .swiper-wrapper {
+  justify-content: center !important;
+}
+/* Elimina cualquier efecto de zoom en este carrusel */
+.relatedSwiper .swiper-slide img {
+  transition: none !important;
+}
   </style>
 </head>
 
@@ -353,27 +359,29 @@
   </section>
 
   <!-- TE PUEDE INTERESAR -->
-  <section class="py-24 bg-slate-100 text-center">
-    <div class="max-w-7xl mx-auto px-6" data-aos="fade-up">
-      <h2 class="text-3xl font-extrabold mb-10">Te puede interesar</h2>
-      <div class="swiper relatedSwiper">
-        <div class="swiper-wrapper">
-          <div class="swiper-slide card-3d bg-white rounded-xl overflow-hidden">
-            <img src="https://picsum.photos/seed/ygm/400/280" alt="YGM Raymond Mill" class="w-full h-40 object-cover">
-            <div class="p-4 font-medium">YGM Raymond Mill</div>
-          </div>
-          <div class="swiper-slide card-3d bg-white rounded-xl overflow-hidden">
-            <img src="https://picsum.photos/seed/ultra/400/280" alt="Molino ultrafino" class="w-full h-40 object-cover">
-            <div class="p-4 font-medium">Molino ultrafino</div>
-          </div>
-          <div class="swiper-slide card-3d bg-white rounded-xl overflow-hidden">
-            <img src="https://picsum.photos/seed/ball3/400/280" alt="Ball Mill" class="w-full h-40 object-cover">
-            <div class="p-4 font-medium">Ball Mill</div>
-          </div>
+  <!-- ===================== TE PUEDE INTERESAR ===================== -->
+<section class="py-24 bg-slate-100 text-center">
+  <div class="max-w-7xl mx-auto px-6" data-aos="fade-up">
+    <h2 class="text-3xl font-extrabold mb-10">Te puede interesar</h2>
+    <div class="swiper relatedSwiper">
+      <div class="swiper-wrapper">
+        <div class="swiper-slide card-3d bg-white rounded-xl overflow-hidden">
+          <img src="https://picsum.photos/seed/ygm/400/280" alt="YGM Raymond Mill" class="w-full h-40 object-cover">
+          <div class="p-4 font-medium">YGM Raymond Mill</div>
+        </div>
+        <div class="swiper-slide card-3d bg-white rounded-xl overflow-hidden">
+          <img src="https://picsum.photos/seed/ultra/400/280" alt="Molino ultrafino" class="w-full h-40 object-cover">
+          <div class="p-4 font-medium">Molino ultrafino</div>
+        </div>
+        <div class="swiper-slide card-3d bg-white rounded-xl overflow-hidden">
+          <img src="https://picsum.photos/seed/ball3/400/280" alt="Ball Mill" class="w-full h-40 object-cover">
+          <div class="p-4 font-medium">Ball Mill</div>
         </div>
       </div>
     </div>
-  </section>
+  </div>
+</section>
+
 
   <!-- CTA FINAL -->
   <section id="contacto" class="py-24 bg-neutral-900 text-white text-center relative overflow-hidden">
@@ -459,16 +467,16 @@
     });
 
     // Centrar slides y sin zoom
-    new Swiper('.relatedSwiper', {
-      loop: true,
-      spaceBetween: 20,
-      slidesPerView: 1.3,
-      centeredSlides: true,
-      breakpoints: {
-        640:  { slidesPerView: 2.2 },
-        1024: { slidesPerView: 3.2 }
+  new Swiper('.relatedSwiper', {
+    loop: false,
+    spaceBetween: 20,
+    slidesPerView: 2,       // Móvil: 2 tarjetas
+    breakpoints: {
+      1024: {               // A partir de 1024px ancho
+        slidesPerView: 3    // Escritorio: 3 tarjetas
       }
-    });
+    }
+  });
 
     // Pestañas
     document.querySelectorAll('.tab-btn').forEach(btn => {
