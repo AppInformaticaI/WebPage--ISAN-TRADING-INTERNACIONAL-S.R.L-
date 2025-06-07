@@ -37,31 +37,34 @@
 </head>
 <body class="bg-neutral-50 text-neutral-900 font-sans">
 
-  <!-- HEADER / NAV -->
-  <header class="fixed inset-x-0 top-0 bg-white shadow-sm z-50 h-16">
-    <div class="max-w-7xl mx-auto px-6 h-full flex items-center">
-      <a href="/" class="text-2xl font-extrabold text-brand-500">MR Crusher</a>
-      <nav class="hidden lg:flex mx-auto gap-6 text-sm">
-        <a href="/" class="hover:text-brand-700">Inicio</a>
-        <a href="/index.html#equipos" class="hover:text-brand-700">Equipos</a>
-        <a href="/index.html#soluciones" class="hover:text-brand-700">Soluciones</a>
-        <a href="/index.html#servicios" class="hover:text-brand-700">Servicios</a>
-        <a href="/contacto.html" class="text-brand-700 font-semibold">Contacto</a>
-        <a href="/noticias.html" class="hover:text-brand-700">Noticias</a>
-      </nav>
-      <button id="menuBtn" class="lg:hidden ml-auto text-brand-500">
-        <i class="fa-solid fa-bars fa-2x"></i>
-      </button>
+<!-- ============ HERO ============ -->
+<section id="inicio" class="relative h-screen overflow-hidden">
+  <!-- Video de prueba desde internet -->
+  <video class="absolute inset-0 w-full h-full object-cover"
+         src="https://media.w3.org/2010/05/sintel/trailer.mp4"
+         autoplay muted loop playsinline
+         poster="https://picsum.photos/1920/1080?blur">
+  </video>
+  <div class="absolute inset-0 bg-black/50"></div>
+  <div class="relative z-10 flex flex-col items-center justify-center h-full text-center px-4">
+    <div class="flex items-center gap-4 mb-4">
+      <span class="fi fi-cn text-4xl drop-shadow-lg"></span>
+      <i class="fa-solid fa-handshake text-white text-3xl drop-shadow-lg"></i>
+      <span class="fi fi-bo text-4xl drop-shadow-lg"></span>
     </div>
-    <nav id="mobileNav" class="hidden lg:hidden bg-white flex-col text-center py-4 space-y-4">
-      <a href="/" class="block">Inicio</a>
-      <a href="/index.html#equipos" class="block">Equipos</a>
-      <a href="/index.html#soluciones" class="block">Soluciones</a>
-      <a href="/index.html#servicios" class="block">Servicios</a>
-      <a href="/contacto.html" class="block text-brand-700 font-bold">Contacto</a>
-      <a href="/noticias.html" class="block">Noticias</a>
-    </nav>
-  </header>
+    <h1 class="text-4xl lg:text-6xl font-extrabold text-white leading-tight mb-4 drop-shadow-lg" data-aos="fade-down">
+      ISAN TRADING INTERNACIONAL S.R.L<br>
+      <span class="text-primary-500">Innovación sin fronteras</span>
+    </h1>
+    <p class="text-white/90 text-lg sm:text-xl max-w-2xl mx-auto mb-8" data-aos="fade-up" data-aos-delay="150">
+      ipmsun quorah blixter navoxt remdul…
+    </p>
+    <a href="#destacados" class="btn-primary" data-aos="zoom-in" data-aos-delay="300">
+      Descubre nuestros productos
+    </a>
+  </div>
+</section>
+
 
   <script>
     document.getElementById('menuBtn').onclick = () => {
