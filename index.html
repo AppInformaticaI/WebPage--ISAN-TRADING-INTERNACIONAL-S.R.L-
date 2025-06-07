@@ -457,6 +457,7 @@
 </button>
 
 <!-- ============ SCRIPTS ============ -->
+<!-- ============ SCRIPTS ============ -->
 <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
 <script>
   /* Pre-loader */
@@ -522,6 +523,9 @@
   const cn = [121.4737, 31.2304];
   const bo = [-63.588652, -16.290154];
 
+  // Bounds para fitBounds
+  const bounds = new maplibregl.LngLatBounds(cn, bo);
+
   // Inicialización del mapa
   const map = new maplibregl.Map({
     container: 'chinaBoliviaMap',
@@ -535,7 +539,7 @@
   });
 
   map.on('load', () => {
-    // Ruta
+    // Fuente GeoJSON de la ruta
     map.addSource('route', {
       type: 'geojson',
       data: {
@@ -543,6 +547,8 @@
         geometry: { type: 'LineString', coordinates: [cn, bo] }
       }
     });
+
+    // Capa de línea roja
     map.addLayer({
       id: 'route',
       type: 'line',
@@ -550,11 +556,11 @@
       paint: { 'line-color': '#E53935', 'line-width': 4 }
     });
 
-    // Marcadores
+    // Función para añadir marcadores con popup
     const addMarker = (coords, url, html) => {
       const el = document.createElement('div');
       el.style.cssText = `
-        width:32px; height:32px;
+        width:32px;height:32px;
         border-radius:50%;
         background:url(${url}) center/cover;
         border:2px solid #fff;
@@ -564,27 +570,34 @@
         .setPopup(new maplibregl.Popup({ offset: 20 }).setHTML(html))
         .addTo(map);
     };
+
     addMarker(cn, 'https://flagcdn.com/w40/cn.png', 'Shanghái 🇨🇳');
     addMarker(bo, 'https://flagcdn.com/w40/bo.png', 'Bolivia 🇧🇴');
 
-    // Ajuste automático de bounds
-    const bounds = new maplibregl.LngLatBounds(cn, bo);
+    // Primer fitBounds
     map.fitBounds(bounds, {
       padding: 40,
       maxZoom: innerWidth < 640 ? 2.5 : 3.0
     });
   });
 
-  // Reajustar al cambiar tamaño/orientación
-  window.addEventListener('resize', () => {
-    const newZoom = innerWidth < 640 ? 1.3 : 1.5;
-    map.setZoom(newZoom);
-    const bounds = new maplibregl.LngLatBounds(cn, bo);
-    map.fitBounds(bounds, {
-      padding: 40,
-      maxZoom: innerWidth < 640 ? 2.5 : 3.0
-    });
+  // Sólo al cambiar orientación (evita rebotes en mobile)
+  window.addEventListener('orientationchange', () => {
+    setTimeout(() => {
+      // Forzar ajuste de tamaño interno
+      map.resize();
+
+      // Ajustar zoom según ancho actual
+      const newZoom = innerWidth < 640 ? 1.3 : 1.5;
+      map.setZoom(newZoom);
+
+      // Volver a fitBounds
+      map.fitBounds(bounds, {
+        padding: 40,
+        maxZoom: innerWidth < 640 ? 2.5 : 3.0
+      });
+    }, 300);
   });
-  </script>
+</script>
 </body>
 </html>
