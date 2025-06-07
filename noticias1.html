@@ -1,0 +1,484 @@
+<!DOCTYPE html>
+<html lang="es" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1.0">
+  <title>MGW Raymond Mill Grinder – MR Crusher</title>
+  <link rel="icon" href="/favicon.ico">
+
+  <!-- Tailwind CSS & Config -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        fontFamily: { sans: ['Poppins','ui-sans-serif','system-ui'] },
+        extend: {
+          colors: {
+            primary: { 50:'#FFE5E5',500:'#E53935',700:'#B71C1C' },
+            neutral: { 50:'#fafafa',100:'#f5f5f5',300:'#e5e7eb',500:'#6b7280',700:'#374151',900:'#111827' }
+          },
+          boxShadow: {
+            deep:'0 10px 20px rgba(0,0,0,.18)',
+            deeper:'0 25px 35px rgba(0,0,0,.28)'
+          }
+        }
+      }
+    };
+  </script>
+
+  <!-- Fonts & Icons & Libraries -->
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+  <link rel="stylesheet" href="https://unpkg.com/aos@2.3.1/dist/aos.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Swiper/9.4.1/swiper-bundle.min.css">
+
+  <style>
+    body { font-family:'Poppins',sans-serif }
+    .card-3d { transition:.35s; transform-style:preserve-3d; box-shadow:0 10px 20px rgba(0,0,0,.18) }
+    .card-3d:hover { transform:rotateX(5deg) rotateY(-5deg) scale(1.04); box-shadow:0 25px 35px rgba(0,0,0,.28) }
+    .tab-btn.active { background:#E53935; color:#fff }
+    .thumb.active { outline:3px solid #E53935 }
+
+    .btn-chat, .btn-inquiry {
+      display:inline-flex; align-items:center; gap:.5rem;
+      padding:.75rem 1.5rem; border-radius:.5rem; font-weight:600;
+      box-shadow:0 4px 10px rgba(0,0,0,.15); transition:.2s;
+    }
+    .btn-chat {
+      background:#25D366; color:#fff;
+    }
+    .btn-inquiry {
+      background:#fff; color:#E53935; border:2px solid #E53935;
+    }
+    .btn-inquiry:hover {
+      background:#E53935; color:#fff; transform:translateY(-2px);
+    }
+    .btn-chat:hover { transform:translateY(-2px); box-shadow:0 6px 15px rgba(0,0,0,.25) }
+
+    .stat-box { display:flex; flex-direction:column; align-items:center; justify-content:center;
+      padding:1rem; border-radius:.75rem; background:#f5f5f5; box-shadow:0 4px 10px rgba(0,0,0,.1);
+      transition:transform .3s;
+    }
+    .stat-box:hover { transform:scale(1.05) }
+    .stat-box i { font-size:28px; color:#E53935; margin-bottom:.25rem }
+
+    .upgrade-card img { transition:.3s; }
+    .upgrade-card:hover img { transform:scale(1.05) }
+
+    .part-slide { display:flex; flex-direction:column; align-items:center;
+      background:#fff; border-radius:.75rem; box-shadow:0 4px 10px rgba(0,0,0,.12); padding:1rem;
+      transition:transform .3s;
+    }
+    .part-slide:hover { transform:scale(1.05) }
+
+    #toTop { position:fixed; right:1rem; bottom:1rem; background:#E53935; color:#fff;
+      border-radius:9999px; padding:.75rem; opacity:0; pointer-events:none; transition:opacity .3s;
+    }
+    #toTop.show { opacity:1; pointer-events:auto }
+
+    .floating-cta { position:fixed; right:1rem; bottom:5.5rem; z-index:50;
+      display:flex; flex-direction:column; gap:.5rem;
+    }
+    .floating-cta a { display:flex; align-items:center; justify-content:center;
+      width:3.25rem; height:3.25rem; border-radius:9999px; color:#fff;
+      box-shadow:0 6px 15px rgba(0,0,0,.25);
+    }
+    .floating-cta a.whatsapp { background:#25D366 }
+    .floating-cta a.phone    { background:#1E88E5 }
+  </style>
+</head>
+
+<body class="bg-slate-50 text-neutral-900 antialiased">
+  <!-- AOS progress bar -->
+  <div id="progress" class="fixed top-0 left-0 h-1 bg-primary-500 w-0 z-60"></div>
+
+  <!-- HEADER -->
+  <header class="fixed inset-x-0 top-0 bg-white shadow-deeper z-50">
+    <div class="max-w-7xl mx-auto px-6 lg:px-8 h-16 flex items-center">
+      <a href="/" class="text-2xl font-extrabold text-primary-700">MR Crusher</a>
+      <nav class="hidden lg:flex mx-auto gap-6 text-sm">
+        <a href="#inicio" class="nav-link hover:text-primary-500">Inicio</a>
+        <a href="#equipos" class="nav-link hover:text-primary-500">Equipos</a>
+        <a href="#soluciones" class="nav-link hover:text-primary-500">Soluciones</a>
+        <a href="#servicios" class="nav-link hover:text-primary-500">Servicios</a>
+        <a href="#contacto" class="nav-link hover:text-primary-500">Contacto</a>
+        <a href="#productos" class="text-primary-700 font-semibold">Productos</a>
+      </nav>
+      <button id="mobile-menu-button" class="lg:hidden text-primary-700 ml-auto">
+        <i class="fa-solid fa-bars fa-2x"></i>
+      </button>
+    </div>
+    <nav id="mobile-nav" class="hidden lg:hidden bg-white flex-col text-center py-4 space-y-4">
+      <a href="#inicio" class="block hover:text-primary-500">Inicio</a>
+      <a href="#equipos" class="block hover:text-primary-500">Equipos</a>
+      <a href="#soluciones" class="block hover:text-primary-500">Soluciones</a>
+      <a href="#servicios" class="block hover:text-primary-500">Servicios</a>
+      <a href="#contacto" class="block hover:text-primary-500">Contacto</a>
+      <a href="#productos" class="block text-primary-700 font-bold">Productos</a>
+    </nav>
+  </header>
+
+  <!-- HERO -->
+  <section id="inicio" class="pt-32 pb-24 bg-gradient-to-r from-[#e9f1f8] to-white text-center relative overflow-hidden">
+    <img src="https://picsum.photos/seed/mgw-main/1200/700" alt="MGW Raymond Mill Grinder"
+         class="absolute inset-0 w-full h-full object-cover opacity-10">
+    <div class="relative z-10 max-w-5xl mx-auto px-6" data-aos="fade-down">
+      <nav class="text-sm text-neutral-600 mb-4">
+        <a href="/products.html" class="hover:text-primary-500">Productos</a> /
+        <a href="/products.html#grinding-mill" class="hover:text-primary-500">Grinding Mill</a> /
+        <span class="text-neutral-800 font-medium">MGW Raymond Mill Grinder</span>
+      </nav>
+      <h1 class="text-5xl font-extrabold mb-3">MGW Raymond Mill Grinder</h1>
+      <p class="text-lg text-neutral-700">Alta eficiencia • 200-325 mallas • Menor consumo de energía</p>
+    </div>
+  </section>
+
+  <!-- QUICK-STATS -->
+  <section class="max-w-4xl mx-auto -mt-16 px-6 relative z-20">
+    <div class="grid sm:grid-cols-2 gap-6">
+      <div class="stat-box" data-aos="fade-up" data-aos-delay="100">
+        <i class="fa-solid fa-gauge-high"></i>
+        <p class="text-sm text-neutral-600">Capacity</p>
+        <p class="text-xl font-extrabold">80 – 1510 t/h</p>
+      </div>
+      <div class="stat-box" data-aos="fade-up" data-aos-delay="200">
+        <i class="fa-solid fa-arrows-to-dot"></i>
+        <p class="text-sm text-neutral-600">Max Feed Size</p>
+        <p class="text-xl font-extrabold">≤ 1200 mm</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- GALLERY & INFO -->
+  <section class="max-w-7xl mx-auto px-6 py-20 grid lg:grid-cols-2 gap-14">
+    <div data-aos="fade-right">
+      <div class="border rounded-xl overflow-hidden shadow-deeper">
+        <img id="mainImg" src="https://picsum.photos/seed/mgw1/900/600" alt="Gallery" class="w-full h-auto">
+      </div>
+      <div class="flex gap-4 mt-4">
+        <img src="https://picsum.photos/seed/mgw1/900/600" data-full="https://picsum.photos/seed/mgw1/900/600"
+             class="thumb active w-24 h-16 object-cover rounded-lg cursor-pointer">
+        <img src="https://picsum.photos/seed/mgw2/900/600" data-full="https://picsum.photos/seed/mgw2/900/600"
+             class="thumb w-24 h-16 object-cover rounded-lg cursor-pointer">
+        <img src="https://picsum.photos/seed/mgw3/900/600" data-full="https://picsum.photos/seed/mgw3/900/600"
+             class="thumb w-24 h-16 object-cover rounded-lg cursor-pointer">
+      </div>
+    </div>
+    <div class="flex flex-col gap-6" data-aos="fade-left" data-aos-delay="100">
+      <h2 class="text-3xl font-extrabold">MGW Raymond Mill Grinder</h2>
+      <p class="text-neutral-700 leading-relaxed">
+        El MGW Raymond Mill Grinder es ideal para el procesamiento de minerales de dureza Mohs ≤ 7…
+      </p>
+      <div class="flex gap-3">
+        <a href="#" class="share-icon share-fb" title="Compartir en Facebook"><i class="fa-brands fa-facebook-f"></i></a>
+        <a href="#" class="share-icon share-x"  title="Compartir en X"><i class="fa-brands fa-x-twitter"></i></a>
+        <a href="#" class="share-icon share-li" title="Compartir en LinkedIn"><i class="fa-brands fa-linkedin-in"></i></a>
+        <a href="#" class="share-icon share-wa" title="Compartir en WhatsApp"><i class="fa-brands fa-whatsapp"></i></a>
+        <a href="mailto:info@shmrmachinery.com" class="share-icon share-mail" title="Enviar Email"><i class="fa-solid fa-envelope"></i></a>
+      </div>
+      <div class="flex flex-wrap gap-4 mt-4">
+        <a href="https://api.whatsapp.com/send?phone=8615821910712&text=Hola,%20me%20interesa%20MGW%20Raymond%20Mill"
+           target="_blank" class="btn-chat"><i class="fa-brands fa-whatsapp"></i> Chat</a>
+        <a href="mailto:info@shmrmachinery.com?subject=Cotización%20MGW%20Raymond%20Mill"
+           class="btn-inquiry"><i class="fa-regular fa-paper-plane"></i> Enviar Email</a>
+      </div>
+      <ul class="space-y-3 mt-8">
+        <li class="flex gap-3"><i class="fa-solid fa-check text-primary-500 pt-1"></i>Presión de molienda +15 %.</li>
+        <li class="flex gap-3"><i class="fa-solid fa-check text-primary-500 pt-1"></i>Clasificador turbo 200-325 mesh.</li>
+        <li class="flex gap-3"><i class="fa-solid fa-check text-primary-500 pt-1"></i>Consumo energético 20 % menor.</li>
+        <li class="flex gap-3"><i class="fa-solid fa-check text-primary-500 pt-1"></i>Rodillos/anillo Mn13Cr2 — vida 1.8×.</li>
+        <li class="flex gap-3"><i class="fa-solid fa-check text-primary-500 pt-1"></i>Lubricación centralizada + PLC.</li>
+        <li class="flex gap-3"><i class="fa-solid fa-check text-primary-500 pt-1"></i>Base monobloque compacta.</li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- UPGRADES -->
+  <section class="py-24 bg-slate-50">
+    <div class="max-w-7xl mx-auto px-6 text-center">
+      <h2 class="text-3xl font-extrabold mb-12" data-aos="fade-up">Upgrading Configurations</h2>
+      <div class="grid lg:grid-cols-3 gap-10">
+        <div class="upgrade-card card-3d bg-white rounded-xl overflow-hidden" data-aos="zoom-in" data-aos-delay="100">
+          <img src="https://picsum.photos/seed/smp/400/260" alt="SMP Modular Mode" class="w-full h-40 object-cover">
+          <div class="p-6">
+            <h3 class="font-semibold text-lg mb-2">SMP Modular Mode</h3>
+            <p class="text-neutral-600 text-sm">Instalación rápida y servicio integral.</p>
+          </div>
+        </div>
+        <div class="upgrade-card card-3d bg-white rounded-xl overflow-hidden" data-aos="zoom-in" data-aos-delay="200">
+          <img src="https://picsum.photos/seed/epco/400/260" alt="EPCO Service" class="w-full h-40 object-cover">
+          <div class="p-6">
+            <h3 class="font-semibold text-lg mb-2">EPCO Service</h3>
+            <p class="text-neutral-600 text-sm">Compras centralizadas y construcción rápida.</p>
+          </div>
+        </div>
+        <div class="upgrade-card card-3d bg-white rounded-xl overflow-hidden" data-aos="zoom-in" data-aos-delay="300">
+          <img src="https://picsum.photos/seed/iot/400/260" alt="IoT Digital Solution" class="w-full h-40 object-cover">
+          <div class="p-6">
+            <h3 class="font-semibold text-lg mb-2">IoT Digital Solution</h3>
+            <p class="text-neutral-600 text-sm">Producción optimizada con plataforma SaaS.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- TABS -->
+  <section class="max-w-7xl mx-auto px-6 pb-24">
+    <div class="flex flex-wrap gap-4 mb-8 justify-center" data-aos="fade-up">
+      <button data-tab="descripcion" class="tab-btn active px-4 py-2 rounded-lg bg-neutral-200 font-medium">Descripción</button>
+      <button data-tab="especificaciones" class="tab-btn px-4 py-2 rounded-lg bg-neutral-200 font-medium">Especificaciones</button>
+      <button data-tab="video" class="tab-btn px-4 py-2 rounded-lg bg-neutral-200 font-medium">Video</button>
+      <button data-tab="faq" class="tab-btn px-4 py-2 rounded-lg bg-neutral-200 font-medium">FAQ</button>
+    </div>
+
+    <div id="tab-descripcion" data-aos="fade-up">
+      <h3 class="font-bold text-xl mb-3">Principio de funcionamiento</h3>
+      <p class="text-neutral-700 mb-6">El material se introduce en la cámara de molienda donde los rodillos…</p>
+      <ul class="list-disc list-inside space-y-2 text-neutral-700">
+        <li>Estructura vertical compacta.</li>
+        <li>Reductor Flender de precisión.</li>
+        <li>Control PLC + HMI opcional.</li>
+      </ul>
+    </div>
+
+    <div id="tab-especificaciones" class="hidden" data-aos="fade-up">
+      <div class="overflow-x-auto shadow-deeper rounded-xl">
+        <table class="min-w-[480px] w-full text-sm">
+          <tr class="odd:bg-neutral-50"><td class="px-4 py-3 font-medium">Modelo</td><td class="px-4 py-3">MGW-138</td></tr>
+          <tr class="odd:bg-neutral-50"><td class="px-4 py-3 font-medium">Feed máx.</td><td class="px-4 py-3">≤ 30 mm</td></tr>
+          <tr class="odd:bg-neutral-50"><td class="px-4 py-3 font-medium">Capacidad</td><td class="px-4 py-3">4-12 t/h</td></tr>
+          <tr class="odd:bg-neutral-50"><td class="px-4 py-3 font-medium">Potencia</td><td class="px-4 py-3">157 kW</td></tr>
+          <tr class="odd:bg-neutral-50"><td class="px-4 py-3 font-medium">Finura</td><td class="px-4 py-3">75-44 µm</td></tr>
+          <tr class="odd:bg-neutral-50"><td class="px-4 py-3 font-medium">Consumo específico</td><td class="px-4 py-3">≤ 14 kWh/t</td></tr>
+          <tr class="odd:bg-neutral-50"><td class="px-4 py-3 font-medium">Dimensiones</td><td class="px-4 py-3">7 200 × 4 000 × 7 900 mm</td></tr>
+          <tr class="odd:bg-neutral-50"><td class="px-4 py-3 font-medium">Peso</td><td class="px-4 py-3">32 t</td></tr>
+        </table>
+      </div>
+    </div>
+
+    <div id="tab-video" class="hidden" data-aos="fade-up">
+      <div class="aspect-w-16 aspect-h-9 rounded-xl shadow-deeper overflow-hidden">
+        <iframe src="https://www.youtube.com/embed/FgDhG8sk2BY" allowfullscreen class="w-full h-full"></iframe>
+      </div>
+    </div>
+
+    <div id="tab-faq" class="hidden" data-aos="fade-up">
+      <div class="max-w-3xl mx-auto">
+        <details class="bg-neutral-50 p-4 rounded-lg shadow mb-3">
+          <summary class="font-medium">¿Dureza máxima?</summary>
+          <p class="mt-2 text-neutral-700">Hasta Mohs 7 con pre-cribado.</p>
+        </details>
+        <details class="bg-neutral-50 p-4 rounded-lg shadow mb-3">
+          <summary class="font-medium">¿Transporte neumático?</summary>
+          <p class="mt-2 text-neutral-700">Opcional: soplador + ciclón.</p>
+        </details>
+        <details class="bg-neutral-50 p-4 rounded-lg shadow mb-3">
+          <summary class="font-medium">¿Tiempo de instalación?</summary>
+          <p class="mt-2 text-neutral-700">15-20 días con equipo on-site.</p>
+        </details>
+      </div>
+    </div>
+  </section>
+
+  <!-- APPLICATIONS -->
+  <section class="py-24 bg-white">
+    <div class="max-w-7xl mx-auto px-6 text-center" data-aos="fade-up">
+      <h2 class="text-3xl font-extrabold mb-12">Applications</h2>
+      <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-10">
+        <div class="card-3d overflow-hidden">
+          <img src="https://picsum.photos/seed/ballast/300/200" alt="Ballast" class="w-full h-40 object-cover">
+          <p class="p-4 font-medium">Ballast</p>
+        </div>
+        <div class="card-3d overflow-hidden">
+          <img src="https://picsum.photos/seed/pebble/300/200" alt="Pebble" class="w-full h-40 object-cover">
+          <p class="p-4 font-medium">Pebble</p>
+        </div>
+        <div class="card-3d overflow-hidden">
+          <img src="https://picsum.photos/seed/basalt/300/200" alt="Basalt" class="w-full h-40 object-cover">
+          <p class="p-4 font-medium">Basalt</p>
+        </div>
+        <div class="card-3d overflow-hidden">
+          <img src="https://picsum.photos/seed/feldspar/300/200" alt="Feldspar" class="w-full h-40 object-cover">
+          <p class="p-4 font-medium">Feldspar</p>
+        </div>
+        <div class="card-3d overflow-hidden">
+          <img src="https://picsum.photos/seed/granite/300/200" alt="Granite" class="w-full h-40 object-cover">
+          <p class="p-4 font-medium">Granite</p>
+        </div>
+        <div class="card-3d overflow-hidden">
+          <img src="https://picsum.photos/seed/limestone/300/200" alt="Limestone" class="w-full h-40 object-cover">
+          <p class="p-4 font-medium">Limestone</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- PDF BANNER -->
+  <section class="py-20 bg-primary-700 text-white text-center relative overflow-hidden">
+    <div class="absolute inset-0 bg-[url('https://picsum.photos/seed/quarry/1200/800')] bg-cover bg-center opacity-20"></div>
+    <div class="relative z-10 max-w-3xl mx-auto px-6" data-aos="fade-up">
+      <h2 class="text-3xl font-extrabold mb-4">Descarga el catálogo completo</h2>
+      <p class="mb-8 text-neutral-200">Parametría, diagramas y casos de éxito.</p>
+      <a href="/docs/catalogo-mrcrusher.pdf" target="_blank"
+         class="btn-chat text-lg inline-flex items-center gap-2">
+        <i class="fa-solid fa-file-pdf"></i> Descargar PDF
+      </a>
+    </div>
+  </section>
+
+  <!-- RELATED PRODUCTS CENTRALIZADO -->
+  <section class="py-24 bg-slate-100 text-center">
+    <div class="max-w-7xl mx-auto px-6" data-aos="fade-up">
+      <h2 class="text-3xl font-extrabold mb-10">Te puede interesar</h2>
+      <div class="swiper relatedSwiper justify-center">
+        <div class="swiper-wrapper">
+          <div class="swiper-slide relative group card-3d bg-white rounded-xl overflow-hidden">
+            <img src="https://picsum.photos/seed/ygm/400/280" alt="YGM Raymond Mill" class="w-full h-40 object-cover">
+            <div class="absolute inset-0 bg-black/30 flex items-center justify-center opacity-0 group-hover:opacity-100 transition">
+              <i class="fa-solid fa-magnifying-glass text-white text-3xl"></i>
+            </div>
+            <div class="p-4 font-medium">YGM Raymond Mill</div>
+          </div>
+          <div class="swiper-slide relative group card-3d bg-white rounded-xl overflow-hidden">
+            <img src="https://picsum.photos/seed/ultra/400/280" alt="Ultrafine Grinding Mill" class="w-full h-40 object-cover">
+            <div class="absolute inset-0 bg-black/30 flex items-center justify-center opacity-0 group-hover:opacity-100 transition">
+              <i class="fa-solid fa-magnifying-glass text-white text-3xl"></i>
+            </div>
+            <div class="p-4 font-medium">Ultrafine Grinding Mill</div>
+          </div>
+          <div class="swiper-slide relative group card-3d bg-white rounded-xl overflow-hidden">
+            <img src="https://picsum.photos/seed/ball3/400/280" alt="Ball Mill" class="w-full h-40 object-cover">
+            <div class="absolute inset-0 bg-black/30 flex items-center justify-center opacity-0 group-hover:opacity-100 transition">
+              <i class="fa-solid fa-magnifying-glass text-white text-3xl"></i>
+            </div>
+            <div class="p-4 font-medium">Ball Mill</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA FINAL -->
+  <section id="contacto" class="py-24 bg-neutral-900 text-white text-center relative overflow-hidden">
+    <div class="absolute inset-0 bg-[url('https://picsum.photos/seed/millbg/1200/800')] bg-cover bg-center opacity-10"></div>
+    <div class="relative z-10 max-w-4xl mx-auto px-6" data-aos="fade-up">
+      <h2 class="text-4xl font-extrabold mb-4">¿Listo para mejorar tu molienda?</h2>
+      <p class="mb-8 text-neutral-300">Resolvemos tus requerimientos en menos de 24 h.</p>
+      <div class="flex flex-wrap justify-center gap-4">
+        <a href="https://api.whatsapp.com/send?phone=8615821910712&text=Hola,%20me%20interesa%20MGW%20Raymond%20Mill"
+           target="_blank" class="btn-chat"><i class="fa-brands fa-whatsapp"></i> WhatsApp</a>
+        <a href="mailto:info@shmrmachinery.com?subject=Cotización%20MGW%20Raymond%20Mill"
+           class="btn-inquiry"><i class="fa-regular fa-paper-plane"></i> Enviar Email</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer class="bg-neutral-900 text-neutral-200 pt-14">
+    <div class="max-w-7xl mx-auto px-6 pb-12 grid gap-10 md:grid-cols-12">
+      <div class="md:col-span-4">
+        <h3 class="font-extrabold text-lg mb-3">MR Crusher</h3>
+        <p class="text-sm leading-relaxed">Soluciones de trituración, molienda y briquetado 24/7.</p>
+        <div class="flex gap-4 mt-6 text-xl">
+          <a href="#" class="hover:text-primary-500"><i class="fa-brands fa-facebook-f"></i></a>
+          <a href="#" class="hover:text-primary-500"><i class="fa-brands fa-linkedin-in"></i></a>
+          <a href="#" class="hover:text-primary-500"><i class="fa-brands fa-youtube"></i></a>
+          <a href="#" class="hover:text-primary-500"><i class="fa-brands fa-weixin"></i></a>
+        </div>
+      </div>
+      <div class="md:col-span-4">
+        <h4 class="font-semibold text-white mb-3">Navegación</h4>
+        <div class="grid grid-cols-2 gap-y-1 text-sm">
+          <a href="#inicio" class="hover:text-primary-500">Inicio</a>
+          <a href="#equipos" class="hover:text-primary-500">Equipos</a>
+          <a href="#soluciones" class="hover:text-primary-500">Soluciones</a>
+          <a href="#servicios" class="hover:text-primary-500">Servicios</a>
+          <a href="#contacto" class="hover:text-primary-500">Contacto</a>
+          <a href="#productos" class="hover:text-primary-500">Productos</a>
+        </div>
+      </div>
+      <div class="md:col-span-4">
+        <h4 class="font-semibold text-white mb-3">China HQ</h4>
+        <ul class="space-y-2 text-sm">
+          <li>No. 9875 Hunan Rd., Shanghai</li>
+          <li>+86 158 2191 0712</li>
+          <li>info@shmrmachinery.com</li>
+        </ul>
+      </div>
+    </div>
+    <div class="bg-neutral-800 text-center text-xs py-3 text-neutral-400">
+      © 2025 Shanghai Mountain River Machinery Co., Ltd.
+    </div>
+  </footer>
+
+  <!-- BOTÓN IR ARRIBA -->
+  <button id="toTop" aria-label="Volver arriba" class="text-white text-xl">
+    <i class="fa-solid fa-chevron-up"></i>
+  </button>
+
+  <!-- FLOATING CALLS -->
+  <div class="floating-cta">
+    <a href="https://api.whatsapp.com/send?phone=8615821910712" class="whatsapp" title="WhatsApp">
+      <i class="fa-brands fa-whatsapp fa-lg"></i>
+    </a>
+    <a href="tel:+8615821910712" class="phone" title="Llamar">
+      <i class="fa-solid fa-phone fa-lg"></i>
+    </a>
+  </div>
+
+  <!-- SCRIPTS -->
+  <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/Swiper/9.4.1/swiper-bundle.min.js"></script>
+  <script>
+    AOS.init({ duration:800, once:true });
+
+    // Thumbnail click
+    document.querySelectorAll('.thumb').forEach(t => {
+      t.addEventListener('click', () => {
+        document.getElementById('mainImg').src = t.dataset.full;
+        document.querySelectorAll('.thumb').forEach(th => th.classList.remove('active'));
+        t.classList.add('active');
+      });
+    });
+
+    // Swipers
+    new Swiper('.relatedSwiper', {
+      loop: true,
+      spaceBetween: 20,
+      slidesPerView: 1.3,
+      centeredSlides: true,
+      breakpoints: {
+        640: { slidesPerView: 2.2 },
+        1024:{ slidesPerView: 3.2 }
+      }
+    });
+
+    // Tabs
+    document.querySelectorAll('.tab-btn').forEach(btn => {
+      btn.addEventListener('click', () => {
+        const id = btn.dataset.tab;
+        document.querySelectorAll('[id^="tab-"]').forEach(c => c.classList.add('hidden'));
+        document.getElementById('tab-' + id).classList.remove('hidden');
+        document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+        btn.classList.add('active');
+      });
+    });
+
+    // Mobile nav
+    document.getElementById('mobile-menu-button').addEventListener('click', () => {
+      document.getElementById('mobile-nav').classList.toggle('hidden');
+    });
+
+    // Scroll progress & toTop
+    const toTop = document.getElementById('toTop'),
+          progress = document.getElementById('progress');
+    window.addEventListener('scroll', () => {
+      const pct = (window.scrollY / (document.body.scrollHeight - window.innerHeight)) * 100;
+      progress.style.width = pct + '%';
+      toTop.classList.toggle('show', window.scrollY > 600);
+    });
+    toTop.addEventListener('click', () => window.scrollTo({ top:0, behavior:'smooth' }));
+  </script>
+</body>
+</html>
