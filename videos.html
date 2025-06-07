@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width,initial-scale=1.0">
-  <title>MR Crusher – Vídeos</title>
+  <title>MR Crusher – Vídeos Técnicos</title>
   <meta name="description" content="Colección de vídeos técnicos y demostraciones de MR Crusher.">
   <link rel="icon" href="/favicon.ico">
 
@@ -15,13 +15,11 @@
         fontFamily: { sans:['Poppins','ui-sans-serif','system-ui'] },
         extend: {
           colors: {
-            primary: { 500:'#E53935', 700:'#B71C1C' },
-            accent:  { 500:'#FF8C00', 600:'#F57C00' },
-            neutral: { 50:'#fafafa',300:'#e5e7eb',500:'#6b7280',700:'#374151',900:'#111827' }
+            primary: {500:'#E53935',700:'#B71C1C'},
+            accent:  {500:'#FF8C00',600:'#F57C00'},
+            neutral: {50:'#fafafa',300:'#e5e7eb',500:'#6b7280',700:'#374151',900:'#111827'}
           },
-          boxShadow: {
-            card:'0 10px 24px rgba(0,0,0,.18)'
-          }
+          boxShadow: {card:'0 10px 24px rgba(0,0,0,.18)'}
         }
       }
     }
@@ -33,28 +31,37 @@
 
   <style>
     body { font-family:'Poppins',sans-serif; }
-    /* tarjetas vídeo */
-    .video-card { position:relative; overflow:hidden; border-radius:1rem; box-shadow:theme(boxShadow.card); transition:.3s; }
+    .video-card { position:relative; overflow:hidden; border-radius:1rem; box-shadow:theme(boxShadow.card); transition:.3s; cursor:pointer; }
     .video-card:hover { transform:translateY(-4px) scale(1.02); }
     .video-card img { width:100%; height:auto; transition:transform .4s; }
     .video-card:hover img { transform:scale(1.08); }
     .video-overlay {
-      position:absolute;
-      inset:0;
+      position:absolute; inset:0;
       background:rgba(0,0,0,.25);
-      display:flex;
-      align-items:center;
-      justify-content:center;
-      opacity:0;
-      transition:.3s;
+      display:flex; align-items:center; justify-content:center;
+      opacity:0; transition:.3s;
     }
     .video-card:hover .video-overlay { opacity:1; }
     .video-overlay i { font-size:2rem; color:#fff; }
-    /* sidebar */
-    #sidebar input { width:100%; }
-    #sidebar a { display:block; padding:.5rem 1rem; border-radius:.5rem; transition:.2s; }
-    #sidebar a:hover,
-    #sidebar a.active { background:theme(colors.accent.500); color:#fff; }
+    /* Modal */
+    #videoModal {
+      position:fixed; inset:0;
+      background:rgba(0,0,0,.8);
+      display:none; align-items:center; justify-content:center; z-index:50;
+    }
+    #videoModal.active { display:flex; }
+    #videoModal .modal-content {
+      position:relative;
+      width:90%; max-width:800px;
+      background:#000;
+    }
+    #videoModal .modal-content iframe { width:100%; height:0; padding-bottom:56.25%; }
+    #videoModal .modal-close {
+      position:absolute; top:.5rem; right:.5rem;
+      color:#fff; font-size:1.5rem; cursor:pointer;
+    }
+    /* Header / Footer colors tweak */
+    .nav-link:hover, .nav-link.active { color:theme('colors.primary.500'); }
   </style>
 </head>
 
@@ -69,7 +76,7 @@
         <a href="/productos.html" class="nav-link">Productos</a>
         <a href="/noticias.html" class="nav-link">Noticias</a>
         <a href="/publicaciones.html" class="nav-link">Publicaciones</a>
-        <a href="/videos.html" class="text-primary-700 font-semibold">Vídeos</a>
+        <a href="/videos.html" class="nav-link active font-semibold">Vídeos</a>
       </nav>
       <button id="mobile-menu-button" class="lg:hidden ml-auto text-primary-700">
         <i class="fa-solid fa-bars fa-2x"></i>
@@ -85,54 +92,136 @@
   </header>
 
   <!-- HERO -->
-  <section class="mt-16 h-48 bg-[url('https://picsum.photos/seed/videos/1600/900')] bg-cover bg-center relative flex items-center justify-center">
-    <div class="absolute inset-0 bg-black/50"></div>
-    <h1 class="relative z-10 text-white text-3xl font-extrabold">Galería de Vídeos</h1>
+  <section class="mt-16 h-[46vh] bg-[url('https://picsum.photos/seed/videos/1600/900')] bg-cover bg-center relative flex items-center justify-center">
+    <div class="absolute inset-0 bg-black/60"></div>
+    <h1 class="relative z-10 text-white text-4xl font-extrabold">Galería de Vídeos Técnicos</h1>
   </section>
 
   <!-- CONTENIDO -->
-  <main class="max-w-7xl mx-auto px-6 py-12 flex flex-col lg:flex-row gap-10">
+  <main class="max-w-7xl mx-auto px-6 py-12 space-y-16">
 
-    <!-- SIDEBAR -->
-    <aside id="sidebar" class="lg:w-64 shrink-0 space-y-6">
-      <input id="searchInput" type="text" placeholder="Buscar vídeo..."
-           class="rounded-full border border-neutral-300 px-4 py-2 focus:outline-none focus:ring-2 focus:ring-accent-500 transition" />
-      <div class="space-y-1">
-        <h2 class="font-semibold text-neutral-700">Categorías</h2>
-        <a href="#" data-cat="*" class="active">Todos</a>
-        <a href="#" data-cat="Crusher">Crusher</a>
-        <a href="#" data-cat="Grinding">Grinding</a>
-        <a href="#" data-cat="Briquette">Briquette</a>
+    <!-- Crusher -->
+    <section id="crusher" data-aos="fade-up">
+      <h2 class="text-3xl font-extrabold mb-6">Crusher</h2>
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+        <!-- Demo Jaw Crusher -->
+        <article class="video-card" data-video-id="ScMzIvxBSi4">
+          <img src="https://img.youtube.com/vi/ScMzIvxBSi4/hqdefault.jpg" alt="Demo Jaw Crusher">
+          <div class="video-overlay"><i class="fa-solid fa-play"></i></div>
+          <div class="p-4">
+            <h3 class="font-semibold mb-1">Demo Jaw Crusher</h3>
+            <p class="text-xs text-neutral-500 mb-2">Crusher • 3:45</p>
+          </div>
+        </article>
+        <!-- Cone Crusher Setup -->
+        <article class="video-card" data-video-id="dQw4w9WgXcQ">
+          <img src="https://img.youtube.com/vi/dQw4w9WgXcQ/hqdefault.jpg" alt="Cone Crusher Setup">
+          <div class="video-overlay"><i class="fa-solid fa-play"></i></div>
+          <div class="p-4">
+            <h3 class="font-semibold mb-1">Cone Crusher Setup</h3>
+            <p class="text-xs text-neutral-500 mb-2">Crusher • 5:12</p>
+          </div>
+        </article>
+        <!-- Impact Crusher Operation -->
+        <article class="video-card" data-video-id="9bZkp7q19f0">
+          <img src="https://img.youtube.com/vi/9bZkp7q19f0/hqdefault.jpg" alt="Impact Crusher Operation">
+          <div class="video-overlay"><i class="fa-solid fa-play"></i></div>
+          <div class="p-4">
+            <h3 class="font-semibold mb-1">Impact Crusher Operation</h3>
+            <p class="text-xs text-neutral-500 mb-2">Crusher • 4:20</p>
+          </div>
+        </article>
       </div>
-    </aside>
+    </section>
 
-    <!-- GRID VÍDEOS -->
-    <section id="videoGrid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-      <!-- Ejemplo de tarjeta; duplica y adapta para cada vídeo -->
-      <article class="video-card" data-cat="Crusher" data-spec="jaw crusher demo" data-aos="fade-up">
-        <img src="https://img.youtube.com/vi/ScMzIvxBSi4/hqdefault.jpg"
-             alt="Demo Jaw Crusher" loading="lazy">
-        <div class="video-overlay">
-          <i class="fa-solid fa-play"></i>
-        </div>
-        <div class="p-4">
-          <h3 class="font-semibold mb-1">Demo Jaw Crusher</h3>
-          <p class="text-xs text-neutral-500 mb-2">Crusher • 3:45</p>
-          <a href="https://www.youtube.com/watch?v=ScMzIvxBSi4"
-             class="text-primary-500 font-medium hover:underline" target="_blank">
-            Ver en YouTube
-          </a>
-        </div>
-      </article>
-      <!-- / réplica otras tarjetas según tus vídeos -->
+    <!-- Grinding -->
+    <section id="grinding" data-aos="fade-up">
+      <h2 class="text-3xl font-extrabold mb-6">Grinding</h2>
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+        <!-- Raymond Mill Tutorial -->
+        <article class="video-card" data-video-id="V-_O7nl0Ii0">
+          <img src="https://img.youtube.com/vi/V-_O7nl0Ii0/hqdefault.jpg" alt="Raymond Mill Tutorial">
+          <div class="video-overlay"><i class="fa-solid fa-play"></i></div>
+          <div class="p-4">
+            <h3 class="font-semibold mb-1">Raymond Mill Tutorial</h3>
+            <p class="text-xs text-neutral-500 mb-2">Grinding • 6:15</p>
+          </div>
+        </article>
+        <!-- Ball Mill Operation -->
+        <article class="video-card" data-video-id="3JZ_D3ELwOQ">
+          <img src="https://img.youtube.com/vi/3JZ_D3ELwOQ/hqdefault.jpg" alt="Ball Mill Operation">
+          <div class="video-overlay"><i class="fa-solid fa-play"></i></div>
+          <div class="p-4">
+            <h3 class="font-semibold mb-1">Ball Mill Operation</h3>
+            <p class="text-xs text-neutral-500 mb-2">Grinding • 7:02</p>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <!-- Briquette -->
+    <section id="briquette" data-aos="fade-up">
+      <h2 class="text-3xl font-extrabold mb-6">Briquette</h2>
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+        <!-- High-Pressure Briquette Demo -->
+        <article class="video-card" data-video-id="e-ORhEE9VVg">
+          <img src="https://img.youtube.com/vi/e-ORhEE9VVg/hqdefault.jpg" alt="High-Pressure Briquette Demo">
+          <div class="video-overlay"><i class="fa-solid fa-play"></i></div>
+          <div class="p-4">
+            <h3 class="font-semibold mb-1">High-Pressure Briquette Demo</h3>
+            <p class="text-xs text-neutral-500 mb-2">Briquette • 5:50</p>
+          </div>
+        </article>
+        <!-- Medium-Pressure Briquette Demo -->
+        <article class="video-card" data-video-id="Zi_XLOBDo_Y">
+          <img src="https://img.youtube.com/vi/Zi_XLOBDo_Y/hqdefault.jpg" alt="Medium-Pressure Briquette Demo">
+          <div class="video-overlay"><i class="fa-solid fa-play"></i></div>
+          <div class="p-4">
+            <h3 class="font-semibold mb-1">Medium-Pressure Briquette Demo</h3>
+            <p class="text-xs text-neutral-500 mb-2">Briquette • 4:30</p>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <!-- Auxiliary -->
+    <section id="auxiliary" data-aos="fade-up">
+      <h2 class="text-3xl font-extrabold mb-6">Auxiliary</h2>
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+        <!-- Belt Conveyor Animation -->
+        <article class="video-card" data-video-id="L_jWHffIx5E">
+          <img src="https://img.youtube.com/vi/L_jWHffIx5E/hqdefault.jpg" alt="Belt Conveyor Animation">
+          <div class="video-overlay"><i class="fa-solid fa-play"></i></div>
+          <div class="p-4">
+            <h3 class="font-semibold mb-1">Belt Conveyor Animation</h3>
+            <p class="text-xs text-neutral-500 mb-2">Auxiliary • 3:25</p>
+          </div>
+        </article>
+        <!-- Vibrating Screen Tutorial -->
+        <article class="video-card" data-video-id="tVj0ZTS4WF4">
+          <img src="https://img.youtube.com/vi/tVj0ZTS4WF4/hqdefault.jpg" alt="Vibrating Screen Tutorial">
+          <div class="video-overlay"><i class="fa-solid fa-play"></i></div>
+          <div class="p-4">
+            <h3 class="font-semibold mb-1">Vibrating Screen Tutorial</h3>
+            <p class="text-xs text-neutral-500 mb-2">Auxiliary • 4:45</p>
+          </div>
+        </article>
+      </div>
     </section>
 
   </main>
 
+  <!-- Modal -->
+  <div id="videoModal">
+    <div class="modal-content">
+      <span class="modal-close">&times;</span>
+      <iframe id="modalIframe" src="" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+    </div>
+  </div>
+
   <!-- FOOTER -->
   <footer class="bg-neutral-900 text-neutral-200 pt-14">
     <div class="max-w-7xl mx-auto px-6 pb-12 grid gap-10 md:grid-cols-12">
-      <!-- Marca -->
       <div class="md:col-span-4">
         <h3 class="font-extrabold text-lg text-white mb-3">MR Crusher</h3>
         <p class="text-sm leading-relaxed">
@@ -145,7 +234,6 @@
           <a href="#" class="hover:text-primary-500"><i class="fa-brands fa-weixin"></i></a>
         </div>
       </div>
-      <!-- Navegación -->
       <div class="md:col-span-4">
         <h4 class="font-semibold text-white mb-3">Navegación</h4>
         <div class="grid grid-cols-2 gap-y-1 text-sm">
@@ -157,7 +245,6 @@
           <a href="/contacto.html" class="hover:text-primary-500">Contacto</a>
         </div>
       </div>
-      <!-- Contacto -->
       <div class="md:col-span-4">
         <h4 class="font-semibold text-white mb-3">China HQ</h4>
         <ul class="space-y-2 text-sm">
@@ -172,7 +259,7 @@
     </div>
   </footer>
 
-  <!-- AOS y script filtros/búsqueda -->
+  <!-- Scripts -->
   <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
   <script>
     AOS.init({ duration:600, once:true });
@@ -182,33 +269,26 @@
       .addEventListener('click', ()=> document.getElementById('mobile-nav')
       .classList.toggle('hidden'));
 
-    // Filtro categoría
-    document.querySelectorAll('#sidebar a[data-cat]').forEach(btn=>{
-      btn.addEventListener('click', e=>{
-        e.preventDefault();
-        document.querySelectorAll('#sidebar a[data-cat]')
-          .forEach(b=>b.classList.remove('active'));
-        btn.classList.add('active');
-        const cat = btn.dataset.cat;
-        document.querySelectorAll('#videoGrid article')
-          .forEach(card=>{
-            card.style.display = (cat==='*' || card.dataset.cat===cat)
-              ? '' : 'none';
-          });
+    // Modal
+    const modal = document.getElementById('videoModal');
+    const iframe = document.getElementById('modalIframe');
+    document.querySelectorAll('.video-card').forEach(card=>{
+      card.addEventListener('click',()=>{
+        const id = card.dataset.videoId;
+        iframe.src = `https://www.youtube.com/embed/${id}?autoplay=1`;
+        modal.classList.add('active');
       });
     });
-
-    // Búsqueda en vivo
-    document.getElementById('searchInput')
-      .addEventListener('input', e=>{
-        const q = e.target.value.toLowerCase();
-        document.querySelectorAll('#videoGrid article')
-          .forEach(card=>{
-            card.style.display = card.dataset.spec.includes(q)
-              ? '' : 'none';
-          });
-      });
+    document.querySelector('.modal-close').onclick = ()=>{
+      iframe.src = '';
+      modal.classList.remove('active');
+    };
+    modal.addEventListener('click', e=>{
+      if(e.target === modal){
+        iframe.src='';
+        modal.classList.remove('active');
+      }
+    });
   </script>
-
 </body>
 </html>
