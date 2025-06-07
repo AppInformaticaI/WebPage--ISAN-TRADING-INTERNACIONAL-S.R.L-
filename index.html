@@ -3,8 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width,initial-scale=1.0">
-  <meta name="description" content="MR Crusher – Fabricante de trituradoras, molinos, briquetadoras y soluciones llave en mano para minería, áridos y reciclaje. Exportamos a 130+ países.">
-  <meta name="keywords" content="MR Crusher, Mountain River Machinery, trituradoras, molinos, briquetadoras, equipos de minería, soluciones de trituración, repuestos">
+  <meta name="description" content="MR Crusher – Trituradoras, molinos y briquetadoras llave en mano.">
   <link rel="icon" href="/favicon.ico">
   <title>MR Crusher – Stellar Pro</title>
 
@@ -13,7 +12,8 @@
   <script src="https://unpkg.com/maplibre-gl@2.4.0/dist/maplibre-gl.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/@turf/turf@6/turf.min.js"></script>
 
-  <!-- Tailwind CSS -->
+  <!-- Tailwind CSS (CDN) -->
+  <script src="https://cdn.tailwindcss.com"></script>
   <script>
     tailwind.config = {
       theme: {
@@ -21,399 +21,345 @@
         extend: {
           colors: {
             primary:{50:'#FFE5E5',500:'#E53935',700:'#B71C1C'},
-            accent :{500:'#FF8C00',700:'#FFD600'},
-            neutral:{50:'#fafafa',100:'#f5f5f5',300:'#e5e7eb',500:'#6b7280',700:'#374151',900:'#111827'},
-            slate  :{50:'#F8FAFC',100:'#F1F5F9',300:'#CBD5E1',500:'#64748B',700:'#475569',900:'#0F172A'}
+            neutral:{50:'#fafafa',300:'#e5e7eb',700:'#374151',900:'#111827'}
           },
           boxShadow:{deep:'0 10px 20px rgba(0,0,0,.18)',deeper:'0 25px 35px rgba(0,0,0,.28)'}
         }
       }
     };
   </script>
-  <script src="https://cdn.tailwindcss.com"></script>
 
-  <!-- Fuentes & iconos -->
+  <!-- Fuentes & Iconos -->
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;800&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/flag-icons/6.14.0/css/flag-icons.min.css">
   <link rel="stylesheet" href="https://unpkg.com/aos@2.3.1/dist/aos.css">
 
   <style>
-    html, body { scroll-behavior: smooth; overflow-x: hidden; }
-    body { font-family: 'Poppins', sans-serif; }
+    html,body{scroll-behavior:smooth;overflow-x:hidden}
+    body{font-family:'Poppins',sans-serif}
 
-    .nav-link { color: #374151; text-align: center; transition: color .2s; }
-    .nav-link:hover { color: #E53935; }
+    .nav-link{color:#374151;text-align:center;transition:color .2s}
+    .nav-link:hover{color:#E53935}
 
-    .btn-primary {
-      @apply inline-block px-6 py-2 rounded-lg font-semibold text-white bg-primary-500 shadow-deep transition-transform;
+    .btn-primary{
+      display:inline-block;padding:.6rem 1.5rem;border-radius:.5rem;
+      font-weight:600;color:#fff;background:#E53935;
+      box-shadow:0 10px 20px rgba(0,0,0,.18);
+      transition:.2s;
     }
-    .btn-primary:hover {
-      @apply -translate-y-1 bg-primary-700 shadow-deeper;
-    }
-
-    .card-3d {
-      @apply flex flex-col h-full transition-transform;
-      transform-style: preserve-3d;
-      box-shadow: 0 10px 20px rgba(0,0,0,.18);
-    }
-    .card-3d:hover {
-      transform: rotateX(5deg) rotateY(-5deg) scale(1.04);
-      box-shadow: 0 25px 35px rgba(0,0,0,.28);
+    .btn-primary:hover{
+      transform:translateY(-3px);background:#B71C1C;
+      box-shadow:0 25px 35px rgba(0,0,0,.28);
     }
 
-    @keyframes logo-scroll { 0% { transform: translateX(0) } 100% { transform: translateX(-50%) } }
-    .animate-scroll { animation: logo-scroll 20s linear infinite; }
+    .card-3d{transition:.35s;transform-style:preserve-3d;
+      box-shadow:0 10px 20px rgba(0,0,0,.18);display:flex;flex-direction:column;height:100%}
+    .card-3d:hover{transform:rotateX(5deg) rotateY(-5deg) scale(1.04);
+      box-shadow:0 25px 35px rgba(0,0,0,.28)}
 
-    /* Preloader */
-    #preloader {
-      @apply fixed inset-0 bg-white flex flex-col items-center justify-center z-[9999];
-    }
-    #preloader .logo {
-      @apply text-3xl font-extrabold text-primary-500 mb-4;
-    }
-    #preloader .spinner {
-      @apply w-12 h-12 border-4 border-primary-500 border-t-transparent rounded-full animate-spin;
-    }
+    @keyframes logo-scroll{0%{transform:translateX(0)}100%{transform:translateX(-50%)}}
+    .animate-scroll{animation:logo-scroll 20s linear infinite}
+
+    /* Pre-loader */
+    #preloader{position:fixed;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;
+      background:rgba(255,255,255,.9);z-index:9999;transition:opacity .6s}
+    #preloader.hide{opacity:0;pointer-events:none}
+    .spinner{width:48px;height:48px;border:4px solid #E53935;border-top-color:transparent;
+      border-radius:50%;animation:spin 1s linear infinite;margin-top:1rem}
+    @keyframes spin{to{transform:rotate(360deg)}}
   </style>
 </head>
 
-<body class="bg-slate-50 text-slate-900 antialiased">
+<body class="bg-neutral-50 text-neutral-900 antialiased">
 
-  <!-- Preloader -->
-  <div id="preloader">
-    <div class="logo">MR Crusher</div>
-    <div class="spinner"></div>
-  </div>
+<!-- ===== PRE-LOADER ===== -->
+<div id="preloader">
+  <strong class="text-2xl text-primary-700">MR Crusher</strong>
+  <div class="spinner"></div>
+</div>
 
-  <!-- HEADER -->
-  <header class="fixed inset-x-0 top-0 z-50 bg-white shadow-deeper">
-    <div class="max-w-7xl mx-auto px-6 lg:px-8 h-16 flex items-center relative">
-      <a href="#inicio" class="text-2xl font-extrabold text-primary-700 z-10">MR Crusher</a>
-      <nav class="hidden lg:flex absolute inset-x-0 justify-center gap-6 text-sm">
-        <a href="#inicio" class="nav-link">Inicio</a>
-        <a href="#nosotros" class="nav-link">Sobre nosotros</a>
-        <a href="#destacados" class="nav-link">Productos</a>
-        <a href="#noticias" class="nav-link">Noticias</a>
-        <a href="#mapa" class="nav-link">Mapa</a>
-        <a href="#contacto" class="nav-link">Contacto</a>
-      </nav>
-      <button id="mobile-menu-button" class="lg:hidden ml-auto text-primary-700" aria-expanded="false">
+<!-- ===== HEADER ===== -->
+<header class="fixed inset-x-0 top-0 z-50 bg-white shadow-deeper">
+  <div class="max-w-7xl mx-auto px-6 lg:px-8 h-16 flex items-center relative">
+    <a href="#inicio" class="text-2xl font-extrabold text-primary-700 z-10">MR&nbsp;Crusher</a>
+
+    <!-- Navegación desktop -->
+    <nav class="hidden lg:flex absolute inset-x-0 justify-center gap-6 text-sm">
+      <a href="#inicio"      class="nav-link">Inicio</a>
+      <a href="#nosotros"    class="nav-link">Sobre&nbsp;nosotros</a>
+      <a href="#destacados"  class="nav-link">Productos</a>
+      <a href="#noticias"    class="nav-link">Noticias</a>
+      <div class="relative group">
+        <button class="nav-link flex items-center gap-1">Más <i class="fa-solid fa-chevron-down text-xs"></i></button>
+        <div class="absolute left-1/2 -translate-x-1/2 mt-2 w-44 bg-white border border-neutral-200 rounded-lg shadow-lg
+                    opacity-0 invisible group-hover:opacity-100 group-hover:visible transition">
+          <a href="#clientes" class="block px-4 py-2 text-sm hover:bg-neutral-50">Clientes</a>
+          <a href="#ventajas" class="block px-4 py-2 text-sm hover:bg-neutral-50">Ventajas</a>
+          <a href="#mapa"     class="block px-4 py-2 text-sm hover:bg-neutral-50">Mapa</a>
+          <a href="#contacto" class="block px-4 py-2 text-sm hover:bg-neutral-50">Contáctenos</a>
+        </div>
+      </div>
+    </nav>
+
+    <!-- Idiomas + CTA -->
+    <div class="ml-auto flex items-center gap-4 z-10">
+      <div class="hidden lg:flex items-center gap-2 text-xl">
+        <a href="/"    class="fi fi-es" title="Español"></a>
+        <a href="/en/" class="fi fi-us" title="English"></a>
+        <a href="/pt/" class="fi fi-br" title="Português"></a>
+      </div>
+      <a href="#contacto" class="hidden lg:inline-block btn-primary text-sm whitespace-nowrap">Cotiza&nbsp;ya</a>
+      <button id="mobile-menu-button" class="lg:hidden text-primary-700" aria-expanded="false">
         <i class="fa-solid fa-bars fa-2x"></i>
       </button>
     </div>
-    <nav id="mobile-nav" class="hidden lg:hidden flex-col bg-white text-center py-4 space-y-4">
-      <a href="#inicio" class="nav-link block">Inicio</a>
-      <a href="#nosotros" class="nav-link block">Sobre nosotros</a>
-      <a href="#destacados" class="nav-link block">Productos</a>
-      <a href="#noticias" class="nav-link block">Noticias</a>
-      <a href="#mapa" class="nav-link block">Mapa</a>
-      <a href="#contacto" class="nav-link block">Contacto</a>
-    </nav>
-  </header>
+  </div>
 
-  <main class="pt-16">
+  <!-- Menú móvil -->
+  <nav id="mobile-nav" class="hidden lg:hidden flex-col bg-white text-center py-4 space-y-4">
+    <a href="#inicio"      class="nav-link block">Inicio</a>
+    <a href="#nosotros"    class="nav-link block">Sobre&nbsp;nosotros</a>
+    <a href="#destacados"  class="nav-link block">Productos</a>
+    <a href="#noticias"    class="nav-link block">Noticias</a>
+    <a href="#clientes"    class="nav-link block">Clientes</a>
+    <a href="#ventajas"    class="nav-link block">Ventajas</a>
+    <a href="#mapa"        class="nav-link block">Mapa</a>
+    <a href="#contacto"    class="nav-link block">Contáctenos</a>
+    <div class="flex justify-center gap-5 text-2xl pt-2">
+      <a href="/"    class="fi fi-es"></a>
+      <a href="/en/" class="fi fi-us"></a>
+      <a href="/pt/" class="fi fi-br"></a>
+    </div>
+    <a href="#contacto" class="btn-primary inline-block w-4/5 mx-auto">Cotiza&nbsp;ya</a>
+  </nav>
+</header>
 
-    <!-- HERO -->
-    <section id="inicio" class="relative h-screen overflow-hidden">
-      <video class="absolute inset-0 w-full h-full object-cover"
-             src="https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerJoyrides.mp4"
-             autoplay muted loop playsinline
-             poster="https://picsum.photos/1920/1080?blur">
-      </video>
-      <div class="absolute inset-0 bg-black/50"></div>
-      <div class="relative z-10 h-full flex flex-col items-center justify-center text-center px-4">
-        <div class="flex items-center gap-4 mb-4">
-          <span class="fi fi-cn text-4xl drop-shadow-lg"></span>
-          <i class="fa-solid fa-handshake text-white text-3xl drop-shadow-lg"></i>
-          <span class="fi fi-bo text-4xl drop-shadow-lg"></span>
-        </div>
-        <h1 class="text-4xl lg:text-6xl font-extrabold text-white mb-4 drop-shadow-lg leading-tight">
-          China &middot; Bolivia<br>
-          <span class="text-primary-500">Innovación sin fronteras</span>
-        </h1>
-        <p class="text-white/90 text-lg sm:text-xl max-w-2xl mx-auto mb-8">
-          Soluciones de trituración y molienda con entrega exprés 24–72 h.
-        </p>
-        <a href="#destacados" class="btn-primary">Descubre nuestros productos</a>
+<main class="pt-16">
+
+<!-- ===== HERO ===== -->
+<section id="inicio" class="relative h-screen overflow-hidden">
+  <video class="absolute inset-0 w-full h-full object-cover"
+         src="https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerJoyrides.mp4"
+         autoplay muted loop playsinline
+         poster="https://picsum.photos/1920/1080?blur"></video>
+  <div class="absolute inset-0 bg-black/50"></div>
+  <div class="relative z-10 h-full flex flex-col items-center justify-center text-center px-4">
+    <div class="flex items-center gap-4 mb-4">
+      <span class="fi fi-cn text-4xl drop-shadow-lg"></span>
+      <i class="fa-solid fa-handshake text-white text-3xl drop-shadow-lg"></i>
+      <span class="fi fi-bo text-4xl drop-shadow-lg"></span>
+    </div>
+    <h1 class="text-4xl lg:text-6xl font-extrabold text-white mb-4 drop-shadow-lg leading-tight">
+      China&nbsp;&middot;&nbsp;Bolivia<br><span class="text-primary-500">Innovación sin fronteras</span>
+    </h1>
+    <p class="text-white/90 text-lg sm:text-xl max-w-2xl mx-auto mb-8">
+      Soluciones de chancado, molienda y briquetado con soporte local 24/7.
+    </p>
+    <a href="#destacados" class="btn-primary">Descubre nuestros productos</a>
+  </div>
+</section>
+
+<!-- ===== NOSOTROS ===== -->
+<section id="nosotros" class="bg-neutral-50 py-16">
+  <div class="max-w-4xl mx-auto px-4 space-y-10">
+    <div class="text-center">
+      <h2 class="text-3xl font-extrabold text-primary-700 mb-4">Nuestra Historia</h2>
+      <p class="text-neutral-700">
+        Fundados en 1998, exportamos a +130 países y combinamos la capacidad industrial de China
+        con un centro de servicio y repuestos en Bolivia.
+      </p>
+    </div>
+    <div class="grid sm:grid-cols-2 gap-8">
+      <img src="https://picsum.photos/seed/hist/600/380" alt="Fábrica" class="rounded-xl shadow-lg object-cover w-full">
+      <img src="https://picsum.photos/seed/rd/600/380" alt="I+D" class="rounded-xl shadow-lg object-cover w-full">
+    </div>
+  </div>
+</section>
+
+<!-- ===== CLIENTES ===== -->
+<section id="clientes" class="py-14 bg-slate-300 overflow-hidden">
+  <h2 class="text-3xl font-bold text-center text-neutral-900 mb-8">Confían en nosotros</h2>
+  <div class="overflow-hidden h-24 sm:h-20">
+    <div class="flex animate-scroll whitespace-nowrap items-center h-full">
+      <img src="https://logo.clearbit.com/tesla.com"     class="h-16 sm:h-20 mx-8 grayscale opacity-60 hover:opacity-100" alt="Tesla">
+      <img src="https://logo.clearbit.com/apple.com"     class="h-16 sm:h-20 mx-8 grayscale opacity-60 hover:opacity-100" alt="Apple">
+      <img src="https://logo.clearbit.com/microsoft.com" class="h-16 sm:h-20 mx-8 grayscale opacity-60 hover:opacity-100" alt="Microsoft">
+      <img src="https://logo.clearbit.com/google.com"    class="h-16 sm:h-20 mx-8 grayscale opacity-60 hover:opacity-100" alt="Google">
+      <img src="https://logo.clearbit.com/vale.com"      class="h-16 sm:h-20 mx-8 grayscale opacity-60 hover:opacity-100" alt="Vale">
+      <img src="https://logo.clearbit.com/codelco.cl"    class="h-16 sm:h-20 mx-8 grayscale opacity-60 hover:opacity-100" alt="Codelco">
+      <img src="https://logo.clearbit.com/tesla.com"     class="h-16 sm:h-20 mx-8 grayscale opacity-60 hover:opacity-100" alt="Tesla">
+    </div>
+  </div>
+</section>
+
+<!-- ===== PRODUCTOS DESTACADOS ===== -->
+<section id="destacados" class="py-24 bg-slate-50">
+  <div class="max-w-7xl mx-auto px-6 text-center">
+    <h2 class="text-4xl font-extrabold mb-14">Productos Destacados</h2>
+    <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4" id="prodGrid"></div>
+  </div>
+</section>
+
+<!-- ===== VENTAJAS ===== -->
+<section id="ventajas" class="bg-neutral-50 py-16">
+  <div class="max-w-6xl mx-auto px-6">
+    <h2 class="text-3xl font-extrabold text-center text-primary-700 mb-12">¿Por qué elegirnos?</h2>
+    <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
+      <div class="p-6 bg-white rounded-md shadow-lg border-l-4 border-primary-500">
+        <h3 class="font-semibold mb-1">Calidad ISO 9001</h3>
+        <p class="text-neutral-600 text-sm">Procesos certificados y control 100 % de materiales.</p>
       </div>
-    </section>
-
-    <!-- NOSOTROS -->
-    <section id="nosotros" class="bg-neutral-50 py-16">
-      <div class="max-w-4xl mx-auto px-4 space-y-12">
-        <div class="flex flex-col lg:flex-row items-center" data-aos="fade-right">
-          <img src="https://picsum.photos/800/500?seed=hist" alt="Historia" class="lg:w-1/2 rounded-xl shadow-lg mb-6 lg:mb-0">
-          <div class="lg:w-1/2 lg:pl-8">
-            <h3 class="text-2xl font-semibold text-primary-700 mb-2">Historia</h3>
-            <p class="text-neutral-600 leading-relaxed">
-              Desde 1998 exportamos a más de 130 países, combinando innovación y robustez.
-            </p>
-          </div>
-        </div>
-        <div class="flex flex-col lg:flex-row-reverse items-center" data-aos="fade-left">
-          <img src="https://picsum.photos/800/500?seed=fabr" alt="Fábrica e I+D" class="lg:w-1/2 rounded-xl shadow-lg mb-6 lg:mb-0">
-          <div class="lg:w-1/2 lg:pr-8">
-            <h3 class="text-2xl font-semibold text-primary-700 mb-2">I+D &amp; Fábrica</h3>
-            <p class="text-neutral-600 leading-relaxed">
-              50 ingenieros, líneas CNC y certificación ISO 9001 garantizan calidad premium.
-            </p>
-          </div>
-        </div>
+      <div class="p-6 bg-white rounded-md shadow-lg border-l-4 border-primary-500">
+        <h3 class="font-semibold mb-1">Precio competitivo</h3>
+        <p class="text-neutral-600 text-sm">Cadena de suministro integrada para costos menores.</p>
       </div>
-    </section>
-
-    <!-- CLIENTES -->
-    <section id="clientes" class="py-14 bg-slate-300 overflow-hidden">
-      <h2 class="text-3xl font-bold text-center text-neutral-900 mb-8">Confían en nosotros</h2>
-      <div class="overflow-hidden h-24 sm:h-20">
-        <div class="flex animate-scroll whitespace-nowrap items-center h-full">
-          <img src="https://logo.clearbit.com/tesla.com"     class="h-16 sm:h-20 mx-8 grayscale opacity-60 hover:opacity-100 transition" alt="Tesla">
-          <img src="https://logo.clearbit.com/apple.com"     class="h-16 sm:h-20 mx-8 grayscale opacity-60 hover:opacity-100 transition" alt="Apple">
-          <img src="https://logo.clearbit.com/microsoft.com" class="h-16 sm:h-20 mx-8 grayscale opacity-60 hover:opacity-100 transition" alt="Microsoft">
-          <img src="https://logo.clearbit.com/google.com"    class="h-16 sm:h-20 mx-8 grayscale opacity-60 hover:opacity-100 transition" alt="Google">
-          <img src="https://logo.clearbit.com/vale.com"      class="h-16 sm:h-20 mx-8 grayscale opacity-60 hover:opacity-100 transition" alt="Vale">
-          <img src="https://logo.clearbit.com/codelco.cl"    class="h-16 sm:h-20 mx-8 grayscale opacity-60 hover:opacity-100 transition" alt="Codelco">
-          <img src="https://logo.clearbit.com/tesla.com"     class="h-16 sm:h-20 mx-8 grayscale opacity-60 hover:opacity-100 transition" alt="Tesla">
-        </div>
+      <div class="p-6 bg-white rounded-md shadow-lg border-l-4 border-primary-500">
+        <h3 class="font-semibold mb-1">Entrega 24–72 h</h3>
+        <p class="text-neutral-600 text-sm">Stock en Bolivia y logística exprés internacional.</p>
       </div>
-    </section>
-
-    <!-- PRODUCTOS DESTACADOS -->  
-    <section id="destacados" class="py-24 bg-slate-50">
-      <div class="max-w-7xl mx-auto px-6 text-center">
-        <h2 class="text-4xl font-extrabold mb-14">Productos Destacados</h2>
-        <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
-          <template id="tpl">
-            <a href="#" class="card-3d bg-white rounded-xl overflow-hidden transform hover:-translate-y-1 hover:shadow-2xl transition">
-              <img class="w-full" alt="">
-              <div class="p-6 flex flex-col flex-1">
-                <i class="text-primary-500 text-3xl mb-3"></i>
-                <h3 class="font-semibold mb-1"></h3>
-                <p class="text-neutral-600 text-sm flex-1"></p>
-              </div>
-            </a>
-          </template>
-        </div>
-        <a href="productos.html" class="btn-primary mt-12 inline-block">Ver catálogo completo</a>
-      </div>
-    </section>
-
-    <!-- MAPA -->  
-    <section id="mapa" class="py-24 bg-white">
-      <div class="max-w-6xl mx-auto px-6 text-center">
-        <h2 class="text-4xl font-extrabold mb-4">Conexión China → Bolivia</h2>
-        <p class="text-neutral-600 mb-6">Logística puerta a puerta en 24–72 h.</p>
-        <div id="chinaBoliviaMap" class="w-full h-[300px] sm:h-[480px] rounded-xl shadow-deep"></div>
-      </div>
-    </section>
-
-    <!-- NOTICIAS -->  
-    <section id="noticias" class="py-24 bg-neutral-50">
-      <div class="max-w-7xl mx-auto px-6">
-        <h2 class="text-4xl font-extrabold text-center mb-12">Noticias recientes</h2>
-        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-          <template id="newstpl">
-            <article class="card-3d bg-white rounded-xl overflow-hidden flex flex-col">
-              <img class="aspect-[4/3] w-full object-cover" alt="">
-              <div class="p-6 flex-1 flex flex-col">
-                <span class="text-neutral-500 text-xs mb-1"></span>
-                <h3 class="font-semibold mb-2"></h3>
-                <p class="text-neutral-600 text-sm mb-4 flex-1"></p>
-                <a href="#" class="mt-auto text-primary-700 font-medium hover:underline">Leer más</a>
-              </div>
-            </article>
-          </template>
-        </div>
-      </div>
-    </section>
-
-    <!-- CTA -->  
-    <section class="py-20 text-white text-center relative overflow-hidden" style="background-color:#B71C1C;">
-      <div class="absolute inset-0 opacity-10 bg-[url('https://picsum.photos/1200/800?seed=quarry')] bg-cover bg-center"></div>
-      <div class="relative z-10 max-w-3xl mx-auto px-6">
-        <h2 class="text-4xl font-extrabold mb-4">¿Necesitas ayuda para elegir?</h2>
-        <p class="mb-8 text-neutral-200">Ingenieros hispanohablantes responden en menos de 24 h.</p>
-        <a href="#inicio" class="btn-primary inline-flex items-center gap-3">
-          Volver arriba <i class="fa-solid fa-arrow-up ml-2"></i>
-        </a>
-      </div>
-    </section>
-
-  </main>
-
-  <!-- FOOTER -->
-  <footer class="bg-neutral-900 text-neutral-200 pt-14">
-    <div class="max-w-7xl mx-auto px-6 pb-12 grid gap-10 md:grid-cols-12">
-      <div class="md:col-span-4">
-        <h3 class="font-extrabold text-lg text-white mb-3">MR Crusher</h3>
-        <p class="leading-relaxed text-sm">Soluciones de trituración, molienda y briquetado con soporte global 24/7.</p>
-        <div class="flex gap-4 mt-6 text-xl">
-          <a href="#" class="hover:text-primary-500"><i class="fa-brands fa-facebook-f"></i></a>
-          <a href="#" class="hover:text-primary-500"><i class="fa-brands fa-instagram"></i></a>
-          <a href="#" class="hover:text-primary-500"><i class="fa-brands fa-youtube"></i></a>
-        </div>
-      </div>
-      <div class="md:col-span-4">
-        <h4 class="font-semibold text-white mb-3">Navegación</h4>
-        <div class="grid grid-cols-2 gap-y-1 text-sm">
-          <a href="#inicio" class="hover:text-primary-500">Inicio</a>
-          <a href="#nosotros" class="hover:text-primary-500">Sobre nosotros</a>
-          <a href="#destacados" class="hover:text-primary-500">Productos</a>
-          <a href="#noticias" class="hover:text-primary-500">Noticias</a>
-          <a href="#mapa" class="hover:text-primary-500">Mapa</a>
-          <a href="#contacto" class="hover:text-primary-500">Contacto</a>
-        </div>
-      </div>
-      <div class="md:col-span-4">
-        <h4 class="font-semibold text-white mb-3">China HQ</h4>
-        <ul class="space-y-2 text-sm">
-          <li class="flex gap-2"><i class="fa-solid fa-location-dot text-primary-500"></i>No. 9875 Hunan Rd., Shanghai</li>
-          <li class="flex gap-2"><i class="fa-solid fa-phone text-primary-500"></i>+86 158 2191 0712</li>
-          <li class="flex gap-2"><i class="fa-solid fa-envelope text-primary-500"></i>info@shmrmachinery.com</li>
-          <li class="flex gap-2"><i class="fa-solid fa-globe text-primary-500"></i>
-            <a href="https://mrcrusher.com" target="_blank" class="hover:underline">mrcrusher.com</a>
-          </li>
-        </ul>
+      <div class="p-6 bg-white rounded-md shadow-lg border-l-4 border-primary-500">
+        <h3 class="font-semibold mb-1">Soporte 24/7</h3>
+        <p class="text-neutral-600 text-sm">Ingenieros hispanohablantes disponibles todo el año.</p>
       </div>
     </div>
-    <div class="bg-neutral-800 text-center text-xs py-3 text-neutral-400 tracking-wide">
-      © 2025 Shanghai Mountain River Machinery Co., Ltd.
+  </div>
+</section>
+
+<!-- ===== MAPA ===== -->
+<section id="mapa" class="py-24 bg-white">
+  <div class="max-w-6xl mx-auto px-6 text-center">
+    <h2 class="text-4xl font-extrabold mb-4">Shanghái ↔ Bolivia</h2>
+    <p class="text-neutral-600 mb-6">Envíos puerta-a-puerta en 24–72 h.</p>
+    <div id="chinaBoliviaMap" class="w-full h-[300px] sm:h-[480px] rounded-xl shadow-deep"></div>
+  </div>
+</section>
+
+<!-- ===== NOTICIAS ===== -->
+<section id="noticias" class="py-24 bg-neutral-50">
+  <div class="max-w-7xl mx-auto px-6">
+    <h2 class="text-4xl font-extrabold text-center mb-12">Noticias recientes</h2>
+    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6" id="newsGrid"></div>
+  </div>
+</section>
+
+<!-- ===== CONTACTO ===== -->
+<section id="contacto" class="py-24 bg-neutral-50">
+  <div class="max-w-4xl mx-auto px-6">
+    <h2 class="text-3xl font-extrabold text-center mb-8">Contáctanos</h2>
+    <form class="grid gap-6 max-w-md mx-auto text-sm">
+      <input type="text"   required placeholder="Nombre"    class="border border-neutral-300 p-3 rounded-md">
+      <input type="email"  required placeholder="E-mail"    class="border border-neutral-300 p-3 rounded-md">
+      <textarea rows="5"   required placeholder="Mensaje…"  class="border border-neutral-300 p-3 rounded-md resize-none"></textarea>
+      <button class="btn-primary w-max mx-auto">Enviar mensaje</button>
+    </form>
+  </div>
+</section>
+
+<!-- ===== CTA sencilla & FOOTER ===== -->
+<section class="py-16 text-center bg-primary-700 text-white">
+  <h2 class="text-3xl font-extrabold mb-4">¿Necesitas asesoría técnica?</h2>
+  <a href="#inicio" class="btn-primary">Volver arriba</a>
+</section>
+<footer class="bg-neutral-900 text-neutral-300 text-xs text-center py-4">
+  © 2025 MR Crusher — Todos los derechos reservados
+</footer>
+
+<!-- ===== Back-to-Top ===== -->
+<button id="toTop" class="fixed bottom-4 right-4 w-12 h-12 rounded-full bg-primary-500 text-white
+                         flex items-center justify-center opacity-0 pointer-events-none transition-opacity shadow-deep">
+  <i class="fa-solid fa-chevron-up"></i>
+</button>
+
+<!-- ===== SCRIPTS ===== -->
+<script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+<script>
+/* Pre-loader */
+window.addEventListener('load',()=>document.getElementById('preloader').classList.add('hide'));
+setTimeout(()=>{const p=document.getElementById('preloader');if(p)p.remove()},7000);
+
+/* AOS */
+AOS.init({duration:800,once:true});
+
+/* Menú móvil */
+const btn=document.getElementById('mobile-menu-button'),nav=document.getElementById('mobile-nav');
+btn.addEventListener('click',()=>{const o=btn.getAttribute('aria-expanded')==='true';btn.setAttribute('aria-expanded',!o);nav.classList.toggle('hidden')});
+document.querySelectorAll('a[href^="#"]').forEach(a=>{
+  a.addEventListener('click',e=>{
+    const id=a.getAttribute('href').slice(1),tgt=document.getElementById(id);
+    if(!tgt)return;
+    e.preventDefault();
+    const off=document.querySelector('header').offsetHeight+16;
+    window.scrollTo({top:tgt.offsetTop-off,behavior:'smooth'});
+    nav.classList.add('hidden');btn.setAttribute('aria-expanded',false);
+  });
+});
+
+/* Productos */
+const prod=[['Jaw Crusher','https://picsum.photos/seed/jaw/600/400','fa-mountain','10-800 t/h · ≤1200 mm'],
+['Cone Crusher','https://picsum.photos/seed/cone/600/400','fa-circle-nodes','45-2180 t/h · ≤560 mm'],
+['Impact Crusher','https://picsum.photos/seed/impact/600/400','fa-gauge-high','30-2000 t/h · ≤800 mm'],
+['Mobile Crusher','https://picsum.photos/seed/mobile/600/400','fa-truck-ramp-box','60-650 t/h · ≤800 mm'],
+['Ultrafine Mill','https://picsum.photos/seed/ultra/600/400','fa-gears','400-2500 mallas · ≤20 mm'],
+['Raymond Mill','https://picsum.photos/seed/ray/600/400','fa-gears','200-325 mallas · ≤35 mm'],
+['Ball Mill','https://picsum.photos/seed/ball/600/400','fa-baseball','0.65-615 t/h · ≤25 mm'],
+['Briquette Press','https://picsum.photos/seed/briq/600/400','fa-cubes-stacked','1-35 t/h · ≤3 mm']];
+const pg=document.getElementById('prodGrid');
+prod.forEach(p=>{
+  pg.insertAdjacentHTML('beforeend',`
+  <a href="#" class="card-3d bg-white rounded-xl overflow-hidden hover:-translate-y-1 hover:shadow-2xl transition">
+    <img src="${p[1]}" alt="${p[0]}" class="w-full h-auto">
+    <div class="p-6 flex flex-col flex-1">
+      <i class="fa-solid ${p[2]} text-primary-500 text-3xl mb-3"></i>
+      <h3 class="font-semibold mb-1">${p[0]}</h3>
+      <p class="text-neutral-600 text-sm flex-1">${p[3]}</p>
     </div>
-  </footer>
+  </a>`);});
 
-  <!-- Back-to-Top -->
-  <button id="toTop"
-          class="fixed bottom-4 right-4 w-12 h-12 rounded-full bg-primary-500 text-white flex items-center justify-center
-                 opacity-0 pointer-events-none transition-opacity duration-300 shadow-deep">
-    <i class="fa-solid fa-chevron-up"></i>
-  </button>
+/* Noticias */
+const noticias=[['12 May 2025','HPGR 300 TPH finalizado en Chile','https://picsum.photos/seed/not1/800/600','Molino HPGR ya opera en la mina El Teniente.'],
+['25 Abr 2025','Planta 200 TPH entregada en Perú','https://picsum.photos/seed/not2/800/600','Nueva línea aumenta producción en Puno.'],
+['02 Abr 2025','Modernización cantera Gran Roca','https://picsum.photos/seed/not3/800/600','Equipos nuevos elevan eficiencia un 30 %.']];
+const ng=document.getElementById('newsGrid');
+noticias.forEach(n=>{
+  ng.insertAdjacentHTML('beforeend',`
+  <article class="card-3d bg-white rounded-xl overflow-hidden flex flex-col">
+    <img src="${n[2]}" alt="${n[1]}" class="aspect-[4/3] w-full object-cover">
+    <div class="p-6 flex-1 flex flex-col">
+      <span class="text-neutral-500 text-xs mb-1">${n[0]}</span>
+      <h3 class="font-semibold mb-2">${n[1]}</h3>
+      <p class="text-neutral-600 text-sm mb-4 flex-1">${n[3]}</p>
+      <a href="#" class="mt-auto text-primary-700 font-medium hover:underline">Leer más</a>
+    </div>
+  </article>`);});
 
-  <!-- SCRIPTS -->
-  <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
-  <script>
-    // Preloader hide on load or after 5s
-    window.addEventListener('load', () => {
-      const p = document.getElementById('preloader');
-      p.style.opacity = '0';
-      setTimeout(() => p.remove(), 600);
-    });
-    setTimeout(() => {
-      const p = document.getElementById('preloader');
-      if (p) p.remove();
-    }, 5000);
+/* Mapa */  
+const map=new maplibregl.Map({
+  container:'chinaBoliviaMap',style:'https://demotiles.maplibre.org/style.json',
+  projection:'mercator',dragRotate:false,touchZoomRotate:{pinchRotate:false},attributionControl:false});
+const cn=[121.4737,31.2304],bo=[-63.588652,-16.290154];
+map.on('load',()=>{
+  map.addSource('route',{type:'geojson',data:{type:'Feature',geometry:{type:'LineString',coordinates:[cn,bo]}}});
+  map.addLayer({id:'route',type:'line',source:'route',paint:{'line-color':'#E53935','line-width':4}});
+  const mk=(p,u,l)=>{const el=document.createElement('div');
+    el.style.cssText='width:32px;height:32px;border-radius:50%;background:url('+u+') center/cover;border:2px solid #fff';
+    new maplibregl.Marker({element:el,anchor:'bottom'}).setLngLat(p)
+      .setPopup(new maplibregl.Popup({offset:20}).setHTML(l)).addTo(map);};
+  mk(cn,'https://flagcdn.com/w40/cn.png','Shanghái 🇨🇳');
+  mk(bo,'https://flagcdn.com/w40/bo.png','Bolivia 🇧🇴');
+  const bounds=[[-100,-70],[160,70]];
+  map.fitBounds(bounds,{padding:40,duration:0});
+  if(innerWidth<640) map.setZoom(map.getZoom()-0.8);
+});
 
-    AOS.init({ duration: 800, once: true });
-
-    // Mobile menu toggle
-    const btn = document.getElementById('mobile-menu-button');
-    const nav = document.getElementById('mobile-nav');
-    btn.addEventListener('click', () => {
-      const open = btn.getAttribute('aria-expanded') === 'true';
-      btn.setAttribute('aria-expanded', !open);
-      nav.classList.toggle('hidden');
-    });
-
-    // Smooth scroll for anchor links
-    document.querySelectorAll('a[href^="#"]').forEach(a => {
-      a.addEventListener('click', e => {
-        const id = a.getAttribute('href').slice(1);
-        const tgt = document.getElementById(id);
-        if (!tgt) return;
-        e.preventDefault();
-        const offset = document.querySelector('header').offsetHeight + 16;
-        window.scrollTo({ top: tgt.offsetTop - offset, behavior: 'smooth' });
-        nav.classList.add('hidden');
-        btn.setAttribute('aria-expanded', false);
-      });
-    });
-
-    // Populate Productos
-    (function(){
-      const items = [
-        ['Jaw Crusher','https://picsum.photos/seed/jaw/600/400','fa-mountain','10-800 t/h · ≤1200 mm'],
-        ['Cone Crusher','https://picsum.photos/seed/cone/600/400','fa-circle-nodes','45-2180 t/h · ≤560 mm'],
-        ['Impact Crusher','https://picsum.photos/seed/impact/600/400','fa-gauge-high','30-2000 t/h · ≤800 mm'],
-        ['Mobile Crusher','https://picsum.photos/seed/mobile/600/400','fa-truck-ramp-box','60-650 t/h · ≤800 mm'],
-        ['Ultrafine Mill','https://picsum.photos/seed/ultra/600/400','fa-gears','400-2500 mallas · ≤20 mm'],
-        ['Raymond Mill','https://picsum.photos/seed/ray/600/400','fa-gears','200-325 mallas · ≤35 mm'],
-        ['Ball Mill','https://picsum.photos/seed/ball/600/400','fa-baseball','0.65-615 t/h · ≤25 mm'],
-        ['Briquette Press','https://picsum.photos/seed/briq/600/400','fa-cubes-stacked','1-35 t/h · ≤3 mm']
-      ];
-      const grid = document.querySelector('#destacados .grid');
-      const tpl = document.getElementById('tpl').content;
-      items.forEach(i => {
-        const n = tpl.cloneNode(true);
-        n.querySelector('img').src = i[1]; n.querySelector('img').alt = i[0];
-        n.querySelector('i').classList.add('fa-solid', i[2]);
-        n.querySelector('h3').textContent = i[0];
-        n.querySelector('p').textContent = i[3];
-        grid.appendChild(n);
-      });
-    })();
-
-    // Populate Noticias
-    (function(){
-      const news = [
-        ['12 May 2025','HPGR 300 TPH finalizado en Chile','https://picsum.photos/seed/not1/800/600','Molino HPGR opera en la mina El Teniente.'],
-        ['25 Abr 2025','Planta 200 TPH entregada en Perú','https://picsum.photos/seed/not2/800/600','Línea de trituración aumenta producción en Puno.'],
-        ['02 Abr 2025','Modernización cantera Gran Roca','https://picsum.photos/seed/not3/800/600','Equipos nuevos elevan eficiencia un 30 %.']
-      ];
-      const grid = document.querySelector('#noticias .grid');
-      const tpl = document.getElementById('newstpl').content;
-      news.forEach(n => {
-        const e = tpl.cloneNode(true);
-        e.querySelector('img').src = n[2]; e.querySelector('img').alt = n[1];
-        e.querySelector('span').textContent = n[0];
-        e.querySelector('h3').textContent = n[1];
-        e.querySelector('p').textContent = n[3];
-        grid.appendChild(e);
-      });
-    })();
-
-    // Map setup
-    const map = new maplibregl.Map({
-      container: 'chinaBoliviaMap',
-      style: 'https://demotiles.maplibre.org/style.json',
-      projection: 'mercator',
-      dragRotate: false,
-      touchZoomRotate: { pinchRotate: false },
-      attributionControl: false
-    });
-    const cn = [121.4737,31.2304], bo = [-63.588652,-16.290154];
-    map.on('load', () => {
-      // Linea recta
-      map.addSource('route',{type:'geojson',data:{
-        type:'Feature',geometry:{type:'LineString',coordinates:[cn,bo]}
-      }});
-      map.addLayer({id:'route',type:'line',source:'route',paint:{
-        'line-color':'#E53935','line-width':4
-      }});
-      // Marcadores
-      function mk(pos,png,label){
-        const el = document.createElement('div');
-        el.style.cssText = 'width:32px;height:32px;border-radius:50%;background:url('+png+') center/cover;border:2px solid #fff';
-        new maplibregl.Marker({element:el,anchor:'bottom'})
-          .setLngLat(pos).setPopup(new maplibregl.Popup({offset:20}).setHTML(label)).addTo(map);
-      }
-      mk(cn,'https://flagcdn.com/w40/cn.png','Shanghái 🇨🇳');
-      mk(bo,'https://flagcdn.com/w40/bo.png','Bolivia 🇧🇴');
-      // Ajustar bounds para ver ambos países incluso en móviles
-      const bounds = [
-        [Math.min(cn[0],bo[0]) - 10, Math.min(cn[1],bo[1]) - 10],
-        [Math.max(cn[0],bo[0]) + 10, Math.max(cn[1],bo[1]) + 10]
-      ];
-      map.fitBounds(bounds, { padding: 20, duration: 0 });
-    });
-
-    // Back-to-Top
-    const topBtn = document.getElementById('toTop');
-    window.addEventListener('scroll', () => {
-      const show = window.scrollY > 600;
-      topBtn.classList.toggle('opacity-0', !show);
-      topBtn.classList.toggle('pointer-events-none', !show);
-    });
-    topBtn.addEventListener('click', () => window.scrollTo({ top: 0, behavior: 'smooth' }));
-  </script>
+/* Back-to-top */
+const topBtn=document.getElementById('toTop');
+window.addEventListener('scroll',()=>{
+  const show=scrollY>600;
+  topBtn.classList.toggle('opacity-0',!show);
+  topBtn.classList.toggle('pointer-events-none',!show);
+});
+topBtn.addEventListener('click',()=>scrollTo({top:0,behavior:'smooth'}));
+</script>
 </body>
 </html>
