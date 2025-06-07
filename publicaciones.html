@@ -4,23 +4,20 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width,initial-scale=1.0">
   <title>MR Crusher — Publicaciones</title>
-  <link rel="icon" href="/favicon.ico">
   <meta name="description" content="Centro de publicaciones técnicas de MR Crusher: guías, whitepapers y casos de éxito.">
+  <link rel="icon" href="/favicon.ico">
 
   <!-- Tailwind + configuración -->
   <script src="https://cdn.tailwindcss.com"></script>
   <script>
     tailwind.config = {
       theme: {
-        fontFamily: { sans: ['Poppins','ui-sans-serif','system-ui'] },
+        fontFamily: { sans:['Poppins','ui-sans-serif','system-ui'] },
         extend: {
           colors: {
             primary: { 500:'#E53935' },
             accent:  { 500:'#FF8C00', 600:'#F57C00' },
             neutral: { 50:'#fafafa',300:'#e5e7eb',500:'#6b7280',700:'#374151',900:'#111827' }
-          },
-          boxShadow: {
-            card: '0 10px 24px rgba(0,0,0,.18)'
           }
         }
       }
@@ -33,89 +30,32 @@
 
   <style>
     body { font-family: 'Poppins', sans-serif; }
-    .pub-card { position: relative; overflow: hidden; border-radius: 1rem; box-shadow: theme(boxShadow.card); transition: transform .3s; }
+    .pub-card { position: relative; overflow: hidden;
+      border-radius: 1rem; box-shadow: 0 10px 24px rgba(0,0,0,0.18);
+      transition: transform .3s; }
     .pub-card:hover { transform: translateY(-4px) scale(1.02); }
-    .pub-card img { width:100%; height: auto; transition: transform .4s; }
+    .pub-card img { width:100%; height:auto; transition: transform .4s; }
     .pub-card:hover img { transform: scale(1.08); }
-    .pub-tag { position: absolute; top: 0.75rem; left: 0.75rem; background: theme(colors.accent.500); color: #fff; font-size: .6rem; padding: .2rem .6rem; border-radius: .5rem; }
-    .pub-info { padding: 1rem; }
-    .btn-download { display: inline-flex; align-items: center; gap: .3rem; background: theme(colors.accent.500); color: #fff; padding: .4rem .9rem; border-radius: 9999px; font-size: .75rem; font-weight: 600; transition: background .2s; }
-    .btn-download:hover { background: theme(colors.accent.600); }
-    #sidebar input { width: 100%; }
-    #sidebar a { display: block; padding: .5rem 1rem; border-radius: .5rem; font-size: .875rem; transition: background .2s,color .2s; }
-    #sidebar a:hover, #sidebar a.active { background: theme(colors.accent.500); color: #fff; }
+    .pub-tag { position: absolute; top: .75rem; left: .75rem;
+      background: #FF8C00; color: #fff; font-size: .6rem;
+      padding: .2rem .6rem; border-radius: .5rem; }
+    .btn-download { display: inline-flex; align-items: center; gap: .3rem;
+      background: #FF8C00; color: #fff; padding: .4rem .9rem;
+      border-radius: 9999px; font-size: .75rem; font-weight:600;
+      transition: background .2s; }
+    .btn-download:hover { background: #F57C00; }
+    #sidebar a { display: block; padding: .5rem 1rem;
+      border-radius: .5rem; transition: background .2s, color .2s; }
+    #sidebar a:hover, #sidebar a.active { background: #FF8C00; color: #fff; }
   </style>
 </head>
-
 <body class="bg-neutral-50 antialiased">
 
   <!-- HEADER -->
-  
-<!-- ================= HEADER ================= -->
-<header class="fixed inset-x-0 top-0 z-50 bg-white shadow-deeper">
-<div class="max-w-7xl mx-auto px-6 lg:px-8 h-16 flex items-center relative">
-<a href="#inicio"
-   class="flex-shrink-0
-          font-extrabold text-primary-700
-          text-xs sm:text-sm md:text-base lg:text-lg
-          max-w-[6rem] sm:max-w-[10rem] md:max-w-[14rem] lg:max-w-none
-          whitespace-normal sm:whitespace-nowrap">
-  ISAN TRADING INTERNACIONAL S.R.L
-</a>
-
-    <!-- Desktop nav -->
-<nav class="hidden lg:flex absolute inset-x-0 justify-center gap-6 text-sm items-center h-full">
-      <a href="#inicio"      class="nav-link">Inicio</a>
-      <a href="#nosotros"    class="nav-link">Sobre nosotros</a>
-      <a href="#destacados"  class="nav-link">Productos</a>
-      <a href="#noticias"    class="nav-link">Noticias</a>
-
-      <div class="relative">
-        <button id="more-btn" class="nav-link flex items-center gap-1">Más <i class="fa-solid fa-chevron-down text-xs"></i></button>
-        <div id="more-menu" class="hidden absolute left-1/2 -translate-x-1/2 mt-2 w-44 bg-white border
-             border-neutral-200 rounded-lg shadow-lg">
-          <a href="#clientes"       class="block px-4 py-2 text-sm hover:bg-neutral-50">Clientes</a>
-          <a href="#publicaciones"  class="block px-4 py-2 text-sm hover:bg-neutral-50">Publicaciones</a>
-          <a href="#ventajas"       class="block px-4 py-2 text-sm hover:bg-neutral-50">Ventajas</a>
-          <a href="#mapa"           class="block px-4 py-2 text-sm hover:bg-neutral-50">Mapa</a>
-          <a href="#alianza"        class="block px-4 py-2 text-sm hover:bg-neutral-50">Alianza</a>
-          <a href="videos.html"       class="block px-4 py-2 text-sm hover:bg-neutral-50">Videos</a>
-        </div>
-      </div>
-    </nav>
-
-    <!-- Banderas + CTA + móvil -->
-    <div class="ml-auto flex items-center gap-4 z-10">
-      <div class="hidden lg:flex items-center gap-2 text-xl">
-        <a href="/"    class="fi fi-es" title="Español"></a>
-        <a href="/en/" class="fi fi-us" title="English"></a>
-        <a href="/pt/" class="fi fi-br" title="Português"></a>
-      </div>
-      <a href="#mapa" class="hidden lg:inline-block btn-primary text-sm whitespace-nowrap">Cotiza ya</a>
-      <button id="mobile-menu-button" class="lg:hidden text-primary-700" aria-expanded="false">
-        <i class="fa-solid fa-bars fa-2x"></i>
-      </button>
-    </div>
-  </div>
-
-  <!-- Mobile nav -->
-  <nav id="mobile-nav" class="hidden lg:hidden flex-col bg-white text-center py-4 space-y-4">
-    <a href="#inicio"      class="nav-link block">Inicio</a>
-    <a href="#nosotros"    class="nav-link block">Sobre nosotros</a>
-    <a href="#destacados"  class="nav-link block">Productos</a>
-    <a href="#noticias"    class="nav-link block">Noticias</a>
-    <a href="#clientes"    class="nav-link block">Clientes</a>
-    <a href="#publicaciones"class="nav-link block">Publicaciones</a>
-    <a href="#ventajas"    class="nav-link block">Ventajas</a>
-    <a href="#mapa"        class="nav-link block">Mapa</a>
-    <a href="#alianza"     class="nav-link block">Alianza</a>
-    <div class="flex justify-center gap-4 text-2xl pt-2">
-      <a href="/"    class="fi fi-es"></a>
-      <a href="/en/" class="fi fi-us"></a>
-      <a href="/pt/" class="fi fi-br"></a>
-    </div>
-  </nav>
-</header>
+  <header class="fixed inset-x-0 top-0 z-50 bg-white shadow-sm h-16 flex items-center px-6">
+    <a href="/" class="text-2xl font-extrabold text-primary-500">MR Crusher</a>
+    <span class="ml-4 text-sm font-semibold text-neutral-600">Publicaciones</span>
+  </header>
 
   <!-- HERO -->
   <section class="mt-16 h-48 bg-[url('https://picsum.photos/seed/library/1600/900')] bg-cover bg-center relative flex items-center justify-center">
@@ -123,13 +63,13 @@
     <h1 class="relative z-10 text-white text-3xl font-extrabold">Centro de Publicaciones</h1>
   </section>
 
-  <!-- CONTENIDO -->
+  <!-- MAIN CONTENT -->
   <main class="max-w-7xl mx-auto px-6 py-12 flex flex-col lg:flex-row gap-10">
-    <!-- SIDEBAR IZQUIERDO -->
-    <aside id="sidebar" class="lg:w-64 shrink-0 space-y-6">
+    <!-- SIDEBAR -->
+    <aside id="sidebar" class="lg:w-64 space-y-6">
       <div>
         <input id="searchInput" type="text" placeholder="Buscar..." 
-               class="rounded-full border border-neutral-300 px-4 py-2 focus:outline-none focus:ring-2 focus:ring-accent-500 transition" />
+          class="w-full rounded-full border border-neutral-300 px-4 py-2 focus:outline-none focus:ring-2 focus:ring-accent-500 transition" />
       </div>
       <div class="space-y-1">
         <h2 class="font-semibold text-neutral-700">Categorías</h2>
@@ -140,76 +80,111 @@
       </div>
     </aside>
 
-    <!-- GRID DE PUBLICACIONES -->
+    <!-- GRID -->
     <section id="pubGrid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-      <?php
-        $pubs = [
-          ['Guías','Guía de Selección de Trituradoras','https://picsum.photos/seed/sel/500/700','/docs/guia-trituradoras.pdf','24 páginas · PDF'],
-          ['Whitepaper','Optimización de Plantas HPGR','https://picsum.photos/seed/hpgr/500/700','/docs/hpgr-optimization.pdf','32 páginas · PDF'],
-          ['Whitepaper','Reducción de Polvo en Canteras','https://picsum.photos/seed/dust/500/700','/docs/dust-control.pdf','18 páginas · PDF'],
-          ['Casos','Retrofit de Molino de Bolas 3×13 m','https://picsum.photos/seed/retrofit/500/700','/docs/retrofit-molinobolas.pdf','Estudio de caso'],
-          ['Guías','Checklist de Mantenimiento Diario','https://picsum.photos/seed/check/500/700','/docs/checklist-mantenimiento.pdf','1 página · PDF'],
-          ['Casos','Producción de Arena con VSI 7611','https://picsum.photos/seed/vsi/500/700','/docs/vsi-case.pdf','Caso de éxito'],
-          ['Whitepaper','Beneficio de Cobre — 500 TPH','https://picsum.photos/seed/cobre/500/700','/docs/copper-beneficiation.pdf','Whitepaper'],
-          ['Guías','Cómo Elegir Revestimientos de Cono','https://picsum.photos/seed/cone/500/700','/docs/revestimientos-cono.pdf','Guía rápida']
-        ];
-        foreach($pubs as $i=>$p):
-      ?>
-      <article class="pub-card" data-cat="<?=$p[0]?>" data-spec="<?=strtolower($p[1])?>" data-aos="fade-up" data-aos-delay="<?=($i%6)*80?>">
-        <img src="<?=$p[2]?>" alt="<?=$p[1]?>">
-        <div class="pub-tag"><?=$p[0]?></div>
-        <div class="pub-info">
-          <h3 class="font-semibold leading-snug mb-1"><?=$p[1]?></h3>
-          <p class="text-xs text-neutral-200 mb-3"><?=$p[4]?></p>
-          <a href="<?=$p[3]?>" class="btn-download" target="_blank" rel="noopener">
+      <!-- 1 -->
+      <article class="pub-card" data-cat="Guías" data-spec="guía de selección de trituradoras" data-aos="fade-up" data-aos-delay="0">
+        <img src="https://picsum.photos/seed/sel/500/700" alt="Guía de Selección de Trituradoras">
+        <div class="pub-tag">Guías</div>
+        <div class="p-4">
+          <h3 class="font-semibold mb-1 leading-snug">Guía de Selección de Trituradoras</h3>
+          <p class="text-xs text-neutral-300 mb-3">24 páginas · PDF</p>
+          <a href="/docs/guia-trituradoras.pdf" class="btn-download" target="_blank">
             Descargar <i class="fa-solid fa-download text-[.65rem]"></i>
           </a>
         </div>
       </article>
-      <?php endforeach;?>
+      <!-- 2 -->
+      <article class="pub-card" data-cat="Whitepaper" data-spec="optimización de plantas hpgr" data-aos="fade-up" data-aos-delay="80">
+        <img src="https://picsum.photos/seed/hpgr/500/700" alt="Optimización de Plantas HPGR">
+        <div class="pub-tag">Whitepaper</div>
+        <div class="p-4">
+          <h3 class="font-semibold mb-1 leading-snug">Optimización de Plantas HPGR</h3>
+          <p class="text-xs text-neutral-300 mb-3">32 páginas · PDF</p>
+          <a href="/docs/hpgr-optimization.pdf" class="btn-download" target="_blank">
+            Descargar <i class="fa-solid fa-download text-[.65rem]"></i>
+          </a>
+        </div>
+      </article>
+      <!-- 3 -->
+      <article class="pub-card" data-cat="Whitepaper" data-spec="reducción de polvo en canteras" data-aos="fade-up" data-aos-delay="160">
+        <img src="https://picsum.photos/seed/dust/500/700" alt="Reducción de Polvo en Canteras">
+        <div class="pub-tag">Whitepaper</div>
+        <div class="p-4">
+          <h3 class="font-semibold mb-1 leading-snug">Reducción de Polvo en Canteras</h3>
+          <p class="text-xs text-neutral-300 mb-3">18 páginas · PDF</p>
+          <a href="/docs/dust-control.pdf" class="btn-download" target="_blank">
+            Descargar <i class="fa-solid fa-download text-[.65rem]"></i>
+          </a>
+        </div>
+      </article>
+      <!-- 4 -->
+      <article class="pub-card" data-cat="Casos" data-spec="retrofit de molino de bolas" data-aos="fade-up" data-aos-delay="240">
+        <img src="https://picsum.photos/seed/retrofit/500/700" alt="Retrofit de Molino de Bolas 3×13 m">
+        <div class="pub-tag">Casos</div>
+        <div class="p-4">
+          <h3 class="font-semibold mb-1 leading-snug">Retrofit de Molino de Bolas 3×13 m</h3>
+          <p class="text-xs text-neutral-300 mb-3">Estudio de caso</p>
+          <a href="/docs/retrofit-molinobolas.pdf" class="btn-download" target="_blank">
+            Descargar <i class="fa-solid fa-download text-[.65rem]"></i>
+          </a>
+        </div>
+      </article>
+      <!-- 5 -->
+      <article class="pub-card" data-cat="Guías" data-spec="checklist de mantenimiento diario" data-aos="fade-up" data-aos-delay="320">
+        <img src="https://picsum.photos/seed/check/500/700" alt="Checklist de Mantenimiento Diario">
+        <div class="pub-tag">Guías</div>
+        <div class="p-4">
+          <h3 class="font-semibold mb-1 leading-snug">Checklist de Mantenimiento Diario</h3>
+          <p class="text-xs text-neutral-300 mb-3">1 página · PDF</p>
+          <a href="/docs/checklist-mantenimiento.pdf" class="btn-download" target="_blank">
+            Descargar <i class="fa-solid fa-download text-[.65rem]"></i>
+          </a>
+        </div>
+      </article>
+      <!-- 6 -->
+      <article class="pub-card" data-cat="Casos" data-spec="producción de arena con vsi" data-aos="fade-up" data-aos-delay="400">
+        <img src="https://picsum.photos/seed/vsi/500/700" alt="Producción de Arena con VSI 7611">
+        <div class="pub-tag">Casos</div>
+        <div class="p-4">
+          <h3 class="font-semibold mb-1 leading-snug">Producción de Arena con VSI 7611</h3>
+          <p class="text-xs text-neutral-300 mb-3">Caso de éxito</p>
+          <a href="/docs/vsi-case.pdf" class="btn-download" target="_blank">
+            Descargar <i class="fa-solid fa-download text-[.65rem]"></i>
+          </a>
+        </div>
+      </article>
+      <!-- 7 -->
+      <article class="pub-card" data-cat="Whitepaper" data-spec="beneficio de cobre — 500 tph" data-aos="fade-up" data-aos-delay="480">
+        <img src="https://picsum.photos/seed/cobre/500/700" alt="Beneficio de Cobre — 500 TPH">
+        <div class="pub-tag">Whitepaper</div>
+        <div class="p-4">
+          <h3 class="font-semibold mb-1 leading-snug">Beneficio de Cobre — 500 TPH</h3>
+          <p class="text-xs text-neutral-300 mb-3">Whitepaper</p>
+          <a href="/docs/copper-beneficiation.pdf" class="btn-download" target="_blank">
+            Descargar <i class="fa-solid fa-download text-[.65rem]"></i>
+          </a>
+        </div>
+      </article>
+      <!-- 8 -->
+      <article class="pub-card" data-cat="Guías" data-spec="cómo elegir revestimientos de cono" data-aos="fade-up" data-aos-delay="560">
+        <img src="https://picsum.photos/seed/cone/500/700" alt="Cómo Elegir Revestimientos de Cono">
+        <div class="pub-tag">Guías</div>
+        <div class="p-4">
+          <h3 class="font-semibold mb-1 leading-snug">Cómo Elegir Revestimientos de Cono</h3>
+          <p class="text-xs text-neutral-300 mb-3">Guía rápida</p>
+          <a href="/docs/revestimientos-cono.pdf" class="btn-download" target="_blank">
+            Descargar <i class="fa-solid fa-download text-[.65rem]"></i>
+          </a>
+        </div>
+      </article>
     </section>
   </main>
 
   <!-- FOOTER -->
-  <footer class="bg-neutral-900 text-neutral-200 pt-14">
-  <div class="max-w-7xl mx-auto px-6 pb-12 grid gap-10 md:grid-cols-12">
-    <div class="md:col-span-4">
-      <h3 class="font-extrabold text-lg text-white mb-3">ISAN TRADING INTERNACIONAL S.R.L</h3>
-      <p class="text-sm leading-relaxed">Soluciones de trituración, molienda y briquetado<br>con soporte global 24/7.</p>
-      <div class="flex gap-4 mt-6 text-xl">
-        <a href="#" class="hover:text-primary-500"><i class="fa-brands fa-facebook-f"></i></a>
-        <a href="#" class="hover:text-primary-500"><i class="fa-brands fa-instagram"></i></a>
-        <a href="#" class="hover:text-primary-500"><i class="fa-brands fa-youtube"></i></a>
-        <a href="#" class="hover:text-primary-500"><i class="fa-brands fa-weixin"></i></a>
-      </div>
-    </div>
-    <div class="md:col-span-4">
-      <h4 class="font-semibold text-white mb-3">Navegación</h4>
-      <div class="grid grid-cols-2 gap-y-1 text-sm">
-        <a href="#inicio"     class="hover:text-primary-500">Inicio</a>
-        <a href="#nosotros"   class="hover:text-primary-500">Nosotros</a>
-        <a href="#destacados" class="hover:text-primary-500">Productos</a>
-        <a href="#noticias"   class="hover:text-primary-500">Noticias</a>
-        <a href="#mapa"       class="hover:text-primary-500">Mapa</a>
-        <a href="#alianza"    class="hover:text-primary-500">Alianza</a>
-        <a href="#videos"    class="hover:text-primary-500">Videos</a>
-        <a href="#sitemap"    class="hover:text-primary-500">Sitemap</a>
-      </div>
-    </div>
-    <div class="md:col-span-4">
-      <h4 class="font-semibold text-white mb-3"> ISAN TRADING INTERNACIONAL S.R.L HQ</h4>
-      <ul class="text-sm space-y-2">
-        <li class="flex gap-2"><i class="fa-solid fa-location-dot text-primary-500 mt-0.5 w-4"></i>No. 9875 -----</li>
-        <li class="flex gap-2"><i class="fa-solid fa-phone text-primary-500 mt-0.5 w-4"></i>+5917891234</li>
-        <li class="flex gap-2"><i class="fa-solid fa-envelope text-primary-500 mt-0.5 w-4"></i>info@ ISANTRADINGINTERNACIONALS.R.L.com.bo</li>
-        <li class="flex gap-2"><i class="fa-solid fa-globe text-primary-500 mt-0.5 w-4"></i><a href="https://ISANTRADINGINTERNACIONALS.R.L.com.bo" target="_blank" class="hover:underline">mrcrusher.com</a></li>
-      </ul>
-    </div>
-  </div>
-  <div class="bg-neutral-800 text-center text-xs py-3 text-neutral-400 tracking-wide">© 2025 Shanghai Mountain River Machinery Co., Ltd.</div>
-</footer>
+  <footer class="bg-neutral-900 text-neutral-400 text-xs text-center py-6">© 2025 MR Crusher • Publicaciones</footer>
 
-  <!-- AOS y filtro -->
+  <!-- SCRIPTS -->
   <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
   <script>
     AOS.init({ duration: 600, once: true });
@@ -222,7 +197,7 @@
         btn.classList.add('active');
         const cat = btn.dataset.cat;
         document.querySelectorAll('#pubGrid article').forEach(card=>{
-          card.style.display = (cat==='*'||card.dataset.cat===cat)?'block':'none';
+          card.style.display = (cat==='*'||card.dataset.cat===cat) ? 'block' : 'none';
         });
       });
     });
@@ -231,7 +206,7 @@
     document.getElementById('searchInput').addEventListener('input', e=>{
       const q = e.target.value.toLowerCase();
       document.querySelectorAll('#pubGrid article').forEach(card=>{
-        card.style.display = card.dataset.spec.includes(q)?'block':'none';
+        card.style.display = card.dataset.spec.includes(q) ? 'block' : 'none';
       });
     });
   </script>
