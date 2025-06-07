@@ -56,31 +56,70 @@
   <!-- Progress Bar -->
   <div id="progress"></div>
 
-  <!-- HEADER -->
-  <header class="fixed inset-x-0 top-0 z-50 bg-white/90 backdrop-blur-md shadow-sm">
-    <div class="max-w-7xl mx-auto h-16 px-6 flex items-center">
-      <a href="/" class="text-2xl font-extrabold text-primary-700">MR Crusher</a>
-      <nav class="hidden lg:flex mx-auto gap-6 text-sm">
-        <a href="/" class="hover:text-primary-700">Inicio</a>
-        <a href="/index.php#equipos" class="hover:text-primary-700">Equipos</a>
-        <a href="/index.php#soluciones" class="hover:text-primary-700">Soluciones</a>
-        <a href="/index.php#servicios" class="hover:text-primary-700">Servicios</a>
-        <a href="/index.php#contacto" class="hover:text-primary-700">Contacto</a>
-        <a href="/noticias.php" class="text-primary-700 font-semibold">Noticias</a>
-      </nav>
-      <button id="menuBtn" class="lg:hidden ml-auto text-primary-700">
+<header class="fixed inset-x-0 top-0 z-50 bg-white shadow-deeper">
+<div class="max-w-7xl mx-auto px-6 lg:px-8 h-16 flex items-center relative">
+<a href="#inicio"
+   class="flex-shrink-0
+          font-extrabold text-primary-700
+          text-xs sm:text-sm md:text-base lg:text-lg
+          max-w-[6rem] sm:max-w-[10rem] md:max-w-[14rem] lg:max-w-none
+          whitespace-normal sm:whitespace-nowrap">
+  ISAN TRADING INTERNACIONAL S.R.L
+</a>
+
+    <!-- Desktop nav -->
+<nav class="hidden lg:flex absolute inset-x-0 justify-center gap-6 text-sm items-center h-full">
+      <a href="#inicio"      class="nav-link">Inicio</a>
+      <a href="#nosotros"    class="nav-link">Sobre nosotros</a>
+      <a href="#destacados"  class="nav-link">Productos</a>
+      <a href="#noticias"    class="nav-link">Noticias</a>
+
+      <div class="relative">
+        <button id="more-btn" class="nav-link flex items-center gap-1">Más <i class="fa-solid fa-chevron-down text-xs"></i></button>
+        <div id="more-menu" class="hidden absolute left-1/2 -translate-x-1/2 mt-2 w-44 bg-white border
+             border-neutral-200 rounded-lg shadow-lg">
+          <a href="#clientes"       class="block px-4 py-2 text-sm hover:bg-neutral-50">Clientes</a>
+          <a href="#publicaciones"  class="block px-4 py-2 text-sm hover:bg-neutral-50">Publicaciones</a>
+          <a href="#ventajas"       class="block px-4 py-2 text-sm hover:bg-neutral-50">Ventajas</a>
+          <a href="#mapa"           class="block px-4 py-2 text-sm hover:bg-neutral-50">Mapa</a>
+          <a href="#alianza"        class="block px-4 py-2 text-sm hover:bg-neutral-50">Alianza</a>
+          <a href="videos.html"       class="block px-4 py-2 text-sm hover:bg-neutral-50">Videos</a>
+        </div>
+      </div>
+    </nav>
+
+    <!-- Banderas + CTA + móvil -->
+    <div class="ml-auto flex items-center gap-4 z-10">
+      <div class="hidden lg:flex items-center gap-2 text-xl">
+        <a href="/"    class="fi fi-es" title="Español"></a>
+        <a href="/en/" class="fi fi-us" title="English"></a>
+        <a href="/pt/" class="fi fi-br" title="Português"></a>
+      </div>
+      <a href="#mapa" class="hidden lg:inline-block btn-primary text-sm whitespace-nowrap">Cotiza ya</a>
+      <button id="mobile-menu-button" class="lg:hidden text-primary-700" aria-expanded="false">
         <i class="fa-solid fa-bars fa-2x"></i>
       </button>
     </div>
-    <nav id="mobileNav" class="hidden lg:hidden bg-white flex-col text-center py-4 space-y-4">
-      <a href="/" class="block">Inicio</a>
-      <a href="/index.php#equipos" class="block">Equipos</a>
-      <a href="/index.php#soluciones" class="block">Soluciones</a>
-      <a href="/index.php#servicios" class="block">Servicios</a>
-      <a href="/index.php#contacto" class="block">Contacto</a>
-      <a href="/noticias.php" class="block text-primary-700 font-bold">Noticias</a>
-    </nav>
-  </header>
+  </div>
+
+  <!-- Mobile nav -->
+  <nav id="mobile-nav" class="hidden lg:hidden flex-col bg-white text-center py-4 space-y-4">
+    <a href="#inicio"      class="nav-link block">Inicio</a>
+    <a href="#nosotros"    class="nav-link block">Sobre nosotros</a>
+    <a href="#destacados"  class="nav-link block">Productos</a>
+    <a href="#noticias"    class="nav-link block">Noticias</a>
+    <a href="#clientes"    class="nav-link block">Clientes</a>
+    <a href="#publicaciones"class="nav-link block">Publicaciones</a>
+    <a href="#ventajas"    class="nav-link block">Ventajas</a>
+    <a href="#mapa"        class="nav-link block">Mapa</a>
+    <a href="#alianza"     class="nav-link block">Alianza</a>
+    <div class="flex justify-center gap-4 text-2xl pt-2">
+      <a href="/"    class="fi fi-es"></a>
+      <a href="/en/" class="fi fi-us"></a>
+      <a href="/pt/" class="fi fi-br"></a>
+    </div>
+  </nav>
+</header>
 
   <script>
     // Toggle menú móvil
