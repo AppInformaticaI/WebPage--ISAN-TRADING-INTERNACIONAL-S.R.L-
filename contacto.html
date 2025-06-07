@@ -8,11 +8,9 @@
 
   <!-- Font Awesome -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
-
   <!-- Poppins -->
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;800&display=swap" rel="stylesheet"/>
-
-  <!-- Tailwind + Configuración de Marca -->
+  <!-- Tailwind + Config -->
   <script src="https://cdn.tailwindcss.com"></script>
   <script>
     tailwind.config = {
@@ -30,12 +28,18 @@
       }
     }
   </script>
+  <style>
+    /* Ajuste: empujar el contenido justo debajo del header */
+    header ~ section.hero {
+      padding-top: 4rem; /* igual a la altura del header */
+    }
+  </style>
 </head>
 <body class="bg-neutral-50 text-neutral-900 font-sans">
 
   <!-- HEADER / NAV -->
-  <header class="fixed inset-x-0 top-0 bg-white shadow-sm z-50">
-    <div class="max-w-7xl mx-auto px-6 h-16 flex items-center">
+  <header class="fixed inset-x-0 top-0 bg-white shadow-sm z-50 h-16">
+    <div class="max-w-7xl mx-auto px-6 h-full flex items-center">
       <a href="/" class="text-2xl font-extrabold text-brand-500">MR Crusher</a>
       <nav class="hidden lg:flex mx-auto gap-6 text-sm">
         <a href="/" class="hover:text-brand-700">Inicio</a>
@@ -60,13 +64,13 @@
   </header>
 
   <script>
-    document.getElementById('menuBtn').addEventListener('click', () => {
+    document.getElementById('menuBtn').onclick = () => {
       document.getElementById('mobileNav').classList.toggle('hidden');
-    });
+    };
   </script>
 
   <!-- HERO -->
-  <section class="relative w-full h-56 sm:h-72 md:h-80 bg-cover bg-center" style="background-image:url('https://picsum.photos/seed/contact-hero/1600/600');">
+  <section class="hero relative w-full h-56 sm:h-72 md:h-80 bg-cover bg-center" style="background-image:url('https://picsum.photos/seed/contact-hero/1600/600');">
     <div class="absolute inset-0 bg-black bg-opacity-50"></div>
     <div class="relative z-10 flex items-center justify-center h-full px-4">
       <h1 class="text-3xl sm:text-4xl md:text-5xl font-extrabold text-white drop-shadow-lg">
@@ -76,7 +80,7 @@
   </section>
 
   <!-- BREADCRUMB -->
-  <nav class="bg-white py-3 shadow-sm mt-56 sm:mt-72">
+  <nav class="bg-white py-3 shadow-sm">
     <div class="max-w-7xl mx-auto px-4 text-sm text-neutral-600">
       <ol class="flex space-x-2">
         <li><a href="/" class="hover:text-neutral-800">Inicio</a></li>
@@ -209,6 +213,5 @@
       © 2025 Shanghai Mountain River Machinery Co., Ltd.
     </div>
   </footer>
-
 </body>
 </html>
