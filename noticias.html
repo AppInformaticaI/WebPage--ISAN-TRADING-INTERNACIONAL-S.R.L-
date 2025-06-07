@@ -30,62 +30,31 @@
 
   <style>
     body { font-family:'Poppins',sans-serif; }
-    /* Progress bar */
     #progress { position:fixed; top:0; left:0; height:4px; background:#E53935; width:0; z-index:60 }
-    /* News card */
-    .news-card {
-      display:flex; flex-direction:column;
-      background:rgba(255,255,255,.75); backdrop-filter:blur(5px);
-      border-radius:1rem; overflow:hidden;
-      box-shadow:0 12px 32px rgba(0,0,0,.18);
-      transition:.3s;
-    }
-    .news-card:hover {
-      transform:translateY(-6px);
-      box-shadow:0 24px 50px rgba(0,0,0,.32);
-    }
-    .news-tag {
-      position:absolute; top:.75rem; left:.75rem;
-      background:#E53935; color:#fff;
-      font-size:.6rem; padding:.1rem .6rem;
-      border-radius:.25rem;
-    }
-    /* Read-more button */
-    .btn-read {
-      position:relative; display:inline-flex; align-items:center; gap:.25rem;
+    .news-card { display:flex; flex-direction:column; background:rgba(255,255,255,.75); backdrop-filter:blur(5px);
+      border-radius:1rem; overflow:hidden; box-shadow:0 12px 32px rgba(0,0,0,.18); transition:.3s }
+    .news-card:hover { transform:translateY(-6px); box-shadow:0 24px 50px rgba(0,0,0,.32) }
+    .news-tag { position:absolute; top:.75rem; left:.75rem; background:#E53935; color:#fff;
+      font-size:.6rem; padding:.1rem .6rem; border-radius:.25rem }
+    .btn-read { position:relative; display:inline-flex; align-items:center; gap:.25rem;
       padding:.35rem .8rem; border-radius:9999px; font-size:.7rem;
       background:#E53935; color:#fff; font-weight:600;
-      box-shadow:0 3px 9px rgba(0,0,0,.15);
-      transition:transform .22s, background .22s;
-    }
-    .btn-read:hover { background:#C62828; transform:translateY(-2px); }
-    .btn-read:active { transform:translateY(0); }
+      box-shadow:0 3px 9px rgba(0,0,0,.15); transition:transform .22s, background .22s }
+    .btn-read:hover { background:#C62828; transform:translateY(-2px) }
+    .btn-read:active { transform:translateY(0) }
     @keyframes rip { from{transform:scale(0);opacity:1} to{transform:scale(3.5);opacity:0} }
-    .btn-read:active::after {
-      content:''; position:absolute; inset:0;
-      background:rgba(255,255,255,.35); border-radius:inherit;
-      animation:rip .45s;
-    }
-    .btn-read svg { width:.65rem; height:.65rem; }
-
-    /* Sidebar */
-    #sidebar a { display:flex; align-items:center; gap:.55rem; padding:.5rem .85rem; border-radius:.6rem; }
-    #sidebar a:hover { background:#FFE5E5; }
-    #sidebar a.active { background:#E53935; color:#fff; }
-    .badge {
-      background:#E53935; color:#fff;
-      font-size:.62rem; padding:.05rem .5rem;
-      border-radius:9999px; margin-left:auto;
-    }
-    #lastList { max-height:220px; overflow-y:auto; }
-
-    /* ToTop button */
-    #toTop {
-      position:fixed; right:1rem; bottom:1rem;
-      background:#E53935; color:#fff; border-radius:9999px; padding:.7rem;
-      opacity:0; pointer-events:none; transition:.3s;
-    }
-    #toTop.show { opacity:1; pointer-events:auto; }
+    .btn-read:active::after { content:''; position:absolute; inset:0;
+      background:rgba(255,255,255,.35); border-radius:inherit; animation:rip .45s }
+    .btn-read svg { width:.65rem; height:.65rem }
+    #sidebar a { display:flex; align-items:center; gap:.55rem; padding:.5rem .85rem; border-radius:.6rem }
+    #sidebar a:hover { background:#FFE5E5 }
+    #sidebar a.active { background:#E53935; color:#fff }
+    .badge { background:#E53935; color:#fff; font-size:.62rem; padding:.05rem .5rem;
+      border-radius:9999px; margin-left:auto }
+    #lastList { max-height:220px; overflow-y:auto }
+    #toTop { position:fixed; right:1rem; bottom:1rem; background:#E53935; color:#fff;
+      border-radius:9999px; padding:.7rem; opacity:0; pointer-events:none; transition:.3s }
+    #toTop.show { opacity:1; pointer-events:auto }
   </style>
 </head>
 <body class="bg-neutral-50 antialiased">
@@ -133,7 +102,7 @@
       <!-- Últimas -->
       <div>
         <button class="flex items-center w-full gap-2 font-bold text-lg mb-2"
-                onclick="lastList.classList.toggle('hidden'); this.querySelector('svg').classList.toggle('rotate-180')">
+                onclick="lastList.classList.toggle('hidden'); this.querySelector('i').classList.toggle('rotate-180')">
           <span class="border-l-4 border-primary-500 pl-2">Últimas (<span id="lastTotal">18</span>)</span>
           <i class="fa-solid fa-chevron-down transition"></i>
         </button>
@@ -153,48 +122,12 @@
       <div class="sticky top-24">
         <h3 class="border-l-4 border-primary-500 pl-2 font-bold text-lg mb-2">Categorías</h3>
         <ul class="space-y-1 text-sm">
-          <li>
-            <a href="#proyectos" class="flex items-center gap-2">
-              <i class="fa-solid fa-mountain text-neutral-700 text-lg"></i>
-              <span>Proyectos</span>
-              <span class="badge" data-cat="Proyectos">3</span>
-            </a>
-          </li>
-          <li>
-            <a href="#innovación" class="flex items-center gap-2">
-              <i class="fa-solid fa-lightbulb text-neutral-700 text-lg"></i>
-              <span>Innovación</span>
-              <span class="badge" data-cat="Innovación">3</span>
-            </a>
-          </li>
-          <li>
-            <a href="#corporativo" class="flex items-center gap-2">
-              <i class="fa-solid fa-building text-neutral-700 text-lg"></i>
-              <span>Corporativo</span>
-              <span class="badge" data-cat="Corporativo">3</span>
-            </a>
-          </li>
-          <li>
-            <a href="#eventos" class="flex items-center gap-2">
-              <i class="fa-solid fa-calendar-days text-neutral-700 text-lg"></i>
-              <span>Eventos</span>
-              <span class="badge" data-cat="Eventos">3</span>
-            </a>
-          </li>
-          <li>
-            <a href="#mercado" class="flex items-center gap-2">
-              <i class="fa-solid fa-chart-bar text-neutral-700 text-lg"></i>
-              <span>Mercado</span>
-              <span class="badge" data-cat="Mercado">3</span>
-            </a>
-          </li>
-          <li>
-            <a href="#tips" class="flex items-center gap-2">
-              <i class="fa-solid fa-hammer text-neutral-700 text-lg"></i>
-              <span>Tips</span>
-              <span class="badge" data-cat="Tips">3</span>
-            </a>
-          </li>
+          <li><a href="#proyectos"    class="flex items-center gap-2"><i class="fa-solid fa-mountain"></i><span>Proyectos</span><span class="badge" data-cat="Proyectos">3</span></a></li>
+          <li><a href="#innovación"   class="flex items-center gap-2"><i class="fa-solid fa-lightbulb"></i><span>Innovación</span><span class="badge" data-cat="Innovación">3</span></a></li>
+          <li><a href="#corporativo"  class="flex items-center gap-2"><i class="fa-solid fa-building"></i><span>Corporativo</span><span class="badge" data-cat="Corporativo">3</span></a></li>
+          <li><a href="#eventos"      class="flex items-center gap-2"><i class="fa-solid fa-calendar-days"></i><span>Eventos</span><span class="badge" data-cat="Eventos">3</span></a></li>
+          <li><a href="#mercado"      class="flex items-center gap-2"><i class="fa-solid fa-chart-bar"></i><span>Mercado</span><span class="badge" data-cat="Mercado">3</span></a></li>
+          <li><a href="#tips"         class="flex items-center gap-2"><i class="fa-solid fa-hammer"></i><span>Tips</span><span class="badge" data-cat="Tips">3</span></a></li>
         </ul>
       </div>
     </aside>
@@ -208,37 +141,156 @@
         <i class="fa-solid fa-magnifying-glass absolute top-1/2 right-4 -translate-y-1/2 text-neutral-400"></i>
       </div>
 
-      <!-- Secciones de noticias -->
       <!-- Proyectos -->
       <section id="proyectos">
         <h2 class="text-3xl font-extrabold mb-10" data-aos="fade-up">Proyectos</h2>
         <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-10" data-cat="Proyectos">
           <!-- Card 1 -->
-          <article class="news-card" data-spec="hpgr 300 tph chile finalizado" data-cat="Proyectos" data-aos="zoom-in" data-aos-delay="0">…</article>
+          <article class="news-card" data-spec="hpgr 300 tph chile finalizado" data-aos="zoom-in" data-aos-delay="0">
+            <div class="relative">
+              <div class="aspect-[4/3] overflow-hidden">
+                <img src="https://picsum.photos/seed/1/800/600" alt="HPGR 300 TPH Chile finalizado" class="w-full h-full object-cover">
+              </div>
+              <span class="news-tag">Proyectos</span>
+            </div>
+            <div class="p-6 flex flex-col flex-1">
+              <span class="text-xs text-neutral-500 mb-1">12 May 2025</span>
+              <h3 class="font-semibold mb-1 line-clamp-2">HPGR 300 TPH Chile finalizado</h3>
+              <p class="text-neutral-500 text-sm line-clamp-2 mb-3">Lorem ipsum dolor sit amet, consectetur adipisicing elit…</p>
+              <a href="#" class="btn-read mt-auto">Leer más <i class="fa-solid fa-arrow-right-long"></i></a>
+            </div>
+          </article>
           <!-- Card 2 -->
-          <article class="news-card" data-spec="planta 200 tph perú" data-cat="Proyectos" data-aos="zoom-in" data-aos-delay="60">…</article>
+          <article class="news-card" data-spec="planta 200 tph perú" data-aos="zoom-in" data-aos-delay="60">
+            <div class="relative">
+              <div class="aspect-[4/3] overflow-hidden">
+                <img src="https://picsum.photos/seed/2/800/600" alt="Planta 200 TPH Perú" class="w-full h-full object-cover">
+              </div>
+              <span class="news-tag">Proyectos</span>
+            </div>
+            <div class="p-6 flex flex-col flex-1">
+              <span class="text-xs text-neutral-500 mb-1">25 Apr 2025</span>
+              <h3 class="font-semibold mb-1 line-clamp-2">Planta 200 TPH Perú</h3>
+              <p class="text-neutral-500 text-sm line-clamp-2 mb-3">Lorem ipsum dolor sit amet, consectetur adipisicing elit…</p>
+              <a href="#" class="btn-read mt-auto">Leer más <i class="fa-solid fa-arrow-right-long"></i></a>
+            </div>
+          </article>
           <!-- Card 3 -->
-          <article class="news-card" data-spec="modernización cantera gran roca" data-cat="Proyectos" data-aos="zoom-in" data-aos-delay="120">…</article>
+          <article class="news-card" data-spec="modernización cantera gran roca" data-aos="zoom-in" data-aos-delay="120">
+            <div class="relative">
+              <div class="aspect-[4/3] overflow-hidden">
+                <img src="https://picsum.photos/seed/3/800/600" alt="Modernización cantera Gran Roca" class="w-full h-full object-cover">
+              </div>
+              <span class="news-tag">Proyectos</span>
+            </div>
+            <div class="p-6 flex flex-col flex-1">
+              <span class="text-xs text-neutral-500 mb-1">02 Apr 2025</span>
+              <h3 class="font-semibold mb-1 line-clamp-2">Modernización cantera Gran Roca</h3>
+              <p class="text-neutral-500 text-sm line-clamp-2 mb-3">Lorem ipsum dolor sit amet, consectetur adipisicing elit…</p>
+              <a href="#" class="btn-read mt-auto">Leer más <i class="fa-solid fa-arrow-right-long"></i></a>
+            </div>
+          </article>
         </div>
       </section>
 
       <!-- Innovación -->
-      <section id="innovación">…</section>
+      <section id="innovación">
+        <h2 class="text-3xl font-extrabold mb-10" data-aos="fade-up">Innovación</h2>
+        <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-10" data-cat="Innovación">
+          <article class="news-card" data-spec="jaw crusher jc-8x lanzado" data-aos="zoom-in" data-aos-delay="0">
+            <div class="relative">
+              <div class="aspect-[4/3] overflow-hidden">
+                <img src="https://picsum.photos/seed/4/800/600" alt="Jaw Crusher JC-8X lanzado" class="w-full h-full object-cover">
+              </div>
+              <span class="news-tag">Innovación</span>
+            </div>
+            <div class="p-6 flex flex-col flex-1">
+              <span class="text-xs text-neutral-500 mb-1">18 Apr 2025</span>
+              <h3 class="font-semibold mb-1 line-clamp-2">Jaw Crusher JC-8X lanzado</h3>
+              <p class="text-neutral-500 text-sm line-clamp-2 mb-3">Lorem ipsum dolor sit amet…</p>
+              <a href="#" class="btn-read mt-auto">Leer más <i class="fa-solid fa-arrow-right-long"></i></a>
+            </div>
+          </article>
+          <article class="news-card" data-spec="sistema iiot para monitoreo" data-aos="zoom-in" data-aos-delay="60">
+            <div class="relative">
+              <div class="aspect-[4/3] overflow-hidden">
+                <img src="https://picsum.photos/seed/5/800/600" alt="Sistema IIoT para monitoreo" class="w-full h-full object-cover">
+              </div>
+              <span class="news-tag">Innovación</span>
+            </div>
+            <div class="p-6 flex flex-col flex-1">
+              <span class="text-xs text-neutral-500 mb-1">07 Mar 2025</span>
+              <h3 class="font-semibold mb-1 line-clamp-2">Sistema IIoT para monitoreo</h3>
+              <p class="text-neutral-500 text-sm line-clamp-2 mb-3">Lorem ipsum dolor sit amet…</p>
+              <a href="#" class="btn-read mt-auto">Leer más <i class="fa-solid fa-arrow-right-long"></i></a>
+            </div>
+          </article>
+          <article class="news-card" data-spec="recubrimiento nano-cerámico" data-aos="zoom-in" data-aos-delay="120">
+            <div class="relative">
+              <div class="aspect-[4/3] overflow-hidden">
+                <img src="https://picsum.photos/seed/6/800/600" alt="Recubrimiento nano-cerámico" class="w-full h-full object-cover">
+              </div>
+              <span class="news-tag">Innovación</span>
+            </div>
+            <div class="p-6 flex flex-col flex-1">
+              <span class="text-xs text-neutral-500 mb-1">14 Feb 2025</span>
+              <h3 class="font-semibold mb-1 line-clamp-2">Recubrimiento nano-cerámico</h3>
+              <p class="text-neutral-500 text-sm line-clamp-2 mb-3">Lorem ipsum dolor sit amet…</p>
+              <a href="#" class="btn-read mt-auto">Leer más <i class="fa-solid fa-arrow-right-long"></i></a>
+            </div>
+          </article>
+        </div>
+      </section>
 
-      <!-- Corporativo -->
-      <section id="corporativo">…</section>
+      <!-- CORPORATIVO -->
+      <section id="corporativo">
+        <h2 class="text-3xl font-extrabold mb-10" data-aos="fade-up">Corporativo</h2>
+        <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-10" data-cat="Corporativo">
+          <article class="news-card" data-spec="almacén la paz inaugurado" data-aos="zoom-in" data-aos-delay="0">
+            <div class="relative">
+              <div class="aspect-[4/3] overflow-hidden">
+                <img src="https://picsum.photos/seed/7/800/600" alt="Almacén La Paz inaugurado" class="w-full h-full object-cover">
+              </div>
+              <span class="news-tag">Corporativo</span>
+            </div>
+            <div class="p-6 flex flex-col flex-1">
+              <span class="text-xs text-neutral-500 mb-1">29 Apr 2025</span>
+              <h3 class="font-semibold mb-1 line-clamp-2">Almacén La Paz inaugurado</h3>
+              <p class="text-neutral-500 text-sm line-clamp-2 mb-3">Lorem ipsum dolor sit amet…</p>
+              <a href="#" class="btn-read mt-auto">Leer más <i class="fa-solid fa-arrow-right-long"></i></a>
+            </div>
+          </article>
+          <article class="news-card" data-spec="certificación iso 14001" data-aos="zoom-in" data-aos-delay="60">
+            <div class="relative">
+              <div class="aspect-[4/3] overflow-hidden">
+                <img src="https://picsum.photos/seed/8/800/600" alt="Certificación ISO 14001" class="w-full h-full object-cover">
+              </div>
+              <span class="news-tag">Corporativo</span>
+            </div>
+            <div class="p-6 flex flex-col flex-1">
+              <span class="text-xs text-neutral-500 mb-1">15 Dec 2024</span>
+              <h3 class="font-semibold mb-1 line-clamp-2">Certificación ISO 14001</h3>
+              <p class="text-neutral-500 text-sm line-clamp-2 mb-3">Lorem ipsum dolor sit amet…</p>
+              <a href="#" class="btn-read mt-auto">Leer más <i class="fa-solid fa-arrow-right-long"></i></a>
+            </div>
+          </article>
+          <article class="news-card" data-spec="ampliación planta shanghái +20 %" data-aos="zoom-in" data-aos-delay="120">
+            <div class="relative">
+              <div class="aspect-[4/3] overflow-hidden">
+                <img src="https://picsum.photos/seed/9/800/600" alt="Ampliación planta Shanghái +20 %" class="w-full h-full object-cover">
+              </div>
+              <span class="news-tag">Corporativo</span>
+            </div>
+            <div class="p-6 flex flex-col flex-1">
+              <span class="text-xs text-neutral-500 mb-1">03 Oct 2024</span>
+              <h3 class="font-semibold mb-1 line-clamp-2">Ampliación planta Shanghái +20 %</h3>
+              <p class="text-neutral-500 text-sm line-clamp-2 mb-3">Lorem ipsum dolor sit amet…</p>
+              <a href="#" class="btn-read mt-auto">Leer más <i class="fa-solid fa-arrow-right-long"></i></a>
+            </div>
+          </article>
+        </div>
+      </section>
 
-      <!-- Eventos -->
-      <section id="eventos">…</section>
-
-      <!-- Mercado -->
-      <section id="mercado">…</section>
-
-      <!-- Tips -->
-      <section id="tips">…</section>
-
-      <div id="sentinel" class="h-10"></div>
-    </section>
   </main>
   <!-- FOOTER -->
   <footer class="bg-neutral-900 text-neutral-200 pt-14">
