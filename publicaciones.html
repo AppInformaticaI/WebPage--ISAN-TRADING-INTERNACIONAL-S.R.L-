@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="es" class="scroll-smooth">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1.0">
+  <title>MR Crusher — Publicaciones</title>
+  <link rel="icon" href="/favicon.ico">
+  <meta name="description" content="Centro de publicaciones técnicas de MR Crusher: guías, whitepapers y casos de éxito.">
+
+  <!-- Tailwind + configuración -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        fontFamily: { sans: ['Poppins','ui-sans-serif','system-ui'] },
+        extend: {
+          colors: {
+            primary: { 500:'#E53935' },
+            accent:  { 500:'#FF8C00', 600:'#F57C00' },
+            neutral: { 50:'#fafafa',300:'#e5e7eb',500:'#6b7280',700:'#374151',900:'#111827' }
+          },
+          boxShadow: {
+            card: '0 10px 24px rgba(0,0,0,.18)'
+          }
+        }
+      }
+    };
+  </script>
+
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+  <link rel="stylesheet" href="https://unpkg.com/aos@2.3.1/dist/aos.css">
+
+  <style>
+    body { font-family: 'Poppins', sans-serif; }
+    .pub-card { position: relative; overflow: hidden; border-radius: 1rem; box-shadow: theme(boxShadow.card); transition: transform .3s; }
+    .pub-card:hover { transform: translateY(-4px) scale(1.02); }
+    .pub-card img { width:100%; height: auto; transition: transform .4s; }
+    .pub-card:hover img { transform: scale(1.08); }
+    .pub-tag { position: absolute; top: 0.75rem; left: 0.75rem; background: theme(colors.accent.500); color: #fff; font-size: .6rem; padding: .2rem .6rem; border-radius: .5rem; }
+    .pub-info { padding: 1rem; }
+    .btn-download { display: inline-flex; align-items: center; gap: .3rem; background: theme(colors.accent.500); color: #fff; padding: .4rem .9rem; border-radius: 9999px; font-size: .75rem; font-weight: 600; transition: background .2s; }
+    .btn-download:hover { background: theme(colors.accent.600); }
+    #sidebar input { width: 100%; }
+    #sidebar a { display: block; padding: .5rem 1rem; border-radius: .5rem; font-size: .875rem; transition: background .2s,color .2s; }
+    #sidebar a:hover, #sidebar a.active { background: theme(colors.accent.500); color: #fff; }
+  </style>
+</head>
+
+<body class="bg-neutral-50 antialiased">
+
+  <!-- HEADER -->
+  <header class="fixed inset-x-0 top-0 bg-white shadow-sm z-50 h-16 flex items-center px-6">
+    <a href="/" class="text-2xl font-extrabold text-primary-500">MR Crusher</a>
+    <span class="ml-4 text-sm font-semibold text-neutral-600">Publicaciones</span>
+  </header>
+
+  <!-- HERO -->
+  <section class="mt-16 h-48 bg-[url('https://picsum.photos/seed/library/1600/900')] bg-cover bg-center relative flex items-center justify-center">
+    <div class="absolute inset-0 bg-black/50"></div>
+    <h1 class="relative z-10 text-white text-3xl font-extrabold">Centro de Publicaciones</h1>
+  </section>
+
+  <!-- CONTENIDO -->
+  <main class="max-w-7xl mx-auto px-6 py-12 flex flex-col lg:flex-row gap-10">
+    <!-- SIDEBAR IZQUIERDO -->
+    <aside id="sidebar" class="lg:w-64 shrink-0 space-y-6">
+      <div>
+        <input id="searchInput" type="text" placeholder="Buscar..." 
+               class="rounded-full border border-neutral-300 px-4 py-2 focus:outline-none focus:ring-2 focus:ring-accent-500 transition" />
+      </div>
+      <div class="space-y-1">
+        <h2 class="font-semibold text-neutral-700">Categorías</h2>
+        <a href="#" data-cat="*" class="active">Todos</a>
+        <a href="#" data-cat="Guías">Guías</a>
+        <a href="#" data-cat="Whitepaper">Whitepapers</a>
+        <a href="#" data-cat="Casos">Casos</a>
+      </div>
+    </aside>
+
+    <!-- GRID DE PUBLICACIONES -->
+    <section id="pubGrid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+      <?php
+        $pubs = [
+          ['Guías','Guía de Selección de Trituradoras','https://picsum.photos/seed/sel/500/700','/docs/guia-trituradoras.pdf','24 páginas · PDF'],
+          ['Whitepaper','Optimización de Plantas HPGR','https://picsum.photos/seed/hpgr/500/700','/docs/hpgr-optimization.pdf','32 páginas · PDF'],
+          ['Whitepaper','Reducción de Polvo en Canteras','https://picsum.photos/seed/dust/500/700','/docs/dust-control.pdf','18 páginas · PDF'],
+          ['Casos','Retrofit de Molino de Bolas 3×13 m','https://picsum.photos/seed/retrofit/500/700','/docs/retrofit-molinobolas.pdf','Estudio de caso'],
+          ['Guías','Checklist de Mantenimiento Diario','https://picsum.photos/seed/check/500/700','/docs/checklist-mantenimiento.pdf','1 página · PDF'],
+          ['Casos','Producción de Arena con VSI 7611','https://picsum.photos/seed/vsi/500/700','/docs/vsi-case.pdf','Caso de éxito'],
+          ['Whitepaper','Beneficio de Cobre — 500 TPH','https://picsum.photos/seed/cobre/500/700','/docs/copper-beneficiation.pdf','Whitepaper'],
+          ['Guías','Cómo Elegir Revestimientos de Cono','https://picsum.photos/seed/cone/500/700','/docs/revestimientos-cono.pdf','Guía rápida']
+        ];
+        foreach($pubs as $i=>$p):
+      ?>
+      <article class="pub-card" data-cat="<?=$p[0]?>" data-spec="<?=strtolower($p[1])?>" data-aos="fade-up" data-aos-delay="<?=($i%6)*80?>">
+        <img src="<?=$p[2]?>" alt="<?=$p[1]?>">
+        <div class="pub-tag"><?=$p[0]?></div>
+        <div class="pub-info">
+          <h3 class="font-semibold leading-snug mb-1"><?=$p[1]?></h3>
+          <p class="text-xs text-neutral-200 mb-3"><?=$p[4]?></p>
+          <a href="<?=$p[3]?>" class="btn-download" target="_blank" rel="noopener">
+            Descargar <i class="fa-solid fa-download text-[.65rem]"></i>
+          </a>
+        </div>
+      </article>
+      <?php endforeach;?>
+    </section>
+  </main>
+
+  <!-- FOOTER -->
+  <footer class="bg-neutral-900 text-neutral-400 text-xs text-center py-6">
+    © <?=date('Y')?> MR Crusher • Publicaciones
+  </footer>
+
+  <!-- AOS y filtro -->
+  <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+  <script>
+    AOS.init({ duration: 600, once: true });
+
+    // Filtrar por categoría
+    document.querySelectorAll('#sidebar a[data-cat]').forEach(btn=>{
+      btn.addEventListener('click', e=>{
+        e.preventDefault();
+        document.querySelectorAll('#sidebar a[data-cat]').forEach(b=>b.classList.remove('active'));
+        btn.classList.add('active');
+        const cat = btn.dataset.cat;
+        document.querySelectorAll('#pubGrid article').forEach(card=>{
+          card.style.display = (cat==='*'||card.dataset.cat===cat)?'block':'none';
+        });
+      });
+    });
+
+    // Búsqueda en vivo
+    document.getElementById('searchInput').addEventListener('input', e=>{
+      const q = e.target.value.toLowerCase();
+      document.querySelectorAll('#pubGrid article').forEach(card=>{
+        card.style.display = card.dataset.spec.includes(q)?'block':'none';
+      });
+    });
+  </script>
+</body>
+</html>
