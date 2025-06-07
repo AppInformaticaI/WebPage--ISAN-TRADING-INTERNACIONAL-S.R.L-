@@ -133,35 +133,49 @@
 
   <main class="scroll-smooth pt-16">
 
-    <!-- HERO -->
-    <section id="inicio" class="relative h-screen overflow-hidden">
-      <video
-        class="absolute inset-0 w-full h-full object-cover"
-        src="https://cdn.coverr.co/videos/coverr-huge-mining-excavator-6233/1080p.mp4"
-        autoplay muted loop playsinline
-        poster="https://picsum.photos/id/57/1920/1080?blur">
-        <img src="https://picsum.photos/id/57/1920/1080?blur" alt="Minería a cielo abierto">
-      </video>
-      <div class="absolute inset-0 bg-black/50"></div>
-      <div class="relative z-10 flex flex-col items-center justify-center h-full text-center px-4">
-        <div class="flex items-center gap-4 mb-4">
-          <span class="fi fi-cn text-3xl"></span>
-          <i class="fa-solid fa-handshake text-white text-2xl"></i>
-          <span class="fi fi-bo text-3xl"></span>
-        </div>
-        <h1 class="text-4xl sm:text-5xl lg:text-6xl font-extrabold text-white mb-6 drop-shadow-lg">
-          China &middot; Bolivia<br>
-          <span class="text-red-500">Innovación sin fronteras</span>
-        </h1>
-        <p class="text-white/90 text-lg sm:text-xl max-w-2xl mx-auto mb-8">
-          ipmsun quorah blixter navoxt remdul zaphor quilnor trexla vintos meqra
-        </p>
-        <a href="#destacados"
-           class="inline-block px-8 py-3 bg-red-600 text-white font-semibold rounded-lg shadow-lg hover:bg-red-700 transition">
-          Descubre nuestros productos
-        </a>
+  <!-- Asegúrate de añadir `overflow-x-hidden` al body -->
+<body class="bg-slate-50 text-slate-900 antialiased overflow-x-hidden">
+
+  <!-- ================= HERO CORREGIDO ================= -->
+  <section id="inicio" class="relative h-screen overflow-hidden">
+    <!-- Vídeo de fondo nuevo (mejor contraste, reproducción automática) -->
+    <video
+      class="absolute inset-0 w-full h-full object-cover"
+      src="https://cdn.coverr.co/videos/coverr-industrial-crusher-machine-1971/1080p.mp4"
+      autoplay
+      muted
+      loop
+      playsinline
+      poster="https://picsum.photos/id/57/1920/1080?blur">
+      <img src="https://picsum.photos/id/57/1920/1080?blur" alt="Minería a cielo abierto">
+    </video>
+
+    <!-- Capa oscura para contraste del texto -->
+    <div class="absolute inset-0 bg-black/50"></div>
+
+    <!-- Contenido centrado, con padding lateral para móviles -->
+    <div class="relative z-10 flex flex-col items-center justify-center h-full text-center px-4">
+      <div class="flex items-center gap-4 mb-4">
+        <span class="fi fi-cn text-3xl"></span>
+        <i class="fa-solid fa-handshake text-white text-2xl"></i>
+        <span class="fi fi-bo text-3xl"></span>
       </div>
-    </section>
+
+      <h1 class="text-4xl sm:text-5xl lg:text-6xl font-extrabold text-white mb-6 drop-shadow-lg">
+        China &middot; Bolivia<br>
+        <span class="text-red-500">Innovación sin fronteras</span>
+      </h1>
+
+      <p class="text-white/90 text-lg sm:text-xl max-w-2xl mx-auto mb-8">
+        ipmsun quorah blixter navoxt remdul zaphor quilnor trexla vintos meqra
+      </p>
+
+      <a href="#destacados"
+         class="inline-block px-8 py-3 bg-red-600 text-white font-semibold rounded-lg shadow-lg hover:bg-red-700 transition">
+        Descubre nuestros productos
+      </a>
+    </div>
+  </section>
 
     <!-- NOSOTROS -->
     <section id="nosotros" class="bg-neutral-50 py-16">
