@@ -26,7 +26,7 @@
     };
   </script>
 
-  <!-- Fonts & Icons & AOS & Swiper -->
+  <!-- Fonts, Icons, AOS & Swiper -->
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;800&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
   <link rel="stylesheet" href="https://unpkg.com/aos@2.3.1/dist/aos.css">
@@ -34,6 +34,18 @@
 
   <style>
     body { font-family:'Poppins',sans-serif; }
+    /* Íconos sociales compartidos */
+    .share-icon {
+      width:40px; height:40px;
+      display:flex; align-items:center; justify-content:center;
+      border-radius:.375rem; color:#fff; font-size:18px;
+    }
+    .share-fb    { background:#3b5998; }
+    .share-x     { background:#000; }
+    .share-li    { background:#0077b5; }
+    .share-wa    { background:#25D366; }
+    .share-mail  { background:#fbbc05; }
+
     .card-3d { transition:.35s; transform-style:preserve-3d; box-shadow:0 10px 20px rgba(0,0,0,.18); }
     .card-3d:hover { transform:rotateX(5deg) rotateY(-5deg) scale(1.04); box-shadow:0 25px 35px rgba(0,0,0,.28); }
     .tab-btn.active { background:#E53935; color:#fff; }
@@ -44,14 +56,9 @@
       padding:.75rem 1.5rem; border-radius:.5rem; font-weight:600;
       box-shadow:0 4px 10px rgba(0,0,0,.15); transition:.2s;
     }
-    .btn-chat {
-      background:#25D366; color:#fff;
-    }
-    .btn-inquiry {
-      background:#fff; color:#E53935; border:2px solid #E53935;
-    }
-    .btn-chat:hover,
-    .btn-inquiry:hover { transform:translateY(-2px); }
+    .btn-chat    { background:#25D366; color:#fff; }
+    .btn-inquiry { background:#fff; color:#E53935; border:2px solid #E53935; }
+    .btn-chat:hover, .btn-inquiry:hover { transform:translateY(-2px); }
 
     .stat-box {
       display:flex; flex-direction:column; align-items:center; justify-content:center;
@@ -82,16 +89,12 @@
     .floating-cta a.whatsapp { background:#25D366; }
     .floating-cta a.phone    { background:#1E88E5; }
 
-    /* Zoom on hover only for related carousel */
-    .relatedSwiper .swiper-slide:hover img {
-      transform: scale(1.1);
-      transition: transform .3s;
-    }
+    /* Centrar slides y remover zoom aquí */
+    .relatedSwiper .swiper-wrapper { justify-content: center !important; }
   </style>
 </head>
 
 <body class="bg-slate-50 text-neutral-900 antialiased">
-  <!-- Scroll progress bar -->
   <div id="progress" class="fixed top-0 left-0 h-1 bg-primary-500 w-0 z-60"></div>
 
   <!-- HEADER -->
@@ -111,11 +114,11 @@
       </button>
     </div>
     <nav id="mobile-nav" class="hidden lg:hidden bg-white flex-col text-center py-4 space-y-4">
-      <a href="#inicio" class="hover:text-primary-500">Inicio</a>
-      <a href="#equipos" class="hover:text-primary-500">Equipos</a>
-      <a href="#soluciones" class="hover:text-primary-500">Soluciones</a>
+      <a href="#inicio"    class="hover:text-primary-500">Inicio</a>
+      <a href="#equipos"   class="hover:text-primary-500">Equipos</a>
+      <a href="#soluciones"class="hover:text-primary-500">Soluciones</a>
       <a href="#servicios" class="hover:text-primary-500">Servicios</a>
-      <a href="#contacto" class="hover:text-primary-500">Contacto</a>
+      <a href="#contacto"  class="hover:text-primary-500">Contacto</a>
       <a href="#productos" class="text-primary-700 font-bold">Productos</a>
     </nav>
   </header>
@@ -145,7 +148,7 @@
       </div>
       <div class="stat-box" data-aos="fade-up" data-aos-delay="200">
         <i class="fa-solid fa-arrows-to-dot"></i>
-        <p class="text-sm text-neutral-600">Tamaño máx. alimentación</p>
+        <p class="text-sm text-neutral-600">Tamaño máximo de alimentación</p>
         <p class="text-xl font-extrabold">≤ 1200 mm</p>
       </div>
     </div>
@@ -155,7 +158,7 @@
   <section class="max-w-7xl mx-auto px-6 py-20 grid lg:grid-cols-2 gap-14">
     <div data-aos="fade-right">
       <div class="border rounded-xl overflow-hidden shadow-deeper">
-        <img id="mainImg" src="https://picsum.photos/seed/mgw1/900/600" alt="Gallery" class="w-full h-auto">
+        <img id="mainImg" src="https://picsum.photos/seed/mgw1/900/600" alt="Galería" class="w-full h-auto">
       </div>
       <div class="flex gap-4 mt-4">
         <img src="https://picsum.photos/seed/mgw1/900/600" data-full="https://picsum.photos/seed/mgw1/900/600"
@@ -172,11 +175,11 @@
         El MGW Raymond Mill Grinder es ideal para el procesamiento de minerales con dureza Mohs ≤ 7…
       </p>
       <div class="flex gap-3">
-        <a href="#" title="Compartir en Facebook" class="share-icon share-fb"><i class="fa-brands fa-facebook-f"></i></a>
-        <a href="#" title="Compartir en Twitter" class="share-icon share-x"><i class="fa-brands fa-x-twitter"></i></a>
-        <a href="#" title="Compartir en LinkedIn" class="share-icon share-li"><i class="fa-brands fa-linkedin-in"></i></a>
-        <a href="#" title="Compartir en WhatsApp" class="share-icon share-wa"><i class="fa-brands fa-whatsapp"></i></a>
-        <a href="mailto:info@shmrmachinery.com" title="Enviar correo" class="share-icon share-mail"><i class="fa-solid fa-envelope"></i></a>
+        <a href="#" class="share-icon share-fb"    title="Compartir en Facebook"><i class="fa-brands fa-facebook-f"></i></a>
+        <a href="#" class="share-icon share-x"     title="Compartir en Twitter"><i class="fa-brands fa-x-twitter"></i></a>
+        <a href="#" class="share-icon share-li"    title="Compartir en LinkedIn"><i class="fa-brands fa-linkedin-in"></i></a>
+        <a href="#" class="share-icon share-wa"    title="Compartir en WhatsApp"><i class="fa-brands fa-whatsapp"></i></a>
+        <a href="mailto:info@shmrmachinery.com" class="share-icon share-mail" title="Enviar correo"><i class="fa-solid fa-envelope"></i></a>
       </div>
       <div class="flex flex-wrap gap-4 mt-4">
         <a href="https://api.whatsapp.com/send?phone=8615821910712&text=Hola,%20me%20interesa%20MGW%20Raymond%20Mill"
@@ -201,24 +204,24 @@
       <h2 class="text-3xl font-extrabold mb-12" data-aos="fade-up">Configuraciones mejoradas</h2>
       <div class="grid lg:grid-cols-3 gap-10">
         <div class="upgrade-card card-3d bg-white rounded-xl overflow-hidden" data-aos="zoom-in" data-aos-delay="100">
-          <img src="https://picsum.photos/seed/smp/400/260" alt="SMP Modular Mode" class="w-full h-40 object-cover">
+          <img src="https://picsum.photos/seed/smp/400/260" alt="Modo SMP Modular" class="w-full h-40 object-cover">
           <div class="p-6">
             <h3 class="font-semibold text-lg mb-2">Modo SMP Modular</h3>
             <p class="text-neutral-600 text-sm">Instalación rápida y servicio completo.</p>
           </div>
         </div>
         <div class="upgrade-card card-3d bg-white rounded-xl overflow-hidden" data-aos="zoom-in" data-aos-delay="200">
-          <img src="https://picsum.photos/seed/epco/400/260" alt="EPCO Service" class="w-full h-40 object-cover">
+          <img src="https://picsum.photos/seed/epco/400/260" alt="Servicio EPCO" class="w-full h-40 object-cover">
           <div class="p-6">
             <h3 class="font-semibold text-lg mb-2">Servicio EPCO</h3>
             <p class="text-neutral-600 text-sm">Compras centralizadas y construcción veloz.</p>
           </div>
         </div>
         <div class="upgrade-card card-3d bg-white rounded-xl overflow-hidden" data-aos="zoom-in" data-aos-delay="300">
-          <img src="https://picsum.photos/seed/iot/400/260" alt="IoT Digital Solution" class="w-full h-40 object-cover">
+          <img src="https://picsum.photos/seed/iot/400/260" alt="Solución IoT" class="w-full h-40 object-cover">
           <div class="p-6">
             <h3 class="font-semibold text-lg mb-2">Solución digital IoT</h3>
-            <p class="text-neutral-600 text-sm">Producción optimizada con plataforma SaaS.</p>
+            <p class="text-neutral-600 text-sm">Producción optimizada con SaaS.</p>
           </div>
         </div>
       </div>
@@ -249,9 +252,9 @@
         <table class="min-w-[480px] w-full text-sm">
           <tr class="odd:bg-neutral-50"><td class="px-4 py-3 font-medium">Modelo</td><td class="px-4 py-3">MGW-138</td></tr>
           <tr class="odd:bg-neutral-50"><td class="px-4 py-3 font-medium">Alimentación máx.</td><td class="px-4 py-3">≤ 30 mm</td></tr>
-          <tr class="odd:bg-neutral-50"><td class="px-4 py-3 font-medium">Capacidad</td><td class="px-4 py-3">4-12 t/h</td></tr>
+          <tr class="odd:bg-neutral-50"><td class="px-4 py-3 font-medium">Capacidad</td><td class="px-4 py-3">4–12 t/h</td></tr>
           <tr class="odd:bg-neutral-50"><td class="px-4 py-3 font-medium">Potencia</td><td class="px-4 py-3">157 kW</td></tr>
-          <tr class="odd:bg-neutral-50"><td class="px-4 py-3 font-medium">Finura</td><td class="px-4 py-3">75-44 µm</td></tr>
+          <tr class="odd:bg-neutral-50"><td class="px-4 py-3 font-medium">Finura</td><td class="px-4 py-3">75–44 µm</td></tr>
           <tr class="odd:bg-neutral-50"><td class="px-4 py-3 font-medium">Consumo</td><td class="px-4 py-3">≤ 14 kWh/t</td></tr>
           <tr class="odd:bg-neutral-50"><td class="px-4 py-3 font-medium">Dimensiones</td><td class="px-4 py-3">7 200×4 000×7 900 mm</td></tr>
           <tr class="odd:bg-neutral-50"><td class="px-4 py-3 font-medium">Peso</td><td class="px-4 py-3">32 t</td></tr>
@@ -267,9 +270,18 @@
 
     <div id="tab-faq" class="hidden" data-aos="fade-up">
       <div class="max-w-3xl mx-auto">
-        <details class="bg-neutral-50 p-4 rounded-lg shadow mb-3"><summary class="font-medium">¿Dureza máxima?</summary><p class="mt-2 text-neutral-700">Hasta Mohs 7 con pre-cribado.</p></details>
-        <details class="bg-neutral-50 p-4 rounded-lg shadow mb-3"><summary class="font-medium">¿Transporte neumático?</summary><p class="mt-2 text-neutral-700">Opcional: soplador + ciclón.</p></details>
-        <details class="bg-neutral-50 p-4 rounded-lg shadow mb-3"><summary class="font-medium">¿Tiempo de instalación?</summary><p class="mt-2 text-neutral-700">15–20 días con equipo on-site.</p></details>
+        <details class="bg-neutral-50 p-4 rounded-lg shadow mb-3">
+          <summary class="font-medium">¿Dureza máxima?</summary>
+          <p class="mt-2 text-neutral-700">Hasta Mohs 7 con pre-cribado.</p>
+        </details>
+        <details class="bg-neutral-50 p-4 rounded-lg shadow mb-3">
+          <summary class="font-medium">¿Transporte neumático?</summary>
+          <p class="mt-2 text-neutral-700">Opcional: soplador + ciclón.</p>
+        </details>
+        <details class="bg-neutral-50 p-4 rounded-lg shadow mb-3">
+          <summary class="font-medium">¿Tiempo de instalación?</summary>
+          <p class="mt-2 text-neutral-700">15–20 días con equipo on-site.</p>
+        </details>
       </div>
     </div>
   </section>
@@ -301,11 +313,11 @@
     </div>
   </section>
 
-  <!-- TE PUEDE INTERESAR (centrado, sin lupa) -->
+  <!-- TE PUEDE INTERESAR -->
   <section class="py-24 bg-slate-100 text-center">
     <div class="max-w-7xl mx-auto px-6" data-aos="fade-up">
       <h2 class="text-3xl font-extrabold mb-10">Te puede interesar</h2>
-      <div class="swiper relatedSwiper justify-center">
+      <div class="swiper relatedSwiper">
         <div class="swiper-wrapper">
           <div class="swiper-slide card-3d bg-white rounded-xl overflow-hidden">
             <img src="https://picsum.photos/seed/ygm/400/280" alt="YGM Raymond Mill" class="w-full h-40 object-cover">
@@ -341,43 +353,41 @@
 
   <!-- FOOTER -->
   <footer class="bg-neutral-900 text-neutral-200 pt-14">
-  <div class="max-w-7xl mx-auto px-6 pb-12 grid gap-10 md:grid-cols-12">
-    <div class="md:col-span-4">
-      <h3 class="font-extrabold text-lg text-white mb-3">ISAN TRADING INTERNACIONAL S.R.L</h3>
-      <p class="text-sm leading-relaxed">Soluciones de trituración, molienda y briquetado<br>con soporte global 24/7.</p>
-      <div class="flex gap-4 mt-6 text-xl">
-        <a href="#" class="hover:text-primary-500"><i class="fa-brands fa-facebook-f"></i></a>
-        <a href="#" class="hover:text-primary-500"><i class="fa-brands fa-instagram"></i></a>
-        <a href="#" class="hover:text-primary-500"><i class="fa-brands fa-youtube"></i></a>
-        <a href="#" class="hover:text-primary-500"><i class="fa-brands fa-weixin"></i></a>
+    <div class="max-w-7xl mx-auto px-6 pb-12 grid gap-10 md:grid-cols-12">
+      <div class="md:col-span-4">
+        <h3 class="font-extrabold text-lg mb-3">MR Crusher</h3>
+        <p class="text-sm leading-relaxed">Soluciones de trituración, molienda y briquetado 24/7.</p>
+        <div class="flex gap-4 mt-6 text-xl">
+          <a href="#" class="hover:text-primary-500"><i class="fa-brands fa-facebook-f"></i></a>
+          <a href="#" class="hover:text-primary-500"><i class="fa-brands fa-instagram"></i></a>
+          <a href="#" class="hover:text-primary-500"><i class="fa-brands fa-youtube"></i></a>
+          <a href="#" class="hover:text-primary-500"><i class="fa-brands fa-weixin"></i></a>
+        </div>
+      </div>
+      <div class="md:col-span-4">
+        <h4 class="font-semibold text-white mb-3">Navegación</h4>
+        <div class="grid grid-cols-2 gap-y-1 text-sm">
+          <a href="#inicio" class="hover:text-primary-500">Inicio</a>
+          <a href="#equipos" class="hover:text-primary-500">Equipos</a>
+          <a href="#soluciones" class="hover:text-primary-500">Soluciones</a>
+          <a href="#servicios" class="hover:text-primary-500">Servicios</a>
+          <a href="#contacto" class="hover:text-primary-500">Contacto</a>
+          <a href="#productos" class="hover:text-primary-500">Productos</a>
+        </div>
+      </div>
+      <div class="md:col-span-4">
+        <h4 class="font-semibold text-white mb-3">China HQ</h4>
+        <ul class="space-y-2 text-sm">
+          <li>No. 9875 Hunan Rd., Shanghai</li>
+          <li>+86 158 2191 0712</li>
+          <li>info@shmrmachinery.com</li>
+        </ul>
       </div>
     </div>
-    <div class="md:col-span-4">
-      <h4 class="font-semibold text-white mb-3">Navegación</h4>
-      <div class="grid grid-cols-2 gap-y-1 text-sm">
-        <a href="#inicio"     class="hover:text-primary-500">Inicio</a>
-        <a href="#nosotros"   class="hover:text-primary-500">Nosotros</a>
-        <a href="#destacados" class="hover:text-primary-500">Productos</a>
-        <a href="#noticias"   class="hover:text-primary-500">Noticias</a>
-        <a href="#mapa"       class="hover:text-primary-500">Mapa</a>
-        <a href="#alianza"    class="hover:text-primary-500">Alianza</a>
-        <a href="#videos"    class="hover:text-primary-500">Videos</a>
-        <a href="#sitemap"    class="hover:text-primary-500">Sitemap</a>
-      </div>
+    <div class="bg-neutral-800 text-center text-xs py-3 text-neutral-400">
+      © 2025 Shanghai Mountain River Machinery Co., Ltd.
     </div>
-    <div class="md:col-span-4">
-      <h4 class="font-semibold text-white mb-3"> ISAN TRADING INTERNACIONAL S.R.L HQ</h4>
-      <ul class="text-sm space-y-2">
-        <li class="flex gap-2"><i class="fa-solid fa-location-dot text-primary-500 mt-0.5 w-4"></i>No. 9875 -----</li>
-        <li class="flex gap-2"><i class="fa-solid fa-phone text-primary-500 mt-0.5 w-4"></i>+5917891234</li>
-        <li class="flex gap-2"><i class="fa-solid fa-envelope text-primary-500 mt-0.5 w-4"></i>info@ ISANTRADINGINTERNACIONALS.R.L.com.bo</li>
-        <li class="flex gap-2"><i class="fa-solid fa-globe text-primary-500 mt-0.5 w-4"></i><a href="https://ISANTRADINGINTERNACIONALS.R.L.com.bo" target="_blank" class="hover:underline">mrcrusher.com</a></li>
-      </ul>
-    </div>
-  </div>
-  <div class="bg-neutral-800 text-center text-xs py-3 text-neutral-400 tracking-wide">© 2025 Shanghai Mountain River Machinery Co., Ltd.</div>
-</footer>
-
+  </footer>
 
   <!-- Botón "Ir arriba" -->
   <button id="toTop" aria-label="Volver arriba" class="text-white text-xl">
@@ -409,15 +419,15 @@
       });
     });
 
-    // Swiper "Te puede interesar"
+    // Centrar slides y sin zoom
     new Swiper('.relatedSwiper', {
       loop: true,
       spaceBetween: 20,
       slidesPerView: 1.3,
       centeredSlides: true,
       breakpoints: {
-        640: { slidesPerView: 2.2 },
-        1024:{ slidesPerView: 3.2 }
+        640:  { slidesPerView: 2.2 },
+        1024: { slidesPerView: 3.2 }
       }
     });
 
@@ -437,7 +447,7 @@
       document.getElementById('mobile-nav').classList.toggle('hidden');
     });
 
-    // Barra de progreso y botón "Ir arriba"
+    // Progreso de scroll y "Ir arriba"
     const toTop = document.getElementById('toTop'),
           progress = document.getElementById('progress');
     window.addEventListener('scroll', () => {
