@@ -482,31 +482,87 @@ document.querySelectorAll('a[href^="#"]').forEach(a=>a.addEventListener('click',
 }));
 
 /* MapLibre zoom 1.5 desktop / 1.3 móvil */
-const baseZoom = innerWidth < 640 ? 2.4 : 2.1;
+<script>
+  // Zoom 1.3 en móviles (<640px) y 1.5 en desktop
+  const baseZoom = innerWidth < 640 ? 1.3 : 1.5;
 
+  // Coordenadas de Shanghái y Bolivia
+  const cn = [121.4737, 31.2304];
+  const bo = [-63.588652, -16.290154];
+
+  // Inicialización del mapa
   const map = new maplibregl.Map({
     container: 'chinaBoliviaMap',
     style: 'https://demotiles.maplibre.org/style.json',
-    center: [25, 5],
+    center: cn,
     zoom: baseZoom,
     projection: 'mercator',
     dragRotate: false,
     touchZoomRotate: { pinchRotate: false },
     attributionControl: false
   });
-const cn=[121.4737,31.2304],bo=[-63.588652,-16.290154];
-map.on('load',()=>{
-  map.addSource('route',{type:'geojson',data:{type:'Feature',geometry:{type:'LineString',coordinates:[cn,bo]}}});
-  map.addLayer({id:'route',type:'line',source:'route',paint:{'line-color':'#E53935','line-width':4}});
-  const add=(p,u,l)=>{const d=document.createElement('div');d.style.cssText='width:32px;height:32px;border-radius:50%;background:url('+u+') center/cover;border:2px solid #fff';
-    new maplibregl.Marker({element:d}).setLngLat(p).setPopup(new maplibregl.Popup({offset:20}).setHTML(l)).addTo(map);};
-  add(cn,'https://flagcdn.com/w40/cn.png','Shanghái 🇨🇳');add(bo,'https://flagcdn.com/w40/bo.png','Bolivia 🇧🇴');
-});
 
-/* Back-to-top */
-const topBtn=document.getElementById('toTop');
-window.addEventListener('scroll',()=>{const show=scrollY>600;topBtn.classList.toggle('opacity-0',!show);topBtn.classList.toggle('pointer-events-none',!show)});
-topBtn.addEventListener('click',()=>scrollTo({top:0,behavior:'smooth'}));
+  map.on('load', () => {
+    // Fuente GeoJSON de la ruta
+    map.addSource('route', {
+      type: 'geojson',
+      data: {
+        type: 'Feature',
+        geometry: {
+          type: 'LineString',
+          coordinates: [cn, bo]
+        }
+      }
+    });
+
+    // Capa de línea roja
+    map.addLayer({
+      id: 'route',
+      type: 'line',
+      source: 'route',
+      paint: {
+        'line-color': '#E53935',
+        'line-width': 4
+      }
+    });
+
+    // Función para añadir marcadores con popup
+    const addMarker = (coords, iconUrl, html) => {
+      const el = document.createElement('div');
+      el.style.cssText = `
+        width:32px;height:32px;
+        border-radius:50%;
+        background:url(${iconUrl}) center/cover;
+        border:2px solid #fff;
+      `;
+      new maplibregl.Marker({ element: el })
+        .setLngLat(coords)
+        .setPopup(new maplibregl.Popup({ offset: 20 }).setHTML(html))
+        .addTo(map);
+    };
+
+    addMarker(cn, 'https://flagcdn.com/w40/cn.png', 'Shanghái 🇨🇳');
+    addMarker(bo, 'https://flagcdn.com/w40/bo.png',    'Bolivia 🇧🇴');
+
+    // Ajuste automático de bounds para que entren ambos marcadores
+    const bounds = new maplibregl.LngLatBounds(cn, bo);
+    map.fitBounds(bounds, {
+      padding: 40,
+      maxZoom: innerWidth < 640 ? 2.5 : 3.0
+    });
+  });
+
+  // Reajustar al rotar o redimensionar dispositivo
+  window.addEventListener('resize', () => {
+    const newZoom = innerWidth < 640 ? 1.3 : 1.5;
+    map.setZoom(newZoom);
+    const bounds = new maplibregl.LngLatBounds(cn, bo);
+    map.fitBounds(bounds, {
+      padding: 40,
+      maxZoom: innerWidth < 640 ? 2.5 : 3.0
+    });
+  });
 </script>
+
 </body>
 </html>
