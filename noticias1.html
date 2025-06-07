@@ -1,0 +1,347 @@
+<!DOCTYPE html>
+<html lang="es" class="scroll-smooth">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1.0">
+  <title>HPGR 300 TPH en Chile finalizado | MR Crusher</title>
+  <link rel="icon" href="/favicon.ico">
+
+  <!-- Tailwind CSS & Config -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        fontFamily: { sans: ['Poppins','ui-sans-serif'] },
+        extend: {
+          colors: { primary: { 500:'#E53935', 700:'#C62828' } },
+          boxShadow: { hero:'inset 0 -100px 90px -70px rgba(0,0,0,.65)' }
+        }
+      }
+    };
+  </script>
+
+  <!-- Fonts & Icons & PhotoSwipe -->
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+  <link rel="stylesheet" href="https://unpkg.com/photoswipe@5/dist/photoswipe.css">
+
+  <style>
+    body { font-family:'Poppins',sans-serif; }
+    #progress { position:fixed; top:0; left:0; height:4px; background:#E53935; width:0; z-index:60; }
+    .article h2 { font-size:1.48rem; font-weight:700; margin:2.1rem 0 .9rem; }
+    .article h3 { font-size:1.18rem; font-weight:600; margin:1.7rem 0 .7rem; }
+    .article p, .article ul { margin:1.1rem 0; line-height:1.7; }
+    .article figure { margin:2rem 0; }
+    .article figcaption { font-size:.8rem; text-align:center; margin-top:.55rem; color:#6b7280; }
+    .share-sm a {
+      background:#fff; width:2.2rem; height:2.2rem; border-radius:9999px;
+      display:flex; align-items:center; justify-content:center;
+      box-shadow:0 3px 8px rgba(0,0,0,.15);
+    }
+    #toc {
+      position:sticky; top:6rem; padding:1rem 1.2rem; border:1px solid #e5e7eb;
+      background:#fff; border-radius:.75rem; box-shadow:0 6px 18px rgba(0,0,0,.14);
+      display:none;
+    }
+    #toc a {
+      display:block; font-size:.78rem; padding:.28rem 0; border-left:2px solid transparent;
+    }
+    #toc a.active { color:#E53935; border-color:#E53935; }
+    @media(min-width:1280px){ #toc { display:block; } }
+  </style>
+</head>
+
+<body class="bg-neutral-50 antialiased">
+
+  <!-- Progress Bar -->
+  <div id="progress"></div>
+
+  <!-- HEADER -->
+  <header class="fixed inset-x-0 top-0 z-50 bg-white/90 backdrop-blur-md shadow-sm">
+    <div class="max-w-7xl mx-auto h-16 px-6 flex items-center">
+      <a href="/" class="text-2xl font-extrabold text-primary-700">MR Crusher</a>
+      <nav class="hidden lg:flex mx-auto gap-6 text-sm">
+        <a href="/" class="hover:text-primary-700">Inicio</a>
+        <a href="/index.php#equipos" class="hover:text-primary-700">Equipos</a>
+        <a href="/index.php#soluciones" class="hover:text-primary-700">Soluciones</a>
+        <a href="/index.php#servicios" class="hover:text-primary-700">Servicios</a>
+        <a href="/index.php#contacto" class="hover:text-primary-700">Contacto</a>
+        <a href="/noticias.php" class="text-primary-700 font-semibold">Noticias</a>
+      </nav>
+      <button id="menuBtn" class="lg:hidden ml-auto text-primary-700">
+        <i class="fa-solid fa-bars fa-2x"></i>
+      </button>
+    </div>
+    <nav id="mobileNav" class="hidden lg:hidden bg-white flex-col text-center py-4 space-y-4">
+      <a href="/" class="block">Inicio</a>
+      <a href="/index.php#equipos" class="block">Equipos</a>
+      <a href="/index.php#soluciones" class="block">Soluciones</a>
+      <a href="/index.php#servicios" class="block">Servicios</a>
+      <a href="/index.php#contacto" class="block">Contacto</a>
+      <a href="/noticias.php" class="block text-primary-700 font-bold">Noticias</a>
+    </nav>
+  </header>
+
+  <script>
+    // Toggle menú móvil
+    document.getElementById('menuBtn').onclick = () => {
+      document.getElementById('mobileNav').classList.toggle('hidden');
+    };
+  </script>
+
+  <!-- HERO -->
+  <section class="relative h-[60vh] bg-cover bg-center" style="background-image:url('https://picsum.photos/seed/project-hero/1600/900')">
+    <div class="absolute inset-0 bg-black/55 shadow-hero"></div>
+    <div class="absolute bottom-8 inset-x-0 px-6">
+      <div class="max-w-4xl mx-auto bg-white/80 backdrop-blur-sm rounded-xl p-8 shadow-lg">
+        <nav class="text-xs text-neutral-600 mb-2">
+          <a href="/">Inicio</a> &raquo;
+          <a href="/noticias.php">Noticias</a> &raquo;
+          <span class="text-primary-500">Proyectos</span>
+        </nav>
+        <div class="flex items-start gap-3">
+          <svg class="w-10 h-10 text-primary-500/40 -mt-1 shrink-0" fill="none" stroke="currentColor">
+            <use href="https://unpkg.com/lucide@latest/dist/icons.svg#mountain-city"/>
+          </svg>
+          <h1 class="flex-1 text-3xl md:text-4xl font-extrabold">HPGR 300 TPH en Chile finalizado</h1>
+        </div>
+        <div class="border-t mt-4 pt-3 text-sm text-neutral-700">
+          <span class="mr-4"><i class="fa-regular fa-calendar-days mr-1"></i>12 May 2025</span>
+          <span class="mr-4"><i class="fa-solid fa-folder-open mr-1 text-primary-500"></i>Proyectos</span>
+          <span><i class="fa-solid fa-tag mr-1 text-primary-500"></i>Línea HPGR</span>
+        </div>
+        <div class="flex items-center gap-3 text-sm mt-4 text-neutral-600">
+          <span class="font-semibold">Compartir:</span>
+          <a href="https://api.whatsapp.com/send?text=HPGR%20300%20TPH%20en%20Chile%20finalizado%20https%3A%2F%2Fmrcrusher.com%2Fnoticia1.php" target="_blank">
+            <i class="fa-brands fa-whatsapp text-lg text-[#25D366] hover:opacity-80"></i>
+          </a>
+          <a href="https://www.linkedin.com/sharing/share-offsite/?url=https%3A%2F%2Fmrcrusher.com%2Fnoticia1.php" target="_blank">
+            <i class="fa-brands fa-linkedin-in text-lg text-[#0A66C2] hover:opacity-80"></i>
+          </a>
+          <a href="https://twitter.com/intent/tweet?url=https%3A%2F%2Fmrcrusher.com%2Fnoticia1.php&text=HPGR%20300%20TPH%20en%20Chile%20finalizado" target="_blank">
+            <i class="fa-brands fa-x-twitter text-lg text-[#1DA1F2] hover:opacity-80"></i>
+          </a>
+          <button onclick="navigator.clipboard.writeText(location.href)">
+            <i class="fa-regular fa-copy text-lg text-primary-500 hover:opacity-80"></i>
+          </button>
+          <span class="ml-auto flex items-center gap-1 text-xs text-neutral-500">
+            <i class="fa-solid fa-eye"></i>0
+          </span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- MAIN + SIDEBAR -->
+  <main class="max-w-7xl mx-auto px-6 py-20 flex flex-col xl:flex-row gap-12">
+
+    <!-- CONTENIDO PRINCIPAL -->
+    <section class="flex-1 min-w-0">
+      <article id="content" class="article prose max-w-none">
+        <p>Tras 14 meses de montaje y pruebas, <strong>MR Crusher</strong> concluyó la puesta
+        en marcha de la línea HPGR <em>MR-600 × 400</em> para <u>Coppermine CL</u>
+        en la II Región de Chile.</p>
+
+        <figure>
+          <a href="https://picsum.photos/seed/site/1200/800" data-pswp-width="1200" data-pswp-height="800">
+            <img src="https://picsum.photos/seed/site/900/500" alt="Vista HPGR" class="rounded-xl shadow">
+          </a>
+          <figcaption>Figura 1 — HPGR instalado junto al silo de alimentación.</figcaption>
+        </figure>
+
+        <h2>Objetivos del proyecto</h2>
+        <ul>
+          <li>Incrementar <strong>15 %</strong> la recuperación de cobre.</li>
+          <li>Reducir el consumo energético en el circuito de molienda.</li>
+        </ul>
+
+        <h2>Resultados destacados</h2>
+        <blockquote>
+          “El HPGR MR-600 superó las expectativas. Ahorramos 4,3 kWh/t.”
+          — Ing. R. Silva
+        </blockquote>
+
+        <figure>
+          <a href="https://picsum.photos/seed/chart/1200/800" data-pswp-width="1200" data-pswp-height="800">
+            <img src="https://picsum.photos/seed/chart/900/450" alt="Curva consumo" class="rounded-xl shadow">
+          </a>
+          <figcaption>Figura 2 — Consumo específico antes y después del upgrade.</figcaption>
+        </figure>
+
+        <h3>Próximos pasos</h3>
+        <p>En 2026 se proyecta la adición de un segundo HPGR para duplicar la capacidad.
+        MR Crusher suministrará el paquete completo de upgrade.</p>
+      </article>
+
+      <!-- Etiquetas -->
+      <div class="mt-10 flex flex-wrap gap-3">
+        <a href="/noticias.php?tag=hpgr" class="text-xs bg-neutral-200 px-2 py-1 rounded">#hpgr</a>
+        <a href="/noticias.php?tag=ahorro-energía" class="text-xs bg-neutral-200 px-2 py-1 rounded">#ahorro-energía</a>
+        <a href="/noticias.php?tag=cobre" class="text-xs bg-neutral-200 px-2 py-1 rounded">#cobre</a>
+      </div>
+
+      <!-- Autor -->
+      <div class="flex items-center gap-4 bg-neutral-100 p-6 rounded-xl shadow mt-14">
+        <img src="https://picsum.photos/seed/author/120" class="w-16 h-16 rounded-full object-cover" alt="Ing. R. Silva">
+        <div>
+          <p class="font-semibold">Ing. R. Silva</p>
+          <p class="text-xs text-neutral-600">Gerente de Planta</p>
+        </div>
+      </div>
+
+      <!-- Navegación Anterior/Siguiente -->
+      <div class="flex justify-between border-t mt-16 pt-8 text-sm">
+        <a href="noticia0.html" class="text-primary-500 hover:underline flex items-center gap-1">
+          <i class="fa-solid fa-arrow-left"></i> Anterior
+        </a>
+        <a href="noticia2.html" class="text-primary-500 hover:underline flex items-center gap-1">
+          Siguiente <i class="fa-solid fa-arrow-right"></i>
+        </a>
+      </div>
+
+      <!-- PhotoSwipe Lightbox -->
+      <script type="module">
+        import PhotoSwipeLightbox from 'https://unpkg.com/photoswipe@5/dist/photoswipe-lightbox.esm.js';
+        const lightbox = new PhotoSwipeLightbox({
+          gallery: '#content',
+          children: 'a[data-pswp-width]',
+          pswpModule: () => import('https://unpkg.com/photoswipe@5/dist/photoswipe.esm.js')
+        });
+        lightbox.init();
+      </script>
+    </section>
+
+    <!-- SIDEBAR -->
+    <aside class="hidden xl:block w-72 shrink-0">
+      <!-- Buscador -->
+      <input id="searchSide" placeholder="Buscar noticias…" class="w-full rounded-full border border-neutral-300 py-2 px-4 text-sm shadow-sm mb-8">
+
+      <!-- Categorías -->
+      <h3 class="font-semibold mb-3">Categorías</h3>
+      <ul class="space-y-2 text-sm mb-8">
+        <li class="flex justify-between"><a href="/noticias.php?cat=Proyectos" class="hover:text-primary-500">Proyectos</a><span class="text-xs bg-neutral-200 px-2 rounded">8</span></li>
+        <li class="flex justify-between"><a href="/noticias.php?cat=Innovación" class="hover:text-primary-500">Innovación</a><span class="text-xs bg-neutral-200 px-2 rounded">5</span></li>
+        <li class="flex justify-between"><a href="/noticias.php?cat=Mercado" class="hover:text-primary-500">Mercado</a><span class="text-xs bg-neutral-200 px-2 rounded">4</span></li>
+        <li class="flex justify-between"><a href="/noticias.php?cat=Tips" class="hover:text-primary-500">Tips</a><span class="text-xs bg-neutral-200 px-2 rounded">6</span></li>
+      </ul>
+
+      <!-- Recientes -->
+      <h3 class="font-semibold mb-3">Recientes</h3>
+      <ul class="space-y-4 mb-8 text-sm">
+        <li class="flex gap-3">
+          <img src="https://picsum.photos/seed/r1/80" class="w-14 h-14 rounded object-cover" alt="">
+          <a href="noticia2.html" class="font-medium hover:text-primary-500">Planta 200 TPH Perú</a>
+        </li>
+        <li class="flex gap-3">
+          <img src="https://picsum.photos/seed/r2/80" class="w-14 h-14 rounded object-cover" alt="">
+          <a href="noticia3.html" class="font-medium hover:text-primary-500">Retrofit molino 3×13 m</a>
+        </li>
+        <li class="flex gap-3">
+          <img src="https://picsum.photos/seed/r3/80" class="w-14 h-14 rounded object-cover" alt="">
+          <a href="noticia4.html" class="font-medium hover:text-primary-500">Checklist mantenimiento</a>
+        </li>
+        <li class="flex gap-3">
+          <img src="https://picsum.photos/seed/r4/80" class="w-14 h-14 rounded object-cover" alt="">
+          <a href="noticia5.html" class="font-medium hover:text-primary-500">Cobre en máximos</a>
+        </li>
+        <li class="flex gap-3">
+          <img src="https://picsum.photos/seed/r5/80" class="w-14 h-14 rounded object-cover" alt="">
+          <a href="noticia6.html" class="font-medium hover:text-primary-500">Recubrimiento nano-cerámico</a>
+        </li>
+      </ul>
+
+      <!-- CTA WhatsApp -->
+      <div class="bg-primary-500 text-white p-6 rounded-xl shadow flex flex-col items-center text-center gap-3">
+        <i class="fa-brands fa-whatsapp fa-2x"></i>
+        <p class="text-sm leading-relaxed">¿Necesitas asesoría?<br>Escríbenos ahora mismo.</p>
+        <a href="https://wa.me/8615821910712" target="_blank" class="bg-white/20 px-4 py-1.5 rounded-full text-xs font-semibold hover:bg-white/30 transition">
+          WhatsApp 24/7
+        </a>
+      </div>
+
+      <!-- TOC -->
+      <nav id="toc" class="mt-10"></nav>
+    </aside>
+
+  </main>
+
+  <!-- FOOTER -->
+  <footer class="bg-neutral-900 text-neutral-200 pt-14">
+    <div class="max-w-7xl mx-auto px-6 pb-12 grid gap-10 lg:grid-cols-12">
+      <div class="lg:col-span-4">
+        <h3 class="text-white font-extrabold text-lg mb-3">MR Crusher</h3>
+        <p class="text-sm">Soluciones de trituración, molienda y briquetado 24/7.</p>
+        <div class="flex gap-4 mt-6 text-xl">
+          <a href="#" class="hover:text-primary-500"><i class="fa-brands fa-facebook-f"></i></a>
+          <a href="#" class="hover:text-primary-500"><i class="fa-brands fa-linkedin-in"></i></a>
+          <a href="#" class="hover:text-primary-500"><i class="fa-brands fa-youtube"></i></a>
+        </div>
+      </div>
+      <div class="lg:col-span-4">
+        <h4 class="font-semibold text-white mb-3">Enlaces útiles</h4>
+        <ul class="space-y-1 text-sm">
+          <li><a href="/index.php#equipos" class="hover:text-primary-500">Equipos</a></li>
+          <li><a href="/publicaciones.php" class="hover:text-primary-500">Publicaciones</a></li>
+          <li><a href="/index.php#contacto" class="hover:text-primary-500">Contacto</a></li>
+          <li><a href="/noticias.php" class="hover:text-primary-500">Noticias</a></li>
+        </ul>
+      </div>
+      <div class="lg:col-span-4">
+        <h4 class="font-semibold text-white mb-3">China HQ</h4>
+        <ul class="space-y-1 text-sm">
+          <li>No. 9875 Hunan Rd., Shanghai</li>
+          <li>+86 158 2191 0712</li>
+          <li>info@shmrmachinery.com</li>
+        </ul>
+        <iframe class="mt-4 rounded shadow" src="https://maps.google.com/maps?q=shanghai%20hunan%20rd&t=&z=13&ie=UTF8&iwloc=&output=embed"
+                width="100%" height="120" loading="lazy"></iframe>
+      </div>
+    </div>
+    <div class="bg-neutral-800 text-neutral-400 text-xs text-center py-4">
+      © 2025 Shanghai Mountain River Machinery Co., Ltd.
+    </div>
+  </footer>
+
+  <!-- JS: Progress, TOC, Filtro Sidebar -->
+  <script>
+    // Progress bar
+    const prog = document.getElementById('progress');
+    addEventListener('scroll', () => {
+      const h = document.documentElement;
+      prog.style.width = 100 * scrollY / (h.scrollHeight - h.clientHeight) + '%';
+    });
+
+    // TOC dinámico
+    const tocNav = document.getElementById('toc'),
+          heads = [...document.querySelectorAll('#content h2, #content h3')];
+    if (tocNav && heads.length) {
+      heads.forEach((h,i) => {
+        const id = 'h'+i;
+        h.id = id;
+        const a = document.createElement('a');
+        a.href = '#'+id;
+        a.textContent = h.textContent;
+        a.style.marginLeft = h.tagName==='H3'?'1rem':'0';
+        tocNav.append(a);
+      });
+      addEventListener('scroll', () => {
+        const y = scrollY + 160;
+        heads.forEach((h,i) => {
+          if (y >= h.offsetTop && y < h.offsetTop + h.offsetHeight) {
+            tocNav.querySelectorAll('a').forEach(x => x.classList.remove('active'));
+            tocNav.children[i].classList.add('active');
+          }
+        });
+      });
+    }
+
+    // Filtro de categorías en sidebar
+    document.getElementById('searchSide').oninput = e => {
+      const q = e.target.value.toLowerCase();
+      document.querySelectorAll('aside ul li a').forEach(a => {
+        a.parentElement.style.display = a.textContent.toLowerCase().includes(q)?'flex':'none';
+      });
+    };
+  </script>
+</body>
+</html>
